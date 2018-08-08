@@ -1,0 +1,26 @@
+page-wishlist {
+
+    .header .toolbar:last-child .toolbar-background { border-bottom: 0; background: #ffffff;}
+    .header::after{ background-image:none;}
+        
+    .bar-button-menutoggle ion-icon{ color: #5d5d5d; }
+    .button-inner ion-icon{ color: #5d5d5d; }
+    .toolbar ion-title{ padding: 0 0 1px 36px;}
+    .toolbar-title{ padding: 0; text-align: left;}
+    .toolbar-title h3{ color: #3e3e3e; font-weight: 600; text-transform: uppercase; font-size: 1.7rem; margin-bottom: 0; margin-top: 0;}
+    .toolbar-title p{ margin-top: 0; margin-bottom: 0; font-size: 1.4rem; font-weight: 400;}
+    
+    .content{ background: #f5f5f5; }
+    .list > .item-block:first-child{ border-top: 0;}
+    .list > .item-block:last-child{ border-bottom: 0; border-top: 0; margin-top:0; }
+    .list .item{ margin-bottom: 0; }
+    
+    .wishlist-area{ width: auto; margin: 0px 0 44px;}
+      .wishlist-area .item{ margin-bottom:0;}
+      .wishlist-area .item ion-thumbnail[item-start]{ margin-left: 8px;}
+      .wishlist-area .item [item-end] {text-align: right; align-items: flex-start; margin-top: 0;}
+      .heart{color: #666;}
+      .wishlist-area .item [item-end] p{ color: #30be21; font-weight: 500;}
+    
+    }
+    

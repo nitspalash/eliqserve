@@ -1,0 +1,98 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+        </ion-buttons>
+    
+        <ion-title>
+          <h3>My Bag</h3>
+        </ion-title>
+    
+        <ion-buttons end>
+          <button ion-button icon-only >
+            <ion-icon name="search"></ion-icon>
+          </button>
+          <button ion-button icon-only >
+            <ion-icon name="cart"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list  *ngIf="cartArray">
+        <ion-item *ngFor="let item of cartArray">
+          <ion-thumbnail item-start>
+            <img src="{{item.image}}" alt="">
+          </ion-thumbnail>
+          <h2>{{item.name}}</h2>
+          <!-- <p>{{item.product.description}}</p> -->
+          <div class="wt-area">
+            <span class="wt">Quantity: {{item.quantity}}   X {{item.product.price}}</span>
+            <ion-row>
+              <ion-col col-2 text-center>
+                <ion-icon class="round-bg" name="add"></ion-icon>
+              </ion-col>
+              <ion-col col-3 text-center>
+                <p>12</p>
+              </ion-col>
+              <ion-col col-2 text-center>
+                <ion-icon class="round-bg" name="remove"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <!-- <span>Black Label</span> -->
+          </div>
+           <div item-end text-right>
+             <button ion-button class="btn-bg">
+              <ion-icon name="create"></ion-icon>
+             </button>
+            <button ion-button class="btn-bg">
+              <ion-icon name="close"></ion-icon>
+            </button>
+            
+            <div class="price"> ${{item.price}}.00 </div>
+           </div>   
+        </ion-item>
+    
+        <!-- <ion-item>
+          <ion-thumbnail item-start>
+            <img src="assets/imgs/cart-pic-a.png" alt="">
+          </ion-thumbnail>
+          <h2>Johnnie Walker</h2>
+          <p>Black Label 12 year...</p>
+          <div class="wt-area">
+            <span class="wt">Weight: 1ltr</span>
+            <span>Black Label</span>
+          </div>
+          <div item-end text-right>
+            <ion-icon name="more"></ion-icon>
+            <div class="price"> $150.00 </div>
+          </div>
+        </ion-item>
+     -->
+        <ion-item>
+          <div item-start> Total </div>
+          <div item-end text-right>
+            <div class="total-price"> ${{totalPrice}}.00 </div>
+          </div>
+        </ion-item>
+      </ion-list>
+
+      <button block *ngIf="cartArray" ion-button (click)="goForCheckout()">CHECKOUT</button>
+      <ion-list *ngIf="!cartArray">
+          <ion-item>
+              <div item-start> No product is available in your Bag.  </div>
+              
+          </ion-item>
+       </ion-list>
+    </ion-content>

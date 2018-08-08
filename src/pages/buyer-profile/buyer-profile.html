@@ -1,0 +1,143 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      <h3>Buyer Profile</h3>
+    </ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+
+  <ion-item text-center style="box-shadow: 0px 1px 10px 0px #8a8b8b; padding-bottom: 32px;" >
+      <div class="po-rel" padding>
+        <a (click)="editBuyerProfile()"><ion-icon class="edit" name="create"></ion-icon></a>
+          <div class="pro-pic-area">
+            <img src="assets/imgs/avtar.png" alt="">
+          </div>
+      </div>
+      
+      <h3 class="person-name"> John Doe </h3>
+      <p>  <ion-icon class="pin" name="pin"></ion-icon> New Delhi</p>
+  </ion-item>
+    
+      <ion-item class="pro-body">
+          <ion-icon item-start name="person"></ion-icon>
+        <p>Name</p>
+        <h3>Jon Dowe</h3>
+      </ion-item>
+
+      <ion-item  class="pro-body">
+          <ion-icon item-start name="mail"></ion-icon>
+        <p>Email</p>
+        <h3>jon@gmail.com</h3>
+      </ion-item>
+
+      <ion-item class="pro-body">
+          <ion-icon item-start name="phone-portrait"></ion-icon>
+        <p>Phone</p>
+        <h3>+91 999 - 999 - 9999</h3>
+      </ion-item>
+
+
+        <h2 class="latest-ordr">Purchase History</h2>
+        <ion-card>
+          <ion-card-content>
+              <ion-row>
+                  <ion-col col-3><p class="lt-l">Order Id: </p></ion-col>
+                  <ion-col col-9><h4 class="lt-r">#1111111111</h4></ion-col>
+                </ion-row>
+        
+              <ion-row>
+                  <ion-col col-5><p class="lt-l">Seller Name: </p></ion-col>
+                  <ion-col col-7><h4 class="lt-r">Rup Desai</h4></ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col col-2><p class="lt-l">Price: </p></ion-col>
+                  <ion-col col-10><h4 class="lt-r">$100.00</h4></ion-col>
+              </ion-row>
+              <ion-row>  
+                  <ion-col col-4><p class="lt-l">Date: </p></ion-col>
+                  <ion-col col-8><h4 class="lt-r">18.02.19</h4></ion-col>
+                </ion-row>
+          </ion-card-content>
+            
+        </ion-card>
+
+        <ion-card>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col col-3><p class="lt-l">Order Id: </p></ion-col>
+                    <ion-col col-9><h4 class="lt-r">#1111111111</h4></ion-col>
+                  </ion-row>
+          
+                <ion-row>
+                    <ion-col col-5><p class="lt-l">Seller Name: </p></ion-col>
+                    <ion-col col-7><h4 class="lt-r">Rup Desai</h4></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-2><p class="lt-l">Price: </p></ion-col>
+                    <ion-col col-10><h4 class="lt-r">$100.00</h4></ion-col>
+                </ion-row>
+                <ion-row>  
+                    <ion-col col-4><p class="lt-l">Date: </p></ion-col>
+                    <ion-col col-8><h4 class="lt-r">18.02.19</h4></ion-col>
+                  </ion-row>
+            </ion-card-content>
+              
+          </ion-card>
+
+          <ion-card>
+              <ion-card-content>
+                  <ion-row>
+                      <ion-col col-3><p class="lt-l">Order Id: </p></ion-col>
+                      <ion-col col-9><h4 class="lt-r">#1111111111</h4></ion-col>
+                    </ion-row>
+            
+                  <ion-row>
+                      <ion-col col-5><p class="lt-l">Customer Name: </p></ion-col>
+                      <ion-col col-7><h4 class="lt-r">Rup Desai</h4></ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col col-2><p class="lt-l">Price: </p></ion-col>
+                      <ion-col col-10><h4 class="lt-r">$100.00</h4></ion-col>
+                  </ion-row>
+                  <ion-row>  
+                      <ion-col col-4><p class="lt-l">Date: </p></ion-col>
+                      <ion-col col-8><h4 class="lt-r">18.02.19</h4></ion-col>
+                    </ion-row>
+              </ion-card-content>
+                
+            </ion-card>
+
+
+        </ion-list>
+        
+
+      
+
+</ion-content>

@@ -1,0 +1,36 @@
+page-buyer-profile {
+    .header .toolbar:last-child .toolbar-background { border-bottom: 0; background: #ffffff;}
+    .header::after{ background-image:none;}
+    
+    .bar-button-menutoggle ion-icon{ color: #5d5d5d; }
+    .button-inner ion-icon{ color: #5d5d5d; }
+    .toolbar ion-title{ padding: 0 0 1px 40px;}
+    .toolbar-title{ padding: 0; text-align: left;}
+    .toolbar-title h3{ color: #3e3e3e; font-weight: 600; text-transform: uppercase; font-size: 1.7rem; margin-bottom: 0; margin-top: 0;}
+    .toolbar-title p{ margin-top: 0; margin-bottom: 0; font-size: 1.4rem; font-weight: 400;}
+    
+    // .content{ background: #f5f5f5; }
+    .item{ padding-left: 0;}
+    .item.item-block .item-inner{ padding-right: 0; border-bottom:0 !important;}
+    .label{margin-right: 0;}
+    .po-rel{position: relative;}
+    .pro-pic-area{width: 75px; height: 75px; margin: 30px auto 0; border-radius: 50%; overflow: hidden; }
+    .edit{ position: absolute; box-shadow: 0px 1px 10px 0px #8a8b8b; bottom: 0; left: 47%; z-index: 100; font-size: 22px; color: #30be21 !important; width: 28px; height: 28px; background: #ffffff; text-align: center; border-radius: 50%; line-height: 1.4;}
+    .person-name{ font-size: 1.9rem; padding-top:0.5rem; margin-bottom: 0; }
+    .pin{ color: #30be21 !important;}
+    .pro-body{ margin: 0 16px 0 0; background: #f5f5f5; padding-top: 0.4rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e3e3e3;}
+    .pro-body h3{ font-weight: 500; font-size: 1.7rem; color: #444444;}
+    .item ion-icon[item-start]{ margin-left: 16px;}
+    .latest-ordr{width: auto; padding-left: 20px; padding-top: 24px;  font-size: 1.8rem;}
+
+    .list > .item-block:last-child{ margin-top: 0;}
+    .latest-ordr .item-inner .input-wrapper .label p{font-size: 1.6rem;}
+    .latest-ordr .item-inner .input-wrapper .label p span{ color: #444444; font-weight: 500; }
+
+    .lt-l{color: #8e9093; font-size: 1.6rem; margin-bottom: 0; margin-top: 0;}
+    .lt-r{font-size: 1.8rem; color: #444444; margin-bottom: 0;  margin-top: 0.5rem;}
+
+    .list .item{ margin-bottom: 0;}
+
+    .card:last-child{ margin-bottom: 70px;}
+}

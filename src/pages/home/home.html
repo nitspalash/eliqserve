@@ -1,0 +1,209 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+       
+     <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+        <ion-title> 
+          <h3>Newyork</h3> 
+          <p>Please add or select a delivery address</p>
+        </ion-title>
+        
+    
+        <ion-buttons end>
+          <button ion-button icon-only >
+            <ion-icon name="pin"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-slides pager>
+  
+        <ion-slide>
+          <img src="assets/imgs/home-banner.png" alt="">
+          <ion-item class="overlay">
+            <h2>We Deliver Your Favourite Liquor In Your Doorstep</h2>
+          </ion-item>
+        </ion-slide>
+      
+      <ion-slide>
+        <img src="assets/imgs/home-banner.png" alt="">
+        <ion-item class="overlay">
+          <h2>We Deliver Your Favourite Liquor In Your Doorstep</h2>
+        </ion-item>
+      </ion-slide>
+    
+      <ion-slide>
+        <img src="assets/imgs/home-banner.png" alt="">
+        <ion-item class="overlay">
+          <h2>We Deliver Your Favourite Liquor In Your Doorstep</h2>
+        </ion-item>
+      </ion-slide>
+      
+      </ion-slides>
+    
+      <div>
+        <ion-row>
+        <ion-segment [(ngModel)]="pet"  >
+          <ion-segment-button *ngFor="let item of categoryArray" (click)="productList(item.id,item.name)" value="{{item.name}}">
+             {{item.name}}
+          </ion-segment-button>
+          <!-- <ion-segment-button value="vodka">
+             Vodka
+          </ion-segment-button>
+          <ion-segment-button value="rum">
+             Rum
+          </ion-segment-button>
+          <ion-segment-button value="wine">
+             Wine
+          </ion-segment-button>
+          <ion-segment-button value="rtd">
+             RTD
+          </ion-segment-button>
+          <ion-segment-button value="gin">
+             Gin
+          </ion-segment-button>
+          <ion-segment-button value="tequila">
+             Tequila
+          </ion-segment-button>
+     -->
+          
+    
+        </ion-segment>
+      </ion-row>
+      </div>
+      
+      <div >
+
+          <ion-list class="drink-area"  >
+    
+              <ion-row  >
+                <ion-col col-4 *ngFor="let item of productArray" (click)="goToProductDetails(item.id)">
+
+                  <ion-card >
+                    <img  src="{{imageLink+item.productsimages[0].name}}" alt="">
+                    <div class="card-title">{{item.product_name}}</div>
+                    <div class="card-subtitle">{{item.description}}</div>
+                  </ion-card>
+                </ion-col>
+               
+              </ion-row>
+        
+            </ion-list>
+
+
+        <!-- <ion-list> -->
+            <!-- *ngSwitchCase="'vodka'" -->
+          <!-- <ion-row class="drink-area" >
+            <ion-col col-4>
+              <ion-card  *ngFor="let item of productArray" (click)="goToProductDetails(item.id)">
+                <img src="assets/imgs/jhon.png" alt="">
+                <div class="card-title">{{item.product_name}}</div>
+                <div class="card-subtitle">Black Label 12 year...</div>
+              </ion-card>
+            </ion-col> -->
+            <!-- <ion-col col-4>
+              <ion-card>
+                <img src="assets/imgs/sing.png" alt="">
+                <div class="card-title">Singleton of Glen</div>
+                <div class="card-subtitle">Black Label 12 year...</div>
+              </ion-card>
+            </ion-col>
+            <ion-col col-4>
+              <ion-card>
+                <img src="assets/imgs/pip.png" alt="">
+                <div class="card-title">10 Pipers</div>
+                <div class="card-subtitle">Black Label 12 year...</div>
+              </ion-card>
+            </ion-col>
+            <ion-col col-4>
+              <ion-card>
+                <img src="assets/imgs/jhon.png" alt="">
+                <div class="card-title">Johnnie Walker</div>
+                <div class="card-subtitle">Black Label 12 year...</div>
+              </ion-card>
+            </ion-col>
+            <ion-col col-4>
+              <ion-card>
+                <img src="assets/imgs/sing.png" alt="">
+                <div class="card-title">Singleton of Glen</div>
+                <div class="card-subtitle">Black Label 12 year...</div>
+              </ion-card>
+            </ion-col>
+            <ion-col col-4>
+              <ion-card>
+                <img src="assets/imgs/pip.png" alt="">
+                <div class="card-title">10 Pipers</div>
+                <div class="card-subtitle">Black Label 12 year...</div>
+              </ion-card>
+            </ion-col> -->
+          <!-- </ion-row>
+    
+        </ion-list> -->
+      
+       
+        
+   
+
+
+    
+        <!-- <ion-list >
+          <ion-item >
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/pip.png">
+            </ion-thumbnail>
+            <h2>{{item.product_name}}</h2>
+          </ion-item>
+                </ion-list>
+    
+        <ion-list >
+          <ion-item >
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/pip.png">
+            </ion-thumbnail>
+            <h2>{{item.product_name}}</h2>
+          </ion-item>
+               </ion-list>
+    
+        <ion-list>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/pip.png">
+            </ion-thumbnail>
+            <h2>{{item.product_name}}</h2>
+          </ion-item>
+                </ion-list>
+    
+        <ion-list>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/pip.png">
+            </ion-thumbnail>
+            <h2>{{item.product_name}}</h2>
+          </ion-item>
+              </ion-list>
+    
+        <ion-list>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/pip.png">
+            </ion-thumbnail>
+            <h2>{{item.product_name}}</h2>
+          </ion-item>
+               </ion-list> -->
+        </div>  
+</ion-content>

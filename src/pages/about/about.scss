@@ -1,0 +1,58 @@
+.about-header {
+  background-color: #434954;
+  padding: 0;
+  width: 100%;
+  min-height: 150px;
+  text-align: center;
+  position: relative;
+}
+
+.about-header img {
+  max-width: 100%;
+  min-height: 115px;
+  margin-left: 0;
+  padding: 0;
+}
+
+.brdr-btm{ border-bottom: 1px solid #d8d8d8; padding-bottom: 1rem; }
+.about-info h4{ font-weight: 500; text-align: left; margin-top: 0 !important; margin-bottom: 0;}
+.about-info h6{ font-weight: 400; text-align: left; margin-top: 0 !important; margin-bottom: 0; color: #6f6f6f; font-size: 1.4rem;}
+.ml{ color: #2b2b2b !important; font-weight: 900 !important; padding-top: 1rem; padding-bottom: 1rem; }
+.price{ color: #30be21 !important; font-size: 1.4rem !important; font-weight: 400 !important; margin-top: 0 !important; margin-bottom: 0 !important; }
+
+
+.about-info p {
+  color: #2a2a2a;
+  text-align: left;
+}
+
+.about-info ion-icon {
+  color: color($colors, primary);
+  width: 20px;
+}
+
+.md,
+.wp {
+  .about-info [text-right] {
+    margin-right: 0;
+  }
+}
+
+.ios .about-info {
+  text-align: center;
+}
+
+.ios .about-info ion-icon {
+  width: auto;
+  margin-right: 10px;
+}
+
+
+.item.item-block .item-inner{border-bottom: 0;}
+.top-icon-area{ width: 100%; background: none; background-color: transparent; position: absolute; z-index: 100;}
+.item ion-icon[item-start], .item ion-icon[item-end]{ color: #ffffff;}
+
+
+
+
+

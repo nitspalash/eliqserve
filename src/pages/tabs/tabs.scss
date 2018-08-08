@@ -1,0 +1,109 @@
+.tabbar {
+    justify-content: center;
+  }
+  
+  .tab-button {
+    max-width: 200px;
+  }
+  
+  .tabs .tab-button-icon{ width: 24px; height: auto;}
+  
+  .ion-ios-homeicon-outline,
+  .ion-ios-homeicon,.ion-md-homeicon,.ion-md-homeicon-outline {
+    content: url('../assets/img/home-menu.png'); 
+  }
+  
+  .tabs-md .tab-button[aria-selected=true]{
+    .ion-ios-homeicon-outline,
+    .ion-ios-homeicon,.ion-md-homeicon,.ion-md-homeicon-outline {
+      content: url('../assets/img/home-menu-sel.png'); 
+    }
+  }
+  
+  .tabs-ios .tab-button[aria-selected=true]{
+    .ion-ios-homeicon-outline,
+    .ion-ios-homeicon,.ion-md-homeicon,.ion-md-homeicon-outline {
+      content: url('../assets/img/home-menu-sel.png'); 
+    }
+  }
+  
+  .ion-ios-searchicon-outline,
+  .ion-ios-searchicon,.ion-md-searchicon,.ion-md-searchicon-outline {
+    content: url('../assets/img/search.png');
+  }
+  
+  .tabs-md .tab-button[aria-selected=true]{
+    .ion-ios-searchicon-outline,
+    .ion-ios-searchicon,.ion-md-searchicon,.ion-md-searchicon-outline{
+     content: url('../assets/img/search-sel.png');
+  }
+  }
+  
+  .tabs-ios .tab-button[aria-selected=true]{
+    .ion-ios-searchicon-outline,
+    .ion-ios-searchicon,.ion-md-searchicon,.ion-md-searchicon-outline {
+      content: url('../assets/img/search-sel.png'); 
+    }
+  }
+  
+  .ion-ios-ordersicon-outline,
+  .ion-ios-ordersicon,.ion-md-ordersicon,.ion-md-ordersicon-outline {
+    content: url('../assets/img/orders.png');
+  }
+  
+  .tabs-md .tab-button[aria-selected=true]{
+    .ion-ios-ordersicon-outline,
+    .ion-ios-ordersicon,.ion-md-ordersicon,.ion-md-ordersicon-outline {
+    content: url('../assets/img/orders-sel.png');
+  }
+  }
+  
+  .tabs-ios .tab-button[aria-selected=true]{
+    .ion-ios-ordersicon-outline,
+    .ion-ios-ordersicon,.ion-md-ordersicon,.ion-md-ordersicon-outline {
+      content: url('../assets/img/orders-sel.png'); 
+    }
+  }
+  
+  .ion-ios-savedicon-outline,
+  .ion-ios-savedicon,.ion-md-savedicon,.ion-md-savedicon-outline {
+    content: url('../assets/img/saved.png');
+  }
+  
+  .tabs-md .tab-button[aria-selected=true]{
+    .ion-ios-savedicon-outline,
+    .ion-ios-savedicon,.ion-md-savedicon,.ion-md-savedicon-outline {
+    content: url('../assets/img/saved-sel.png');
+  }
+  }
+  
+  .tabs-ios .tab-button[aria-selected=true]{
+    .ion-ios-savedicon-outline,
+    .ion-ios-savedicon,.ion-md-savedicon,.ion-md-savedicon-outline {
+     content: url('../assets/img/saved-sel.png'); 
+    }
+  }
+  
+  
+  .ion-ios-profileicon-outline,
+  .ion-ios-profileicon,.ion-md-profileicon,.ion-md-profileicon-outline {
+    content: url('../assets/img/profile.png');
+  }
+  
+  .tabs-md .tab-button[aria-selected=true]{
+    .ion-ios-profileicon-outline,
+    .ion-ios-profileicon,.ion-md-profileicon,.ion-md-profileicon-outline {
+    content: url('../assets/img/profile-sel.png');
+  }
+  }
+  
+  .tabs-ios .tab-button[aria-selected=true]{
+    .ion-ios-profileicon-outline,
+    .ion-ios-profileicon,.ion-md-profileicon,.ion-md-profileicon-outline {
+     content: url('../assets/img/profile-sel.png'); 
+    }
+  }
+  
+  
+  .tabs .tab-button[aria-selected=true]{ color: #30be21; }
+  

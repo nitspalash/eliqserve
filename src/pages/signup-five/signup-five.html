@@ -1,0 +1,47 @@
+<!--
+  Generated template for the SignupFivePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <!-- <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only menuToggle>
+              <ion-icon name="arrow-back"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-navbar> -->
+
+</ion-header>
+
+
+<ion-content padding>
+   
+      
+        <ion-list>
+          <ion-item class="top-hdr">
+            <h4>Verify Email Address</h4>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label text-uppercase floating>otp</ion-label>
+            <ion-input type="text" [(ngModel)]="data"></ion-input>
+          </ion-item>
+          <ion-item text-center class="no-brdr-btm" style="margin-top:1rem;" >
+            <p>You will receive an OTP code via email momentarily. </p>
+            <!-- <p>You can resend email within... </p> -->
+            <p ><b>{{displayTime}}</b></p>  
+          </ion-item>
+    
+    
+          <ion-item>
+            <button ion-button color="secondary" block (click)="finalSubmit()" [disabled]="!data">Submit
+              <ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
+            </button>
+          </ion-item>
+
+        </ion-list>
+      
+</ion-content>

@@ -1,0 +1,116 @@
+<ion-menu [content]="content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+       
+              <div class="logo">
+                  <img alt="Ionic logo" src="assets/imgs/appicon.png">
+                </div>
+          
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-item menuClose  (click)="login()" *ngIf="user_exist==0">
+      <ion-icon name="log-in"  item-start></ion-icon> Sign-In
+  </ion-item>
+
+  <ion-item menuClose (click)="signup()" *ngIf="user_exist==0" >
+    <ion-icon name="log-in"  item-start></ion-icon> Sign-Up
+</ion-item>
+
+
+
+
+
+  <ion-item menuClose  *ngIf="istype==2 && user_exist==1" (click)="profile()">
+    <ion-icon name="contact"   item-start></ion-icon> Profile
+</ion-item>
+
+<ion-item menuClose  *ngIf="istype==1 && user_exist==1" (click)="buyerprofile()">
+  <ion-icon name="contact"   item-start></ion-icon> Profile
+</ion-item>
+
+
+<ion-item menuClose  *ngIf="user_exist==1" (click)="changePassword()">
+    <ion-icon name="create"   item-start></ion-icon> Change Password
+</ion-item>
+
+
+<ion-item menuClose (click)="cart()" *ngIf="user_exist==1">
+  <ion-icon name="cart" item-start></ion-icon> My Bag
+</ion-item>
+
+<ion-item menuClose  *ngIf="istype==2 && user_exist==1" (click)="addProduct()">
+  <ion-icon name="cube"   item-start></ion-icon> Add Product
+</ion-item>
+
+<!-- <ion-item menuClose  *ngIf="istype=2"  (click)="logout()">
+  <ion-icon name="power"   item-start></ion-icon> Log out
+</ion-item> -->
+
+<ion-item menuClose  *ngIf="istype==2 && user_exist==1" (click)="listProduct()">
+  <ion-icon name="cube"  item-start></ion-icon> List Product
+</ion-item>
+<ion-item menuClose (click)="orderList()" *ngIf="user_exist==1">
+    <ion-icon name="list-box" item-start></ion-icon> My Order
+  </ion-item>
+
+  <ion-item menuClose (click)="wishlist()" *ngIf="user_exist==1">
+    <ion-icon name="list-box" item-start></ion-icon> My Wishlist
+  </ion-item>
+<ion-item menuClose *ngIf="user_exist==1"  (click)="logout()">
+  <ion-icon name="power"   item-start></ion-icon> Log out
+</ion-item>
+  </ion-content>
+
+ 
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<!--  
+<ion-footer  class="footer">
+  <ion-toolbar style=" padding: 0;">
+      <ion-row>
+        <ion-col text-center >
+            <a (click)="gohome()">
+                 <ion-icon name="home"></ion-icon>
+                <img src="assets/imgs/home-menu.png" alt="" />
+                <p class="titl">Home</p>
+            </a>
+        </ion-col>
+        <ion-col text-center>
+          <a (click)="goSearch()">
+              <img src="assets/imgs/search.png" alt="" />
+            <p class="titl">Search</p>
+          </a>
+        </ion-col>
+        <ion-col text-center>
+          <a (click)="goOrder()" >
+              <img src="assets/imgs/orders.png" alt="" />
+            <p class="titl">Orders</p>
+          </a>
+        </ion-col>
+      
+        <ion-col text-center>
+          <a (click)="goWishlist()">
+              <img src="assets/imgs/saved.png" alt="" />
+            <p class="titl">Saved</p>
+          </a>
+        </ion-col>
+
+        <ion-col text-center>
+            <a (click)="goProfile()">
+                <img src="assets/imgs/profile.png" alt="" />
+              <p class="titl">Profile</p>
+            </a>
+          </ion-col>
+      </ion-row>
+  
+  </ion-toolbar>
+
+
+</ion-footer>  -->

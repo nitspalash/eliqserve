@@ -1,0 +1,24 @@
+page-order-detail {
+
+    .header .toolbar:last-child .toolbar-background { border-bottom: 0; background: #ffffff;}
+    .header::after{ background-image:none;}
+    
+    .bar-button-menutoggle ion-icon{ color: #5d5d5d; }
+    .button-inner ion-icon{ color: #5d5d5d; }
+    .toolbar ion-title{ padding: 0 0 1px 36px;}
+    .toolbar-title{ padding: 0; text-align: left;}
+    .toolbar-title h3{ color: #3e3e3e; font-weight: 600; text-transform: uppercase; font-size: 1.7rem; margin-bottom: 0; margin-top: 0;}
+    .toolbar-title p{ margin-top: 0; margin-bottom: 0; font-size: 1.4rem; font-weight: 400;}
+    .content{ background: #f5f5f5; }
+    .tittle-text{font-weight: 500;}
+    .text-p{font-weight: 400; color: #646464;}
+    
+    .order-details{ width: auto; margin-top: 2rem;}
+    .order-details h1{ color: #30be21; font-weight: 500; font-size: 1.7rem; margin-bottom: 1rem; }
+    .order-details h3{ color: #333333; font-weight: 600;}
+    .order-details p{ color: #646464;}
+    .item{ border-top: 1px solid #e1e1e1; display: flex; align-items: center; justify-content: space-between; padding: 0; }
+    .label{ margin-right: 0; display: flex; align-items: center; justify-content: space-between; }
+    .sub-total{ color: #646464; font-size: 1.3rem; font-weight: 400;}
+    .price{color: #30be21; font-weight: 500; font-size: 1.8rem !important;}
+}

@@ -1,0 +1,54 @@
+<!--
+  Generated template for the SignupFourPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only menuToggle>
+              <ion-icon name="arrow-back"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    
+  
+      <form [formGroup]="formGroup" >
+        <ion-list>
+          <ion-item class="top-hdr">
+            <h4>Almost there...</h4>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label floating>Account pin</ion-label>
+            <ion-input type="text" formControlName="password"></ion-input>
+          </ion-item>
+          <p *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched" ion-text color="danger">Password is required </p>
+          <ion-item>
+            <ion-label floating>Confirm Account pin</ion-label>
+            <ion-input type="text" formControlName="con_password" (ngModelChange)="checkpassword($event,formGroup.value)"></ion-input>
+          </ion-item>
+          <p *ngIf="!formGroup.controls['con_password'].valid && formGroup.controls['con_password'].touched" ion-text color="danger">Confirm Password is required </p>
+          <p *ngIf="!passwordmatch" ion-text color="danger">Password and Confirm password not match </p>
+          <ion-item class="no-brdr-btm">
+            <p>You can use the Account PIN at the time of making payments using eLiqServ, for extra security.</p>
+          </ion-item>
+    
+    
+          <ion-item>
+            
+                <button ion-button color="secondary" block type="submit" (click)="signupFive(formGroup.value)" [disabled]="disabled">Continue
+                    
+                    </button>
+              <ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
+            
+          </ion-item>
+        </ion-list>
+      </form>
+    
+</ion-content>

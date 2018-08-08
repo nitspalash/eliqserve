@@ -1,0 +1,66 @@
+<!--
+  Generated template for the SignupTwoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only menuToggle>
+              <ion-icon name="arrow-back"></ion-icon>
+            </button>
+          </ion-buttons>
+    
+      </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+    
+  
+  <form>
+    <ion-list>
+      <ion-item>
+        <h4>Sign Up/Sign In</h4>
+      </ion-item>
+      
+      <h6>Mobile Number</h6>
+
+      <!-- <ion-item>
+        <ion-input type="text"></ion-input>
+      </ion-item> -->
+      <ion-row>
+        <!-- <ion-col col-2 class="pr-0">
+          <ion-item>
+            <ion-input type="text" placeholder="+01"></ion-input>
+          </ion-item>
+        </ion-col> -->
+        <ion-col col-12 class="pl-0 pr-0">
+          <ion-item>
+            <ion-input type="number" name="ph_number" [(ngModel)]="data" ></ion-input>
+          </ion-item>
+        </ion-col>
+        <div class="error" *ngIf="!data" ion-text color="danger" >Please enter your mobile number </div>
+        <!-- <ion-col col-2 class="pl-0">
+          <ion-item>
+            <ion-input type="text" placeholder="USA"></ion-input>
+          </ion-item>
+        </ion-col> -->
+      </ion-row>
+      <ion-item class="no-brdr-btm">
+        <p>To enjoy eLiqServ, start by entering your mobile number</p>
+      </ion-item>
+
+
+      <ion-item>
+        <button ion-button color="secondary" block (click)="signupThree()"  [disabled]="!data">Continue
+          <ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
