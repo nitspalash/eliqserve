@@ -42,6 +42,7 @@ export class MyApp {
    
     this.abc();
     this.initializeApp();
+    this.hideSplashScreen();
     events.subscribe('user:created', (time) => {
      
       console.log('Welcome', 'at', time);
@@ -80,7 +81,13 @@ export class MyApp {
       // this.splashScreen.hide();
     });
   }
-
+  hideSplashScreen() {
+    if (this.splashScreen) {
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 100);
+     }
+    }
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage,LoadingController, NavController, NavParams,AlertController } from 'ionic-angular';
  import { Diagnostic } from '@ionic-native/diagnostic';
 import { Platform } from 'ionic-angular';
 // import {AuthProvider} from '../../providers/auth-service/authservice'
@@ -24,7 +24,7 @@ import {Storage} from '@ionic/storage'
 export class AfterSplashPage {
   
   public currentaddress:any;
-  
+  public address:any;
   constructor(public navCtrl: NavController,
     // public authProvider:AuthProvider, 
     public navParams: NavParams,
@@ -36,6 +36,7 @@ export class AfterSplashPage {
     public platform: Platform,
     private locationAccuracy: LocationAccuracy,
     private network: Network,
+    public loadingCtrl: LoadingController
   ) {
   
     
@@ -76,7 +77,10 @@ export class AfterSplashPage {
 // }
 
   ionViewDidLoad() {
+    
 
+   
+   
     this.platform.ready().then((readySource) => {
 
 
@@ -92,70 +96,44 @@ export class AfterSplashPage {
             if(canRequest) {
             // the accuracy option will be ignored by iOS
             this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-            () => alert('Request successful'),
-            error => alert('Error requesting location permissions'+JSON.stringify(error))
+            () => {
+              let loading = this.loadingCtrl.create({
+                content: 'Getting your location...',
+                duration: 5000
+              });
+            
+              loading.present();
+              this.fetchlocation()
+              
+            },
+            error => {
+              this.ionViewDidLoad();
+            }
             );
             }
             
             });
         }
+        else{
+          let loading = this.loadingCtrl.create({
+            content: 'Getting your location...',
+            duration: 5000
+          });
+        
+          loading.present();
+          this.fetchlocation();
+          //alert(ty)
+          
+        }
       console.log('Is available? ' + isAvailable);
-      alert('Is available? ' + isAvailable);
+      //alert('Is available? ' + isAvailable);
       }).catch( (e) => {
       console.log(e);
-      alert(JSON.stringify(e));
+      //alert(JSON.stringify(e));
       });
       
       
       });
-
-
-
-
-    this.geolocation.getCurrentPosition().then((resp) => {
-     
-
-      let options: NativeGeocoderOptions = {
-        useLocale: true,
-        maxResults: 5
-    };
-    
-    this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
-      .then((result: NativeGeocoderReverseResult[]) => {
-       // console.log(JSON.stringify(result[0]))
-        this.storage.ready().then(() => {
-          
-          localStorage.setItem('currentlatlong', JSON.stringify(resp.coords));
-          localStorage.setItem('currentaddress', JSON.stringify(result[0]));
-          var address = JSON.stringify(result[0])
-          //this.currentaddress = ;
-          
-          
-          console.log(address);
-
-      })
-      })
-      .catch((error: any) => console.log(error));
-
-
-      console.log(resp)
-      // resp.coords.latitude
-      // resp.coords.longitude
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     console.log('ionViewDidLoad AfterSplashPage');
@@ -194,7 +172,72 @@ export class AfterSplashPage {
 }
 
 
+fetchlocation(){
+  this.geolocation.getCurrentPosition().then((resp) => {
+     
 
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+  };
+  
+  this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
+    .then((result: NativeGeocoderReverseResult[]) => {
+     // console.log(JSON.stringify(result[0]))
+      this.storage.ready().then(() => {
+        
+        localStorage.setItem('currentlatlong', JSON.stringify(resp.coords));
+        localStorage.setItem('currentaddress', JSON.stringify(result[0]));
+        var address = JSON.stringify(result[0])
+        //this.currentaddress = ;
+        this.address = JSON.parse(localStorage.getItem('currentaddress'));
+        console.log(address)
+        
+        console.log(this.currentaddress);
+      
+      if(this.address.thoroughfare)
+      {
+        this.currentaddress = this.address.thoroughfare +',';
+      }
+      if(this.address.subLocality)
+      {
+        this.currentaddress = this.currentaddress + this.address.subLocality +',';
+      }
+      if(this.address.locality)
+      {
+        this.currentaddress = this.currentaddress+ this.address.locality +',';
+      }
+      if(this.address.subAdministrativeArea)
+      {
+        this.currentaddress = this.currentaddress + this.address.subAdministrativeArea +',';
+      }
+      if(this.address.administrativeArea)
+      {
+        this.currentaddress = this.currentaddress + this.address.administrativeArea +',';
+      }
+      if(this.address.countryName)
+      {
+        this.currentaddress = this.currentaddress + this.address.countryName +',';
+      }
+      if(this.address.postalCode)
+      {
+        this.currentaddress = this.currentaddress + this.address.postalCode;
+      }
+        
+        console.log(address);
+        
+    })
+    })
+    .catch((error: any) => console.log(error));
+
+
+    console.log(resp)
+    // resp.coords.latitude
+    // resp.coords.longitude
+   }).catch((error) => {
+     console.log('Error getting location', error);
+   });
+}
 
 
 
