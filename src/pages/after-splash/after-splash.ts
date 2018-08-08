@@ -39,9 +39,9 @@ export class AfterSplashPage {
   ) {
   
     
-    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-(');
-    });
+     });
 
   }
   loginPage()
