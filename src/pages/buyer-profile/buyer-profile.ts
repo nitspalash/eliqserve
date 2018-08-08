@@ -19,7 +19,7 @@ export class BuyerProfilePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuyerProfilePage');
+     //console.log('ionViewDidLoad BuyerProfilePage');
   }
 
   editBuyerProfile()
