@@ -30,10 +30,10 @@
       <ion-input type="text" [(ngModel)]="currentaddress"></ion-input>
      
     </ion-item>
-    <button class="av-location" ion-button (click)="checkLocation()">
+    <!-- <button class="av-location" ion-button (click)="checkLocation()">
         Is Location Available?
-        </button>
-    <ion-item>
+        </button> -->
+    <ion-item *ngIf="currentaddress">
       <button ion-button color="secondary" block (click)="loginPage()">Continue <ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;" ></ion-icon></button>
     </ion-item>
   

@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MyApp} from '../../app/app.component';
 import {AuthProvider} from '../../providers/auth-service/authservice'
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import {Storage} from '@ionic/storage'
 /**
  * Generated class for the HomePage page.
  *
@@ -22,12 +26,18 @@ export class HomePage {
   prodSet:any;
   imageLink:any;
   catproductArray:any;
+  public currentaddress:any;
+  public address:any;
+  country:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider,
-    
+    private geolocation: Geolocation,
+    private nativeGeocoder: NativeGeocoder,
+    public storage: Storage,
+    private locationAccuracy: LocationAccuracy,
     public myApp:MyApp) {
       this.myApp.abc();
-    
+      this.fetchlocation();
      
 
     this.authProvider.categoryListing().subscribe((res:any) => {
@@ -53,11 +63,78 @@ export class HomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
     this.myApp;
-
-
+    
+    this.address = JSON.parse(localStorage.getItem('currentaddress'));
+    this.country = this.address.countryName;
+    //alert(this.country)
   }
 
-
+  fetchlocation(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+       
+  
+      let options: NativeGeocoderOptions = {
+        useLocale: true,
+        maxResults: 5
+    };
+    
+    this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
+      .then((result: NativeGeocoderReverseResult[]) => {
+       // console.log(JSON.stringify(result[0]))
+        this.storage.ready().then(() => {
+          
+          localStorage.setItem('currentlatlong', JSON.stringify(resp.coords));
+          localStorage.setItem('currentaddress', JSON.stringify(result[0]));
+          var address = JSON.stringify(result[0])
+          //this.currentaddress = ;
+          this.address = JSON.parse(localStorage.getItem('currentaddress'));
+          console.log(address)
+          
+          console.log(this.currentaddress);
+        
+        if(this.address.thoroughfare)
+        {
+          this.currentaddress = this.address.thoroughfare +',';
+        }
+        if(this.address.subLocality)
+        {
+          this.currentaddress = this.currentaddress + this.address.subLocality +',';
+        }
+        if(this.address.locality)
+        {
+          this.currentaddress = this.currentaddress+ this.address.locality +',';
+        }
+        if(this.address.subAdministrativeArea)
+        {
+          this.currentaddress = this.currentaddress + this.address.subAdministrativeArea +',';
+        }
+        if(this.address.administrativeArea)
+        {
+          this.currentaddress = this.currentaddress + this.address.administrativeArea +',';
+        }
+        if(this.address.countryName)
+        {
+          this.currentaddress = this.currentaddress + this.address.countryName +',';
+        }
+        if(this.address.postalCode)
+        {
+          this.currentaddress = this.currentaddress + this.address.postalCode;
+        }
+          
+          console.log(address);
+  
+      })
+      })
+      .catch((error: any) => console.log(error));
+  
+  
+      console.log(resp)
+      // resp.coords.latitude
+      // resp.coords.longitude
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
 
 productList(id,name)
   {
