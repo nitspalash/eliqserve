@@ -30,7 +30,8 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   user_exist:any;
   loginuser:any;
-  istype:any
+  istype:any;
+  public footerIsHidden: boolean = false;
   constructor(
     public platform: Platform,
     public menu: MenuController,
@@ -38,6 +39,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public storage: Storage,
     public events: Events
+    
   ) {
    
     this.abc();
@@ -46,6 +48,9 @@ export class MyApp {
     events.subscribe('user:created', (time) => {
      
       console.log('Welcome', 'at', time);
+    })
+    events.subscribe('hideFooter', (data) => {
+      this.footerIsHidden = data.isHidden;
     })
   }
 
@@ -75,6 +80,9 @@ export class MyApp {
 }
   initializeApp() {
     this.platform.ready().then(() => {
+
+     
+
 
       this.statusBar.styleDefault();
       this.nav.setRoot('AfterSplashPage');

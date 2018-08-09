@@ -5,7 +5,8 @@ import {AuthProvider} from '../../providers/auth-service/authservice'
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
-import {Storage} from '@ionic/storage'
+import {Storage} from '@ionic/storage';
+import { Events } from 'ionic-angular';
 /**
  * Generated class for the HomePage page.
  *
@@ -35,11 +36,12 @@ export class HomePage {
     private nativeGeocoder: NativeGeocoder,
     public storage: Storage,
     private locationAccuracy: LocationAccuracy,
+    public events: Events,
     public myApp:MyApp) {
       this.myApp.abc();
       this.fetchlocation();
-     
-
+      
+      
     this.authProvider.categoryListing().subscribe((res:any) => {
      
 
@@ -61,6 +63,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: false});
     console.log('ionViewDidLoad HomePage');
     this.myApp;
     
