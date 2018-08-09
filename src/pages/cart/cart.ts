@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from '@ionic/storage'
 /**
@@ -17,65 +17,204 @@ import {Storage} from '@ionic/storage'
 export class CartPage {
 
 
-loginuser:any;
-userId:any;
-userIdSet:any;
-cartArray:any;
-totalPrice:any;
-totalItem:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public authProvider:AuthProvider,
-  storage:Storage
-) {
-
-   
-
-     if(JSON.parse(localStorage.getItem('userDetails')))
-    {
-      this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
-      this.userId=this.loginuser.id
-      // console.log (localStorage.getItem('userDetails'))
-      console.log ( this.userId)
-    }
-
-    this.userIdSet=
-    {
-      "user_id":this.userId
-    }
-
-    this.authProvider.cartList(this.userIdSet).subscribe(res=>{
-      console.log(res);
-     
-      let details = res
-      if(details.Ack == 1){
-        
-          if(details.cart.length > 0)
-          {
-            this.cartArray=details.cart
-          }
-          else{
-            this.cartArray='';
-            }
-       
-        this.totalPrice=details.total_price;
-        this.totalItem=details.total_item;
-        console.log( this.cartArray);  
-        console.log( this.totalPrice);
-        console.log( this.totalItem);
-        
-        // this.navCtrl.push('LoginPage')
-      }
-        
-  });
-
+  loginuser:any;
+  userId:any;
+  userIdSet:any;
+  cartArray:any;
+  totalPrice:any;
+  totalItem:any;
+  quantity:any;
+  updateIdSet:any;
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+    public authProvider:AuthProvider,
+    public alertCtrl:AlertController,
+    storage:Storage
+  ) {
+  this.cartList();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CartPage');
-  }
-
-  goForCheckout()
+  
+  cartList()
   {
-    this.navCtrl.push ('CheckoutPage')
+  
+       if(JSON.parse(localStorage.getItem('userDetails')))
+      {
+        this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
+        this.userId=this.loginuser.id
+        // console.log (localStorage.getItem('userDetails'))
+        console.log ( this.userId)
+      }
+  
+      this.userIdSet=
+      {
+        "user_id":this.userId
+      }
+  
+      this.authProvider.cartList(this.userIdSet).subscribe(res=>{
+        console.log(res);
+       
+        let details = res
+        if(details.Ack == 1){
+          
+            if(details.cart.length > 0)
+            {
+              this.cartArray=details.cart
+            }
+            else{
+              this.cartArray='';
+              }
+         
+          this.totalPrice=details.total_price;
+          this.totalItem=details.total_item;
+          this.quantity=details.quantity;
+          // console.log( this.cartArray);  
+          // console.log( this.totalPrice);
+          // console.log( this.totalItem);
+          
+          // this.navCtrl.push('LoginPage')
+        }
+          
+    });
+  
+    }
+  
+    ionViewDidLoad() {
+      console.log('ionViewDidLoad CartPage');
+    
+    }
+  
+    increment(index)
+    {
+      
+this.updateIdSet={
+  "id":this.cartArray[index].id,
+  "quantity":this.cartArray[index].quantity,
+  "increment":"",
+  "prd_id":this.cartArray[index].prd_id
   }
+  console.log (this.updateIdSet)
+  
+  this.authProvider.updateCart(this.updateIdSet).subscribe(res=>{
+    console.log(res);
+    console.log('hello')
+   
+    let details = res
+    if(details.Ack == 1){
+      this.cartArray[index].quantity=details.quantity 
+      this.cartArray[index].price=details.price 
+    }
+  })
+  
+      // console.log (index)
+      console.log (this.cartArray[index].id)
+      // this.cartArray[index].quantity=this.cartArray[index].quantity + 1;
+  
+  
+    }
+  
+  
+    decrement(index)
+    {
+      if(this.cartArray[index].quantity != 1)
+      {
+      this.updateIdSet={
+        "id":this.cartArray[index].id,
+        "quantity":this.cartArray[index].quantity,
+        "increment":1,
+        "prd_id":this.cartArray[index].prd_id
+        }
+        
+        this.authProvider.updateCart(this.updateIdSet).subscribe(res=>{
+          console.log(res);
+         
+          let details = res
+          if(details.Ack == 1){
+            this.cartArray[index].quantity=details.quantity 
+            this.cartArray[index].price=details.price 
+          }
+        })
+      } else
+      {
+        alert("Quantity can't be zero, please click on remove to delete from your order ")
+      }
+      
+  
+  
+  
+    //   if (this.cartArray[index].quantity>1)
+    //   {
+   
+    //   console.log (index)
+    //   console.log (this.cartArray[index].quantity)
+    //   this.cartArray[index].quantity=this.cartArray[index].quantity - 1;
+    // }
+    // else
+    // {
+    //   alert("Quantity can't be zero, please click on remove to delete from your order ")
+    // }
+    
+  
+    }
+  
+  
+    remove(index)
+    {
+      let alert = this.alertCtrl.create({
+        title: 'Remove Item',
+        message: 'Are you sure to remove this item',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+                   
+          },
+          {
+            text: 'Ok',
+            handler: () => {
+  
+              console.log (this.cartArray[index])
+              console.log (this.cartArray[index].id)
+              let idSet=
+              {
+                "id":this.cartArray[index].id
+              }
+          
+              console.log (idSet)
+      this.authProvider.removeCart(idSet).subscribe(res=>{
+        console.log(res);
+        console.log('hello')
+        let details = res
+        if(details.Ack == 1){
+  
+          this.authProvider.cartList(this.userIdSet).subscribe(res=>{
+            console.log(res);
+           
+            let details = res
+            if(details.Ack == 1){
+              
+                if(details.cart.length > 0)
+                {
+                  this.cartArray=details.cart
+                }
+                else{
+                  this.cartArray='';
+                  }
+             
+              this.totalPrice=details.total_price;
+              this.totalItem=details.total_item;
+              this.quantity=details.quantity;
+            
+                }
+            })
+  
+        }
+      })
+    }
+  }]
+      });
+      alert.present();
+    }
+    goForCheckout()
+    {
+      this.navCtrl.push ('CheckoutPage')
+    }
 }

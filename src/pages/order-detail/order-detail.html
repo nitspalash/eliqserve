@@ -31,92 +31,97 @@
 
 
 <ion-content padding>
-  <ion-card padding>
+  <ion-card padding *ngFor="let item of orderDetailsArray">
     <ion-row>
       <ion-col>
         <h2 class="tittle-text">Order Id :</h2>
       </ion-col>
       <ion-col>
-        <p class="text-p">#524879</p>
+        <p class="text-p">#{{item.id}}</p>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-col>
+        <h2 class="tittle-text">Delivery Address:</h2>
+      </ion-col>
+      <ion-col>
+        <p class="text-p">{{item.billing_address}}</p>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col>
-        <h2 class="tittle-text">Restuarant Name :</h2>
-      </ion-col>
-      <ion-col>
-        <p  class="text-p">Zing</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <h2 class="tittle-text">Name :</h2>
-      </ion-col>
-      <ion-col>
-        <p  class="text-p">Ishani Dutta</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <h2 class="tittle-text">Delivery Address :</h2>
-      </ion-col>
-      <ion-col>
-        <p class="text-p">D-6/8, Armheart St. Kolkata</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <h2 class="tittle-text">Payment :</h2>
-      </ion-col>
-      <ion-col>
-        <p class="text-p">COD</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <h2 class="tittle-text">Order Date :</h2>
-      </ion-col>
-      <ion-col>
-        <p class="text-p">Aug 23, 2017</p>
-      </ion-col>
-    </ion-row>
-
-    <div class="order-details">
-      <h1>Order Details :</h1>
-      <ion-row>
-        <ion-col col-2 text-center>
-          <h3>#</h3>
-          <p>1</p>
-          <p>1</p>
+        <ion-col>
+          <h2 class="tittle-text">Shipping Address:</h2>
         </ion-col>
-        <ion-col col-4 text-center>
-          <h3>Product Name</h3>
-          <p>Pizza</p>
-          <p>Pizza</p>
-        </ion-col>
-        <ion-col col-2 text-center>
-          <h3>Qty</h3>
-          <p>1</p>
-          <p>1</p>
-        </ion-col>
-        <ion-col col-4 text-center>
-          <h3>Price</h3>
-          <p>$23.40</p>
-          <p>$23.40</p>
+        <ion-col>
+          <p class="text-p">{{item.shipping_address}}</p>
         </ion-col>
       </ion-row>
-      <ion-item>
-        <span class="sub-total">Sub Total</span>
-        <span class="price">$46.80</span>
-      </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <h2 class="tittle-text">Payment Mode:</h2>
+      </ion-col>
+      <ion-col>
+        <p class="text-p">{{item.payment_mode}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2 class="tittle-text">Order Date:</h2>
+      </ion-col>
+      <ion-col>
+        <p class="text-p">{{item.order_date|date:'MMM dd,yyyy'}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+          <h2 class="tittle-text">Order Status:</h2>
+        </ion-col>
+        <ion-col>
+          <p class="text-p">{{item.order_status}}</p>
+        </ion-col>
+      </ion-row>
+
+    <div class="order-details" >
+      <h1>Order Details :</h1>
+      <ion-row>
+          <ion-col col-3 text-center>Product Id</ion-col>
+          <ion-col col-4 text-center>Product Name</ion-col>
+          <ion-col col-2 text-center>Qty</ion-col>
+          <ion-col col-3 text-center>Price</ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let product of item.order_details">
+        <ion-col col-3 text-center>
+            
+          <p>{{product.id}}</p>
+          
+        </ion-col>
+        <ion-col col-4 text-center>
+     
+          <p>{{product.product.product_name}}</p>
+          
+        </ion-col>
+        <ion-col col-2 text-center>
+          
+          <p>{{product.quantity}}</p>
+          
+        </ion-col>
+        <ion-col col-3 text-center>
+        
+          <p>${{product.price}}.00</p>
+          </ion-col>
+      </ion-row>
+  
       <ion-item>
         <span class="sub-total">Grand Total</span>
-        <span class="price">$46.80</span>
+        <span class="price">${{item.total_price}}.00</span>
       </ion-item>
     </div>
   </ion-card>

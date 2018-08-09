@@ -111,6 +111,11 @@ export class MyApp {
     this.nav.push ('OrderListPage')
   }
 
+  public sellerOrderList()
+  {
+    console.log('seller orderlist page')
+  }
+
   public cart()
   {
     this.nav.push ('CartPage')
