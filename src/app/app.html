@@ -54,10 +54,14 @@
 <ion-item menuClose  *ngIf="istype==2 && user_exist==1" (click)="listProduct()">
   <ion-icon name="cube"  item-start></ion-icon> List Product
 </ion-item>
-<ion-item menuClose (click)="orderList()" *ngIf="user_exist==1">
+<ion-item menuClose (click)="orderList()" *ngIf="istype==1 && user_exist==1">
     <ion-icon name="list-box" item-start></ion-icon> My Order
   </ion-item>
 
+  <ion-item menuClose (click)="sellerOrderList()" *ngIf="istype==2 && user_exist==1">
+    <ion-icon name="list-box" item-start></ion-icon> My Order
+  </ion-item>
+  
   <ion-item menuClose (click)="wishlist()" *ngIf="user_exist==1">
     <ion-icon name="list-box" item-start></ion-icon> My Wishlist
   </ion-item>
@@ -71,14 +75,13 @@
 </ion-menu>
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
-<!--  
+ 
 <ion-footer  class="footer">
   <ion-toolbar style=" padding: 0;">
       <ion-row>
         <ion-col text-center >
             <a (click)="gohome()">
-                 <ion-icon name="home"></ion-icon>
-                <img src="assets/imgs/home-menu.png" alt="" />
+                 <img src="assets/imgs/home-menu.png" alt="" />
                 <p class="titl">Home</p>
             </a>
         </ion-col>
@@ -113,4 +116,4 @@
   </ion-toolbar>
 
 
-</ion-footer>  -->
+</ion-footer> 

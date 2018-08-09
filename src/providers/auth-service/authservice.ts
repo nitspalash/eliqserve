@@ -169,4 +169,34 @@ brandListing ()
    });
  }
 
+
+ orderlist(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/orderlist.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
+ orderDetails(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/orderdetails.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
+
+ updateCart(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/updatecart.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
+ removeCart(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/removefromcart.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
 }

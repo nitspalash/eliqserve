@@ -31,160 +31,157 @@
 
 
 <ion-content padding>
-  <ion-list (click)="goToOrderDetails()">
-    <ion-card>
+  <ion-list >
+    <ion-card (click)="goToOrderDetails(item.id)" *ngFor="let item of orderArray">
       <ion-item>
-       
-        <div class="item-top">
-          <h2>#524879 <button ion-button class="close" ><ion-icon name="close"></ion-icon></button> </h2>
-          <p>13 May, 2016</p>
-        </div>
-           
         <ion-row>
-          <ion-col col-4 text-center class="pl-0">
-            <h4>Price</h4>
-            <p>$23.50</p>
+          <ion-col col-4>
+            <h2 class="f-w-5">Order Id:</h2>
           </ion-col>
-          <ion-col col-4 text-center>
-            <h4>Quantity</h4>
-            <p>3</p>
+          <ion-col col-8>
+            <h2>{{item.id}}</h2>
           </ion-col>
-          <ion-col col-4 text-center class="pr-0">
-            <h4>Total</h4>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Date:</h2>
+          </ion-col>
+          <ion-col col-8>
+            <h2>{{item.order_date|date:'MMM dd,yyyy'}}</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Total:</h2>
+          </ion-col>
+          <ion-col col-8>
+            <p>${{item.total_price}}</p>
+          </ion-col>
+        </ion-row>
+        <button item-end ion-button class="detail-btn" > Detail </button>
+      </ion-item>
+    </ion-card>
+
+    <!-- <ion-card>
+      <ion-item>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Order Id:</h2>
+          </ion-col>
+          <ion-col col-8>
+            <h2>#524879</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Date:</h2>
+          </ion-col>
+          <ion-col col-8>
+            <h2>13may, 2016</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Total:</h2>
+          </ion-col>
+          <ion-col col-8>
             <p>$23.50</p>
           </ion-col>
         </ion-row>
-        
+        <button item-end ion-button class="detail-btn"> Detail </button>
       </ion-item>
     </ion-card>
 
     <ion-card>
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/cart-pic-a.png" alt="">
-        </ion-thumbnail>
-        <div class="item-top">
-          <h2>#524879
-            <button ion-button class="close">
-              <ion-icon name="close"></ion-icon>
-            </button>
-          </h2>
-          <p>13 May, 2016</p>
-        </div>
-    
         <ion-row>
-          <ion-col col-4 text-center class="pl-0">
-            <h4>Price</h4>
-            <p>$23.50</p>
+          <ion-col col-4>
+            <h2 class="f-w-5">Order Id:</h2>
           </ion-col>
-          <ion-col col-4 text-center>
-            <h4>Quantity</h4>
-            <p>3</p>
+          <ion-col col-8>
+            <h2>#524879</h2>
           </ion-col>
-          <ion-col col-4 text-center class="pr-0">
-            <h4>Total</h4>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Date:</h2>
+          </ion-col>
+          <ion-col col-8>
+            <h2>13may, 2016</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Total:</h2>
+          </ion-col>
+          <ion-col col-8>
             <p>$23.50</p>
           </ion-col>
         </ion-row>
-    
+        <button item-end ion-button class="detail-btn"> Detail </button>
       </ion-item>
     </ion-card>
 
     <ion-card>
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/cart-pic-a.png" alt="">
-        </ion-thumbnail>
-        <div class="item-top">
-          <h2>#524879
-            <button ion-button class="close">
-              <ion-icon name="close"></ion-icon>
-            </button>
-          </h2>
-          <p>13 May, 2016</p>
-        </div>
-    
         <ion-row>
-          <ion-col col-4 text-center class="pl-0">
-            <h4>Price</h4>
-            <p>$23.50</p>
+          <ion-col col-4>
+            <h2 class="f-w-5">Order Id:</h2>
           </ion-col>
-          <ion-col col-4 text-center>
-            <h4>Quantity</h4>
-            <p>3</p>
+          <ion-col col-8>
+            <h2>#524879</h2>
           </ion-col>
-          <ion-col col-4 text-center class="pr-0">
-            <h4>Total</h4>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Date:</h2>
+          </ion-col>
+          <ion-col col-8>
+            <h2>13may, 2016</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Total:</h2>
+          </ion-col>
+          <ion-col col-8>
             <p>$23.50</p>
           </ion-col>
         </ion-row>
-    
+        <button item-end ion-button class="detail-btn"> Detail </button>
       </ion-item>
     </ion-card>
 
     <ion-card>
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/cart-pic-a.png" alt="">
-        </ion-thumbnail>
-        <div class="item-top">
-          <h2>#524879
-            <button ion-button class="close">
-              <ion-icon name="close"></ion-icon>
-            </button>
-          </h2>
-          <p>13 May, 2016</p>
-        </div>
-    
         <ion-row>
-          <ion-col col-4 text-center class="pl-0">
-            <h4>Price</h4>
-            <p>$23.50</p>
+          <ion-col col-4>
+            <h2 class="f-w-5">Order Id:</h2>
           </ion-col>
-          <ion-col col-4 text-center>
-            <h4>Quantity</h4>
-            <p>3</p>
+          <ion-col col-8>
+            <h2>#524879</h2>
           </ion-col>
-          <ion-col col-4 text-center class="pr-0">
-            <h4>Total</h4>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Date:</h2>
+          </ion-col>
+          <ion-col col-8>
+            <h2>13may, 2016</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <h2 class="f-w-5">Total:</h2>
+          </ion-col>
+          <ion-col col-8>
             <p>$23.50</p>
           </ion-col>
         </ion-row>
-    
+        <button item-end ion-button class="detail-btn"> Detail </button>
       </ion-item>
-    </ion-card>
+    </ion-card> -->
 
-    <ion-card>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/cart-pic-a.png" alt="">
-        </ion-thumbnail>
-        <div class="item-top">
-          <h2>#524879
-            <button ion-button class="close">
-              <ion-icon name="close"></ion-icon>
-            </button>
-          </h2>
-          <p>13 May, 2016</p>
-        </div>
-    
-        <ion-row>
-          <ion-col col-4 text-center class="pl-0">
-            <h4>Price</h4>
-            <p>$23.50</p>
-          </ion-col>
-          <ion-col col-4 text-center>
-            <h4>Quantity</h4>
-            <p>3</p>
-          </ion-col>
-          <ion-col col-4 text-center class="pr-0">
-            <h4>Total</h4>
-            <p>$23.50</p>
-          </ion-col>
-        </ion-row>
-    
-      </ion-item>
-    </ion-card>
     
   </ion-list>
 </ion-content>

@@ -25,8 +25,11 @@ page-order-list {
     .close ion-icon{ color: #ffffff;}
     .item h4{ font-weight: 500;}
     .item p{ font-weight: 500;}
-    
-    
+    .card{padding: 10px 10px 0 10px;}
+    .f-w-5{font-weight: 500;}
+    .detail-btn{padding: 10px !important; background: #30be21;}
+    .card .item.item-block .item-inner{ display: flex; align-items: center; justify-content: center;}
+
     .pl-0{padding-left: 0;}
     .pr-0{padding-right: 0;}
     
