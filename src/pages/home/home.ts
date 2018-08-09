@@ -65,6 +65,7 @@ export class HomePage {
     this.myApp;
     
     this.address = JSON.parse(localStorage.getItem('currentaddress'));
+    if(this.address)
     this.country = this.address.countryName;
     //alert(this.country)
   }
