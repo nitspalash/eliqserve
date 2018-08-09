@@ -25,13 +25,13 @@
           </ion-item>
     
           <ion-item>
-            <ion-label floating>Account pin</ion-label>
-            <ion-input type="text" formControlName="password"></ion-input>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
           </ion-item>
           <p *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched" ion-text color="danger">Password is required </p>
           <ion-item>
-            <ion-label floating>Confirm Account pin</ion-label>
-            <ion-input type="text" formControlName="con_password" (ngModelChange)="checkpassword($event,formGroup.value)"></ion-input>
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input type="password" formControlName="con_password" (ngModelChange)="checkpassword($event,formGroup.value)"></ion-input>
           </ion-item>
           <p *ngIf="!formGroup.controls['con_password'].valid && formGroup.controls['con_password'].touched" ion-text color="danger">Confirm Password is required </p>
           <p *ngIf="!passwordmatch" ion-text color="danger">Password and Confirm password not match </p>

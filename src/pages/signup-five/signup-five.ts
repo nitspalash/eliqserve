@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController} from 'ionic-angular';
 import {SignupTwoPage} from '../signup-two/signup-two'
 import moment from 'moment';
 import {AuthProvider} from '../../providers/auth-service/authservice'
@@ -28,7 +28,8 @@ export class SignupFivePage {
   otpSet:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController,
-    public authProvider:AuthProvider) {
+    public authProvider:AuthProvider,
+  public loadingCtrl:LoadingController) {
 
   }
 
@@ -57,7 +58,7 @@ export class SignupFivePage {
     else {
       this.hasFinished = true;
       alert('times out,Please re-enter your email address')
-      this.navCtrl.push('SignupThreePage');
+      this.navCtrl.setRoot('SignupThreePage');
     }
   }, 1000); //1000 time_in_ms
 }
@@ -94,6 +95,13 @@ export class SignupFivePage {
 
   finalSubmit()
   {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Getting your location...',
+      duration: 6000
+    });
+  
+    loading.present();
 // alert('Your Profile Created Successfully')
 //     const alert = this.alertCtrl.create({
 //       title: 'Your Profile Created Successfully',

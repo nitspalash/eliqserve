@@ -42,7 +42,7 @@ export class SignupThreePage {
       this.user_email=localStorage.setItem ('email_address',JSON.stringify(data))
     });
 
-    this.navCtrl.push('SignupFourPage');
+    this.navCtrl.setRoot('SignupFourPage');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupThreePage');
