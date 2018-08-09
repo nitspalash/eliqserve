@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
 import {FormBuilder,FormControl,FormGroup,AbstractControl,Validators} from '@angular/forms'
 import {AuthProvider} from '../../providers/auth-service/authservice'
-import {Storage} from '@ionic/storage'
+import {Storage} from '@ionic/storage';
+import { Events } from 'ionic-angular';
 /**
  * Generated class for the LoginPage page.
  *
@@ -18,12 +19,19 @@ import {Storage} from '@ionic/storage'
 export class LoginPage {
   public formGroup: FormGroup;
   userDetails:any;
-
+  public footerIsHidden: boolean = true;
+  public unregisterBackButtonAction: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
  public authProvider:AuthProvider,
   private builder: FormBuilder,
+  public events: Events,
+  public platform: Platform,
 public storage: Storage) {
+ 
+  platform.registerBackButtonAction(() => {
+    this.navCtrl.setRoot ('HomePage');
+  });
 
     this.formGroup = builder.group({
       'email': ['', Validators.compose([Validators.required])],
@@ -70,7 +78,21 @@ forgotPassword()
   }
 
   ionViewDidLoad() {
+     this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad LoginPage');
+    //this.initializeBackButtonCustomHandler();
   }
+  ionViewWillLeave() {   this.navCtrl.setRoot ('HomePage');
+    // Unregister the custom back button action for this page
+   // this.unregisterBackButtonAction && this.unregisterBackButtonAction();
+}
 
+// initializeBackButtonCustomHandler(): void {
+  
+
+//     this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event){
+//         console.log('Prevent Back Button Page Change');
+//         this.navCtrl.setRoot ('HomePage');
+//     }, 100); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
+// }  
 }

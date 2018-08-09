@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage,LoadingController, NavController, NavParams,AlertController } from 'ionic-angular';
  import { Diagnostic } from '@ionic-native/diagnostic';
-import { Platform } from 'ionic-angular';
+import { Platform,Events } from 'ionic-angular';
 // import {AuthProvider} from '../../providers/auth-service/authservice'
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
@@ -36,10 +36,10 @@ export class AfterSplashPage {
     public platform: Platform,
     private locationAccuracy: LocationAccuracy,
     private network: Network,
+    public events: Events,
     public loadingCtrl: LoadingController
   ) {
-  
-    
+    events.publish('hideFooter', { isHidden: true});
      let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-(');
      });
@@ -47,7 +47,7 @@ export class AfterSplashPage {
   }
   loginPage()
   {
-    this.navCtrl.push ('HomePage')
+    this.navCtrl.setRoot ('HomePage')
   }
 
 
@@ -223,7 +223,7 @@ fetchlocation(){
       {
         this.currentaddress = this.currentaddress + this.address.postalCode;
       }
-        
+      this.navCtrl.setRoot ('HomePage')
         console.log(address);
         
     })
