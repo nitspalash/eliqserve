@@ -85,7 +85,7 @@
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
  
-<ion-footer  class="footer">
+<ion-footer  class="footer" *ngIf="!footerIsHidden">
   <ion-toolbar style=" padding: 0;">
       <ion-row>
         <ion-col text-center (click)="gohome()">
