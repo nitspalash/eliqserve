@@ -64,10 +64,10 @@ this.formGroup.value.log='';
 
     
 
-    // this.storage.ready().then(() => {
-    //   this.userDataOne=localStorage.setItem ('userDataOne',JSON.stringify(data))
-    // });
-    // this.navCtrl.push('SignupTwoPage');
+    this.storage.ready().then(() => {
+      this.userDataOne=localStorage.setItem ('userDataOne',JSON.stringify(data))
+    });
+    this.navCtrl.push('SignupTwoPage');
    
   }
   ionViewDidLoad() {

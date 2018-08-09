@@ -37,7 +37,7 @@
         <h2 class="tittle-text">Order Id :</h2>
       </ion-col>
       <ion-col>
-        <p class="text-p">#{{item.id}}</p>
+        <p class="text-p">#00{{item.id}}</p>
       </ion-col>
     </ion-row>
 
@@ -84,8 +84,13 @@
           <h2 class="tittle-text">Order Status:</h2>
         </ion-col>
         <ion-col>
-          <p class="text-p">{{item.order_status}}</p>
-        </ion-col>
+            <p class="text-p" *ngIf="item.order_status == 'P'">Pending</p>
+            <p class="text-p" *ngIf="item.order_status == 'D'">Delivered</p>
+            <p class="text-p" *ngIf="item.order_status == 'S'">Shipped</p>
+            <p class="text-p" *ngIf="item.order_status == 'A'">Accepted</p>
+            <p class="text-p" *ngIf="item.order_status == 'R'">Rejected By marchent</p>
+            <p class="text-p" *ngIf="item.order_status == 'C'">Cancelled By Buyer</p>
+          </ion-col>
       </ion-row>
 
     <div class="order-details" >
@@ -123,6 +128,11 @@
         <span class="sub-total">Grand Total</span>
         <span class="price">${{item.total_price}}.00</span>
       </ion-item>
+
+
+     
+
     </div>
+    <button ion-button color="secondary" block *ngIf="item.order_status == 'P' ||  item.order_status == 'S' || item.order_status == 'A'">Cancel Order</button>
   </ion-card>
 </ion-content>

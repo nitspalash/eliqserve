@@ -15,6 +15,7 @@ import {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms'
 })
 export class CheckoutPage {
   showItem: boolean=true;
+  showForm:boolean=true;
 shippingForm:FormGroup
 billingForm:FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -61,6 +62,12 @@ this.billingForm=new FormGroup({
   // this.ischecked=true;
     
     this.showItem = !this.showItem;
+  }
+
+  toggleAnotherCheckbox()
+  {
+    // this.ischecked=false
+this.showForm=!this.showForm
   }
 
   submit(billdata,shipdata)

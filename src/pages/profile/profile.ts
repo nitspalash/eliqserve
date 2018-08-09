@@ -26,7 +26,14 @@ export class ProfilePage {
     this.userName=loginUser.first_name + loginUser.last_name
     this.userEmail=loginUser.email
     this.userPhone=loginUser.phone
-    this.userAddress=loginUser.country+ ","+loginUser.city+","+loginUser.address
+    // if (loginUser.country!=null)
+    // {
+    //   this.userAddress=loginUser.country+ ","+loginUser.city+","+loginUser.address
+    // }
+    // else{
+    //   this.userAddress==""
+    // }
+    
     console.log (this.userName)
     console.log (this.userEmail)
     console.log (this.userPhone)

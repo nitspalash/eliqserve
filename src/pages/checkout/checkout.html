@@ -54,10 +54,10 @@
     <ion-card>
         <ion-list>
             <h2>Shipping Details</h2> 
-            <div>
+            <div radio-group>
                 <ion-item>
                     <ion-label>
-                        <ion-radio checked="true" value="go"></ion-radio>
+                        <ion-radio value="first" ischecked="true"></ion-radio>
                         <div>
                             <h3>Monoj Patra</h3>
                             <p>Puspaloy</p>
@@ -69,7 +69,7 @@
             
                 <ion-item>
                     <ion-label>
-                        <ion-radio checked="true" value="rust"></ion-radio>
+                        <ion-radio value="second"></ion-radio>
                         <div>
                             <h3>Monoj Patra</h3>
                             <p>Puspaloy</p>
@@ -144,10 +144,10 @@
     <ion-card>
         <ion-list>
             <h2>Delivery Details</h2>
-            <div>
+            <div radio-group>
                 <ion-item>
                     <ion-label>
-                        <ion-radio checked="true" value="go"></ion-radio>
+                        <ion-radio ischecked="true" value="go"></ion-radio>
                         <div>
                             <h3>Monoj Patra</h3>
                             <p>Puspaloy</p>
@@ -159,7 +159,7 @@
             
                 <ion-item>
                     <ion-label>
-                        <ion-radio checked="true" value="rust"></ion-radio>
+                        <ion-radio value="rust"></ion-radio>
                         <div>
                             <h3>Monoj Patra</h3>
                             <p>Puspaloy</p>
@@ -169,7 +169,14 @@
             
                 </ion-item>
             </div>
-            <form [formGroup]="billingForm" (ngSubmit)="submit(billingForm.value,shippingForm.value)">
+
+
+            <ion-item style="margin-bottom: 0;">
+                    <ion-label>I want to use an existing address</ion-label>
+                    <ion-checkbox color="dark" (click)="toggleAnotherCheckbox()" checked></ion-checkbox>
+                    
+                  </ion-item>
+            <form *ngIf="!showForm" [formGroup]="billingForm" (ngSubmit)="submit(billingForm.value,shippingForm.value)">
             <ion-item>
                 <ion-label floating>First Name:</ion-label>
                 <ion-input formControlName="bill_fname"></ion-input>
