@@ -113,7 +113,7 @@ export class MyApp {
 
   public sellerOrderList()
   {
-    console.log('seller orderlist page')
+    this.nav.push ('VieworderPage')
   }
 
   public cart()
@@ -186,4 +186,21 @@ localStorage.removeItem('userDetails');
 
   });
 }
+
+public earning()
+{
+  this.nav.push ('EarningreportPage')
+}
+public reviews()
+{
+  this.nav.push ('ReviewsPage')
+}
+public settings()
+{
+  this.nav.push ('SettingsPage')
+}
+
+
+
+
 }

@@ -39,7 +39,7 @@
 </ion-item>
 
 
-<ion-item menuClose (click)="cart()" *ngIf="user_exist==1">
+<ion-item menuClose (click)="cart()" *ngIf="user_exist==1 && istype==1">
   <ion-icon name="cart" item-start></ion-icon> My Bag
 </ion-item>
 
@@ -59,11 +59,20 @@
   </ion-item>
 
   <ion-item menuClose (click)="sellerOrderList()" *ngIf="istype==2 && user_exist==1">
-    <ion-icon name="list-box" item-start></ion-icon> My Order
+    <ion-icon name="list-box" item-start></ion-icon>View Order
   </ion-item>
   
-  <ion-item menuClose (click)="wishlist()" *ngIf="user_exist==1">
+  <ion-item menuClose (click)="wishlist()" *ngIf="user_exist==1 && istype==1">
     <ion-icon name="list-box" item-start></ion-icon> My Wishlist
+  </ion-item>
+  <ion-item menuClose (click)="earning()" *ngIf="user_exist==1 && istype==2">
+    <ion-icon name="list-box" item-start></ion-icon> My Earning
+  </ion-item>
+  <ion-item menuClose (click)="reviews()" *ngIf="user_exist==1 && istype==2">
+    <ion-icon name="list-box" item-start></ion-icon> My Reviews
+  </ion-item>
+  <ion-item menuClose (click)="settings()" *ngIf="user_exist==1 && istype==2">
+    <ion-icon name="list-box" item-start></ion-icon> Settings
   </ion-item>
 <ion-item menuClose *ngIf="user_exist==1"  (click)="logout()">
   <ion-icon name="power"   item-start></ion-icon> Log out
@@ -79,26 +88,32 @@
 <ion-footer  class="footer">
   <ion-toolbar style=" padding: 0;">
       <ion-row>
-        <ion-col text-center >
-            <a (click)="gohome()">
+        <ion-col text-center (click)="gohome()">
+            <a >
                  <img src="assets/imgs/home-menu.png" alt="" />
                 <p class="titl">Home</p>
             </a>
         </ion-col>
-        <ion-col text-center>
-          <a (click)="goSearch()">
+        <ion-col text-center (click)="goSearch()">
+          <a >
               <img src="assets/imgs/search.png" alt="" />
             <p class="titl">Search</p>
           </a>
         </ion-col>
-        <ion-col text-center>
-          <a (click)="goOrder()" >
+        <ion-col text-center (click)="goOrder()" *ngIf="user_exist==1 && istype==1" >
+          <a>
+              <img src="assets/imgs/orders.png" alt="" />
+            <p class="titl">Orders</p>
+          </a>
+        </ion-col>
+        <ion-col text-center (click)="sellerOrderList()"  *ngIf="user_exist==1 && istype==2">
+          <a  >
               <img src="assets/imgs/orders.png" alt="" />
             <p class="titl">Orders</p>
           </a>
         </ion-col>
       
-        <ion-col text-center>
+        <ion-col text-center (click)="wishlist()" *ngIf="user_exist==1 && istype==1">
           <a (click)="goWishlist()">
               <img src="assets/imgs/saved.png" alt="" />
             <p class="titl">Saved</p>

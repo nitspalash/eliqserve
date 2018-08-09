@@ -177,9 +177,32 @@ brandListing ()
    });
  }
 
+sellerorderlist(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/orderlistseller.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
  orderDetails(data:object):Observable<any>{
   console.log(data);
    return this.http.post(this.apiUrl +'products/orderdetails.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+ 
+ 
+ sellerorderStatus(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/orderstatus.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
+
+ sellerorderDetails(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/orderdetailsseller.json',data).map((res:Response)=>{
      return res;
    });
  }

@@ -1,0 +1,136 @@
+<!--
+  Generated template for the SellerorderdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>sellerorderdetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card padding >
+    <ion-row>
+      <ion-col>
+        <h2 class="tittle-text">Order Id :</h2>
+      </ion-col>
+      <ion-col>
+        <p class="text-p">#{{item.id}}</p>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-col>
+        <h2 class="tittle-text">Delivery Address:</h2>
+      </ion-col>
+      <ion-col *ngIf="deliver">
+        <p class="text-p">{{deliver.first_name}} {{item.deliver.last_name}}</p>
+        <p class="text-p">{{deliver.mobile}}</p>
+        <p class="text-p">{{deliver.address1}}</p>
+        <p class="text-p">{{deliver.address2}}</p>
+        <p class="text-p">{{deliver.city}},{{item.deliver.state}},{{item.deliver.country}}</p>
+        <p class="text-p">{{deliver.pin}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+          <h2 class="tittle-text">Shipping Address:</h2>
+        </ion-col>
+        <ion-col *ngIf="shiping">
+            <p class="text-p">{{shiping.first_name}} {{shiping.last_name}}</p>
+            <p class="text-p">{{shiping.mobile}}</p>
+            <p class="text-p">{{shiping.address1}}</p>
+            <p class="text-p">{{shiping.address2}}</p>
+            <p class="text-p">{{shiping.city}},{{shiping.state}},{{shiping.country}}</p>
+            <p class="text-p">{{shiping.pin}}</p>
+        </ion-col>
+      </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2 class="tittle-text">Payment Mode:</h2>
+      </ion-col>
+      <ion-col>
+        <p class="text-p">{{item.payment_mode}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2 class="tittle-text">Order Date:</h2>
+      </ion-col>
+      <ion-col>
+        <p class="text-p">{{item.order_date|date:'MMM dd,yyyy'}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+          <h2 class="tittle-text">Order Status:</h2>
+        </ion-col>
+        <ion-col>
+          <p class="text-p" *ngIf="item.order_status == 'P'">Pending</p>
+          <p class="text-p" *ngIf="item.order_status == 'D'">Delivered</p>
+          <p class="text-p" *ngIf="item.order_status == 'S'">Shipped</p>
+          <p class="text-p" *ngIf="item.order_status == 'A'">Accepted</p>
+          <p class="text-p" *ngIf="item.order_status == 'R'">Rejected By marchent</p>
+          <p class="text-p" *ngIf="item.order_status == 'C'">Cancelled By Buyer</p>
+        </ion-col>
+      </ion-row>
+
+    <div class="order-details" >
+      <h1>Order Details :</h1>
+      <ion-row>
+          <ion-col col-3 text-center>Product Id</ion-col>
+          <ion-col col-4 text-center>Product Name</ion-col>
+          <ion-col col-2 text-center>Qty</ion-col>
+          <ion-col col-3 text-center>Price</ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let product of item.order_details">
+        <ion-col col-3 text-center>
+            
+          <p>{{product.id}}</p>
+          
+        </ion-col>
+        <ion-col col-4 text-center>
+     
+          <p>{{product.product.product_name}}</p>
+          
+        </ion-col>
+        <ion-col col-2 text-center>
+          
+          <p>{{product.quantity}}</p>
+          
+        </ion-col>
+        <ion-col col-3 text-center>
+        
+          <p>${{product.price}}.00</p>
+          </ion-col>
+      </ion-row>
+  
+      <ion-item>
+        <span class="sub-total">Grand Total</span>
+        <span class="price">${{item.total_price}}.00</span>
+      </ion-item>
+    </div>
+    <button *ngIf="item.order_status=='P'" ion-button (click)="order_status(item.id,'A')">Accept</button>
+  <button *ngIf="item.order_status=='P'" ion-button (click)="order_status(item.id,'R')">Declined</button>
+  <ion-item *ngIf="item.order_status =='A' || item.order_status =='S' ">
+      <ion-label>Update order status</ion-label>
+      <ion-select [(ngModel)]="status" (ionChange)="onChange(1)">
+        <ion-option  value="S">Shipped</ion-option>
+        <ion-option  value="D">Delivered</ion-option>
+      </ion-select>
+    </ion-item>
+</ion-card>
+  
+</ion-content>
