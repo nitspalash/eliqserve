@@ -94,12 +94,12 @@ export class SignupFivePage {
 
   finalSubmit()
   {
-alert('Your Profile Created Successfully')
+// alert('Your Profile Created Successfully')
 //     const alert = this.alertCtrl.create({
 //       title: 'Your Profile Created Successfully',
 //        buttons: ['OK']
 // });
-this.navCtrl.push('LoginPage')
+// this.navCtrl.push('LoginPage')
     console.log(this.data)
     let currentDateTime = moment().format("MM-DD-YYYY HH:mm:ss")
 
@@ -115,25 +115,25 @@ console.log (this.otpSet)
 
 
 
-//  this.authProvider.verifyOtp(this.otpSet).subscribe(res => {
+ this.authProvider.verifyOtp(this.otpSet).subscribe(res => {
      
-//       console.log(res.details);
-//       console.log('hello');
-//       let detailsResponse = res.details
+      console.log(res.details);
+      console.log('hello');
+      let detailsResponse = res.details
       
-//       if(detailsResponse.ack == 1){
-//         const alert = this.alertCtrl.create({
-//           title: 'Your Profile Created Successfully',
-//            buttons: ['OK']
+      if(detailsResponse.ack == 1){
+        const alert = this.alertCtrl.create({
+          title: 'Your Profile Created Successfully',
+           buttons: ['OK']
         
-//          });
-//           alert.present();
-//           this.navCtrl.push('LoginPage')
-//             } 
-//             else if (detailsResponse.ack == 0){
-//               alert(detailsResponse.message)
-//             }
-//           });
+         });
+          alert.present();
+          this.navCtrl.push('LoginPage')
+            } 
+            else if (detailsResponse.ack == 0){
+              alert(detailsResponse.message)
+            }
+          });
 
 }
 

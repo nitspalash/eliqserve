@@ -101,6 +101,10 @@ this.updateIdSet={
     if(details.Ack == 1){
       this.cartArray[index].quantity=details.quantity 
       this.cartArray[index].price=details.price 
+      //  this.cartArray[index].total_price
+      this.totalPrice=details.totalcartprice 
+       console.log (details.totalcartprice)
+       console.log(this.cartArray[index].total_price)
     }
   })
   
@@ -130,6 +134,8 @@ this.updateIdSet={
           if(details.Ack == 1){
             this.cartArray[index].quantity=details.quantity 
             this.cartArray[index].price=details.price 
+            // this.cartArray[index].total_price=details.totalcartprice 
+            this.totalPrice=details.totalcartprice 
           }
         })
       } else

@@ -19,7 +19,7 @@ export class OrderDetailPage {
   loginuser:any;
   userId:any;
   orderDetailsArray:any;
-
+  buttonName:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider) {
 
@@ -46,6 +46,35 @@ this.authProvider.orderDetails(this.orderSet).subscribe(res => {
 console.log ('orderDetails')
 this.orderDetailsArray=details.order_details
 console.log (this.orderDetailsArray)
+console.log (this.orderDetailsArray[0].order_status)
+
+
+
+// if ((this.orderDetailsArray[0].order_status)=="P")
+// {
+// this.buttonName="Pending"
+// }
+// else if ((this.orderDetailsArray[0].order_status)=="S")
+// {
+// this.buttonName="Shipped"
+// }
+
+// else if ((this.orderDetailsArray[0].order_status)=="D")
+// {
+// this.buttonName="Delivered"
+// }
+// else if ((this.orderDetailsArray[0].order_status)=="A")
+// {
+// this.buttonName="Seller Accepted The Order"
+// }
+// else if ((this.orderDetailsArray[0].order_status)=="R")
+// {
+// this.buttonName="Seller Rejected The Order"
+// }
+// else if ((this.orderDetailsArray[0].order_status)=="C")
+// {
+// this.buttonName="Order Cancelled By User"
+// }
 
   }
 })

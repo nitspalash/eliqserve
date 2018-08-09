@@ -99,19 +99,19 @@
 						</ion-item>
 
 				<ion-item *ngIf="radio==true">
-						<ion-label floating>Open</ion-label>
+						<ion-label floating>Close At</ion-label>
 						<ion-input type="time" ></ion-input>
 						</ion-item>
 
 				<ion-row *ngIf="radio==true">
 				<ion-col col-6>
-					<ion-item><ion-label floating>Delivery</ion-label>
+					<ion-item><ion-label>Delivery</ion-label>
 				<ion-checkbox ></ion-checkbox>
 			</ion-item>
 		</ion-col>
 
 				<ion-col col-6>
-					<ion-item><ion-label floating>Pickup</ion-label>
+					<ion-item><ion-label>Pickup</ion-label>
 				<ion-checkbox ></ion-checkbox>
 			</ion-item>
 		</ion-col>
@@ -152,7 +152,7 @@
 			</div>
 	
 			<ion-item>
-				<button ion-button color="secondary" block [disabled]="!formGroup.valid" >Continue
+				<button ion-button color="secondary" block >Continue
 					<ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
 				</button>
 			</ion-item>

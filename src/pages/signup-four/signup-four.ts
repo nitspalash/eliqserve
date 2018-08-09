@@ -68,19 +68,18 @@ console.log(this.dateOfBirth)
     
     this.authProvider.signup(data).subscribe(res=>{
       console.log(res.details);
-      this.navCtrl.push('SignupFivePage')
-      alert ('Please check your mail for otp');
+     
       let detailResponse = res.details
       if(detailResponse.ack == 1){
-        //console.log('hello')
-       // alert (detailResponse.message)
+        console.log('hello')
+       alert (detailResponse.message)
     
-        //this.navCtrl.push('SignupFivePage')
-        // alert ('Please check your mail for otp');
+        this.navCtrl.push('SignupFivePage')
+        alert ('Please check your mail for otp');
       }
       else if(detailResponse.ack == 0){
-       // alert (detailResponse.message)
-         //this.navCtrl.push('LoginPage')
+       alert (detailResponse.message)
+         this.navCtrl.push('LoginPage')
       }
   });
  
