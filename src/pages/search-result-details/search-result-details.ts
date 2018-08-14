@@ -21,6 +21,8 @@ imageLink:any;
 addCartSet:any;
 userId:any;
 loginuser:any;
+sellerArray:any;
+user_exist:any;
 wish: boolean=false;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
@@ -51,7 +53,8 @@ let dataSet={
         
       this.detailArray=details.product
       this.imageLink=details.image_link
-      
+      this.sellerArray=this.detailArray[0].Users;
+      console.log (this.sellerArray);
      
       console.log (this.imageLink);
       
@@ -64,22 +67,36 @@ let dataSet={
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchResultDetailsPage');
+
+    if (localStorage.getItem('userDetails'))
+{
+
+this.user_exist=1;
+console.log('I am here')
+}
+else{
+  this.user_exist=0
+  console.log('Please login')
+}
   }
-  addcart(prodId)
+  buynow(prodId)
   {
+
+   
+
     console.log (prodId)
     // alert('Your product added successfully');
 
 
     if(JSON.parse(localStorage.getItem('userDetails')))
     {
+     
       this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
       this.userId=this.loginuser.id
       // console.log (localStorage.getItem('userDetails'))
       console.log ( this.userId)
     }
-
-    this.addCartSet={
+      this.addCartSet={
       "user_id":this.userId,
       "prod_id":prodId
     }
@@ -89,15 +106,70 @@ let dataSet={
       console.log(res);
      
       let details = res
+
+      if (details.Ack==1)
+      {
     const alert = this.alertCtrl.create({
-      title: 'Cart Added Successfully!',
+      title: '!Success',
+      subTitle:'Product added to your cart',
       buttons: ['OK']
     });
     alert.present();
     this.navCtrl.push('CartPage')
+  }
+
+  else if (details.Ack==0)
+  {
+
+    const alert = this.alertCtrl.create({
+      title: details.message,
+      buttons: ['OK'],
+     
+     
+    });
+    alert.present();
+
+  }
   });
   }
 
+
+  addcart()
+  {
+
+    this.authProvider.addToCart(this.addCartSet).subscribe(res=>{
+      console.log(res);
+     
+      let details = res
+
+      if (details.Ack==1)
+      {
+    const alert = this.alertCtrl.create({
+      title: '!Success',
+      subTitle:'Product added to your cart',
+      buttons: ['OK']
+    });
+    alert.present();
+    // this.navCtrl.push('CartPage')
+  }
+
+  else if (details.Ack==0)
+  {
+
+    const alert = this.alertCtrl.create({
+      title: details.message,
+      buttons: ['OK'],
+     
+     
+    });
+    alert.present();
+
+  }
+  });
+  }
+
+
+  
 
   makeWishlist(id,iswish)
   {
@@ -203,5 +275,26 @@ else{
   });
   }
 
+  cartAlert()
+  {
+    const alert=this.alertCtrl.create({
+      title: 'Error',
+      subTitle: 'Please Log In To Add Product',
+      buttons:['ok']
+     });
+     alert.present();
+  }
 
+  buyAlert()
+
+ {
+    const alert=this.alertCtrl.create({
+      title: 'Error',
+      subTitle: 'Please Log In To buy Product',
+      buttons:['ok']
+     });
+     alert.present();
+  }
+
+ 
 }

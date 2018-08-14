@@ -17,7 +17,7 @@
 
 
 <ion-content padding>
-  <form [formGroup]="formGroup" (ngSubmit)="signupTwo(formGroup.value)">
+  <form [formGroup]="formGroup" (ngSubmit)="signupTwo(formGroup.value)" novalidate>
 		<ion-list>
 			<h4>Tell us about yourself</h4>
 			<ion-item>
@@ -25,10 +25,10 @@
 				<ion-input type="text" formControlName="name"></ion-input>
 			</ion-item>
 
-			<div class="gender-area">
+			<div class="gender-area" >
 				<h5>Gender</h5>
+				<!-- <ion-grid radio-group > -->
 				<ion-row radio-group formControlName="gender">
-					<!-- <h3>Gender</h3>	 -->
 					<ion-col col-3 class="pt-0 pb-0" >
 						<ion-item>
 							<ion-label>Male</ion-label>
@@ -48,6 +48,7 @@
 						</ion-item>
 					</ion-col>
 				</ion-row>
+				<!-- </ion-grid> -->
 			</div>
 
 
@@ -68,7 +69,7 @@
 			
 <ion-col col-6 class="pt-0 pb-0" >
 						<ion-item>
-								<ion-radio value="1"(click)="hideForm()"></ion-radio>
+								<ion-radio value="1"(click)="hideForm()" ></ion-radio>
 							<ion-label>Customer</ion-label>
 							</ion-item>
 					</ion-col>

@@ -22,13 +22,27 @@
   </ion-header>
   
   <ion-content padding>
+
+       <!-- <ion-card>
+          <ion-item>
+                  <h2>Seller Information</h2> 
+             <p>{{sellerArray['business_name']}}</p>
+               <p>{{sellerArray['first_name']}} {{sellerArray['last_name']}}</p>
+              <p>{{sellerArray}}</p>
+              <p>{{sellerArray['phone']}}</p> 
+              
+          </ion-item>
+          </ion-card> -->
+
+
+          
     <ion-card>
-      <form  [formGroup]="payForm" (ngSubmit)="payment(payForm.value)">
-      <ion-row>
+      
+      <!-- <ion-row>
         <ion-col col-12 radio-group  formControlName="paymethod">
           <ion-item>
             <ion-label>Cash On Delivery</ion-label>
-            <ion-radio value="cod" ></ion-radio>
+            <ion-radio checked value="cod" ></ion-radio>
           </ion-item>
           <ion-item>
               <ion-label>PayPal</ion-label>
@@ -36,9 +50,15 @@
             </ion-item>
         </ion-col>
      
-      </ion-row>
-      <ion-list >
-          <ion-item *ngFor="let item of cartArray">
+      </ion-row> -->
+
+
+
+      <ion-list *ngFor="let item of cartArray" >
+          
+        
+          <ion-item >
+
             <ion-thumbnail item-start>
               <img src="assets/imgs/cart-pic-a.png" alt="">
             </ion-thumbnail>
@@ -51,22 +71,33 @@
              <div item-end text-right>
               <ion-icon name="more"></ion-icon>
               <div class="price"> ${{item.price}}.00 </div>
+              
              </div>   
           </ion-item>
       
-        
+         
+                </ion-list>
+
+                <ion-item>
+                    <h2>Seller Information</h2>
+                    <ion-row>  {{sellerFName}} {{sellerLName}} </ion-row>
+                    <ion-row>  {{sellerEmail}}</ion-row>
+                    <ion-row>  {{sellerPhone}}</ion-row>
+                              
+                        </ion-item>
+
           <ion-item>
             <div item-start> Total </div>
             <div item-end text-right>
               <div class="total-price"> ${{totalPrice}}.00 </div>
             </div>
           </ion-item>
-        </ion-list>
+        
     
     
     
-      <button ion-button block type="submit" style="font-size:1.4rem;" color="secondary">Confirm Order</button>
-    </form>
+      <button ion-button block type="submit" style="font-size:1.4rem;" color="secondary" (click)="payment()">Confirm Order</button>
+    
     </ion-card>
   </ion-content>
   

@@ -66,11 +66,16 @@ export class MyApp {
          
     if(this.loginuser.utype==1){
     this.istype=1;
-    console.log (this.istype)
+        console.log (this.istype)
+   
     }else if(this.loginuser.utype==2){
     this.istype=2;
     console.log (this.istype)
+  
     }
+
+
+
   }
   
   else{
@@ -160,7 +165,7 @@ public gohome()
 
 public goSearch()
 {
-  this.nav.push ('SearchResultPage')
+  this.nav.push ('FilterPage')
 }
 
 public wishlist()
@@ -173,9 +178,14 @@ public goOrder()
   this.nav.push ('OrderListPage') 
 }
 
-public goProfile()
+public goSellerProfile()
 {
   this.nav.push ('ProfilePage') 
+}
+
+public goBuyerProfile()
+{
+  this.nav.push ('BuyerProfilePage') 
 }
 
 public goWishlist()

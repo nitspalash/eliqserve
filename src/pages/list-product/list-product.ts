@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController,LoadingController} from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
-
+import { Events } from 'ionic-angular';
+import {MyApp} from '../../app/app.component';
 /**
  * Generated class for the ListProductPage page.
  *
@@ -23,6 +24,8 @@ export class ListProductPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public alertCtrl:AlertController,
   public authProvider:AuthProvider,
+  public events:Events,
+  public myApp:MyApp,
   public loadingCtrl: LoadingController) {
 
     this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
@@ -58,7 +61,9 @@ export class ListProductPage {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad ListProductPage');
+    this.myApp.abc();
   }
 
   editList(id)

@@ -20,6 +20,9 @@ export class OrderDetailPage {
   userId:any;
   orderDetailsArray:any;
   buttonName:any;
+  cancelOrderSet:any;
+  deliverarray:any;
+  shippingarray:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider) {
 
@@ -48,6 +51,10 @@ this.orderDetailsArray=details.order_details
 console.log (this.orderDetailsArray)
 console.log (this.orderDetailsArray[0].order_status)
 
+this.deliverarray=this.orderDetailsArray[0].deliver;
+console.log ('deliver',this.deliverarray);
+this.shippingarray=this.orderDetailsArray[0].shiping;
+console.log('shi',this.shippingarray);
 
 
 // if ((this.orderDetailsArray[0].order_status)=="P")
@@ -82,6 +89,40 @@ console.log (this.orderDetailsArray[0].order_status)
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderDetailPage');
+  }
+
+  goToCartPage()
+  {
+    this.navCtrl.push('CartPage')
+    console.log('cart')
+  }
+
+  cancelOrder()
+  {
+this.cancelOrderSet=
+{
+  "order_id":this.parameter,
+  "order_status":"c"
+}
+console.log (this.cancelOrderSet)
+
+
+
+this.authProvider.cancelOrder(this.cancelOrderSet).subscribe(res => {
+  console.log ('cancel order')
+  console.log(res);
+  
+//   let details = res
+  
+//   if(details.Ack == 1){
+
+// this.orderDetailsArray=details.order_details
+// // console.log (this.orderDetailsArray)
+// // console.log (this.orderDetailsArray[0].order_status)
+
+
+//   }
+});
   }
 
 }

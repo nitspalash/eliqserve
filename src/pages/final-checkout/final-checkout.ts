@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 
@@ -27,10 +27,16 @@ cartArray:any;
 totalPrice:any;
 totalItem:any;
 cartvalue:any=[];
-payForm:FormGroup
+sellerArray:any;
+sellerFName:any;
+sellerLName:any;
+sellerEmail:any;
+sellerPhone:any;
+// payForm:FormGroup
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public builder:FormBuilder,
-  public authProvider:AuthProvider
+  public authProvider:AuthProvider,
+  public alertCtrl:AlertController
 ) {
 
     this.billParam=navParams.get ('param1');
@@ -40,9 +46,9 @@ payForm:FormGroup
    
 
 
-    this.payForm=new FormGroup({
-      paymethod:new FormControl ('',Validators.required)
-    })
+    // this.payForm=new FormGroup({
+    //   paymethod:new FormControl ('',Validators.required)
+    // })
 
 
     if(JSON.parse(localStorage.getItem('userDetails')))
@@ -78,6 +84,11 @@ payForm:FormGroup
         console.log( this.cartArray);  
         console.log( this.totalPrice);
         console.log( this.totalItem);
+        this.sellerFName=this.cartArray[0].user.first_name;
+        this.sellerLName=this.cartArray[0].user.last_name;
+        this.sellerEmail=this.cartArray[0].user.email;
+        this.sellerPhone=this.cartArray[0].user.phone;
+        console.log(this.sellerFName);
         
         
       }
@@ -85,7 +96,7 @@ payForm:FormGroup
   });
   }
 
-  payment(data)
+  payment()
   {
     
    
@@ -115,7 +126,7 @@ this.cartvalue=
 "bill_state":this.billdata.bill_state,
 "bill_country":this.billdata.bill_country,
 "user_id":this.userId,
-"paymethod":data.paymethod
+// "paymethod":data.paymethod
 }
 var body ="ship_fname=" + this.shipdata.ship_fname + "ship_lname="+ this.shipdata.ship_lname +
 + "ship_mob="+this.shipdata.ship_mob+
@@ -135,9 +146,32 @@ var body ="ship_fname=" + this.shipdata.ship_fname + "ship_lname="+ this.shipdat
 "bill_state="+this.billdata.bill_state+
 "bill_country="+this.billdata.bill_country+
 "user_id="+this.userId+
-"paymethod="+data.paymethod
+// "paymethod="+data.paymethod
     console.log ("boidy",body)
 
+
+    // if (!this.payForm.value.paymethod)
+    // {
+    //   let alert = this.alertCtrl.create({
+    //     title: 'Please select the payment method',
+    //            buttons: ['ok']
+    //   });
+    //   alert.present();
+    // } 
+    // else{
+    //   this.authProvider.checkout(this.cartvalue).subscribe(res=>{
+    //     console.log('Hello')
+        
+    //     console.log(res);
+       
+    //     let details = res
+    //     if(details.ack == 1){
+    //       console.log ('checkout')
+    //       this.navCtrl.setRoot('HomePage');
+    //     }
+        
+    //     });
+    // }
 
     this.authProvider.checkout(this.cartvalue).subscribe(res=>{
       console.log('Hello')
@@ -147,6 +181,14 @@ var body ="ship_fname=" + this.shipdata.ship_fname + "ship_lname="+ this.shipdat
       let details = res
       if(details.ack == 1){
         console.log ('checkout')
+
+        
+
+        const alert = this.alertCtrl.create({
+          title: details.message,
+             buttons: ['ok']
+        });
+        alert.present();
         this.navCtrl.setRoot('HomePage');
       }
       

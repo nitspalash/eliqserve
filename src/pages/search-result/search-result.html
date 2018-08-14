@@ -32,25 +32,25 @@
 <ion-content padding>
     <ion-list>
         <!-- <ion-list-header> -->
-          <div class="d-flext-label">
-            <p>19 founds</p>
-            <ion-buttons end>Sort
+          <!-- <div class="d-flext-label"> -->
+            <!-- <p>19 founds</p> -->
+            <!-- <ion-buttons end>Sort
               <ion-icon name="swap"></ion-icon>
-            </ion-buttons>
-          </div>
+            </ion-buttons> -->
+          <!-- </div> -->
 
         <!-- </ion-list-header> -->
       </ion-list>
 
-      <ion-row class="drink-area" (click)="gopage()">
-          <ion-col col-4 >
-            <ion-card >
-              <img src="assets/imgs/jhon.png" alt="">
-              <div class="card-title">Johnnie Walker yu</div>
-              <div class="card-subtitle">Black Label 12 year...</div>
+      <ion-row >
+          <ion-col col-4  *ngFor="let item of searchArray" (click)="gopage(item.id)" >
+            <ion-card class="list">
+              <img src="{{imageLink+item.productsimages[0].name}}" alt="">
+              <div class="card-title">{{item.product_name}}</div>
+              <div class="card-subtitle">{{item.description}}</div>
             </ion-card>
           </ion-col>
-          <ion-col col-4>
+          <!-- <ion-col col-4>
             <ion-card>
               <img src="assets/imgs/sing.png" alt="">
               <div class="card-title">Singleton of Glen</div>
@@ -105,7 +105,7 @@
               <div class="card-title">10 Pipers</div>
               <div class="card-subtitle">Black Label 12 year...</div>
             </ion-card>
-          </ion-col>
+          </ion-col> -->
         </ion-row>
       
 

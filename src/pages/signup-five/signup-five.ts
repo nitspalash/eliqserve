@@ -97,7 +97,7 @@ export class SignupFivePage {
   {
 
     let loading = this.loadingCtrl.create({
-      content: 'Getting your location...',
+      content: 'Validating your otp...',
       duration: 6000
     });
   
