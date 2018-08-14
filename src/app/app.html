@@ -120,8 +120,15 @@
           </a>
         </ion-col>
 
-        <ion-col text-center>
-            <a (click)="goProfile()">
+        <ion-col text-center (click)="goSellerProfile()" *ngIf="user_exist==1 && istype==2">
+            <a >
+                <img src="assets/imgs/profile.png" alt="" />
+              <p class="titl">Profile</p>
+            </a>
+          </ion-col>
+
+          <ion-col text-center (click)="goBuyerProfile()"  *ngIf="user_exist==1 && istype==1">
+            <a >
                 <img src="assets/imgs/profile.png" alt="" />
               <p class="titl">Profile</p>
             </a>

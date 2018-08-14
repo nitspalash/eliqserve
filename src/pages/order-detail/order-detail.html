@@ -18,11 +18,11 @@
     </ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only>
+      <!-- <button ion-button icon-only>
         <ion-icon name="search"></ion-icon>
-      </button>
-      <button ion-button icon-only>
-        <ion-icon name="cart"></ion-icon>
+      </button> -->
+      <button ion-button icon-only (click)="goToCartPage()">
+        <ion-icon name="cart" ></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -45,25 +45,25 @@
 
     <ion-row>
       <ion-col>
-        <h2 class="tittle-text">Delivery Address:</h2>
+        <h2 class="tittle-text">Delivery:</h2>
       </ion-col>
       <ion-col>
-        <p class="text-p">{{item.billing_address}}</p>
+        <p class="text-p" >{{deliverarray['id']}} {{deliverarray['first_name']}} {{deliverarray['last_name']}} {{deliverarray['address1']}} {{deliverarray['address2']}} {{deliverarray['city']}} {{deliverarray['state']}} {{deliverarray['pin']}} {{deliverarray['country']}}</p>
       </ion-col>
     </ion-row>
 
     <ion-row>
         <ion-col>
-          <h2 class="tittle-text">Shipping Address:</h2>
+          <h2 class="tittle-text">Shipping:</h2>
         </ion-col>
         <ion-col>
-          <p class="text-p">{{item.shipping_address}}</p>
+          <p class="text-p">{{shippingarray['id']}} {{shippingarray['first_name']}} {{shippingarray['last_name']}} {{shippingarray['address1']}} {{shippingarray['address2']}} {{shippingarray['city']}} {{shippingarray['state']}} {{shippingarray['pin']}} {{shippingarray['country']}}</p>
         </ion-col>
       </ion-row>
 
     <ion-row>
       <ion-col>
-        <h2 class="tittle-text">Payment Mode:</h2>
+        <h2 class="tittle-text">Payment:</h2>
       </ion-col>
       <ion-col>
         <p class="text-p">{{item.payment_mode}}</p>
@@ -84,43 +84,43 @@
           <h2 class="tittle-text">Order Status:</h2>
         </ion-col>
         <ion-col>
-            <p class="text-p" *ngIf="item.order_status == 'P'">Pending</p>
-            <p class="text-p" *ngIf="item.order_status == 'D'">Delivered</p>
+            <p class="text-p"  style="color:brown"  *ngIf="item.order_status == 'P'">Pending</p>
+            <p class="text-p"  style="color:green"  *ngIf="item.order_status == 'D'">Delivered</p>
             <p class="text-p" *ngIf="item.order_status == 'S'">Shipped</p>
-            <p class="text-p" *ngIf="item.order_status == 'A'">Accepted</p>
-            <p class="text-p" *ngIf="item.order_status == 'R'">Rejected By marchent</p>
-            <p class="text-p" *ngIf="item.order_status == 'C'">Cancelled By Buyer</p>
+            <p class="text-p" style="color:green" *ngIf="item.order_status == 'A'">Accepted</p>
+            <p class="text-p" style="color:red"  *ngIf="item.order_status == 'R'">Rejected By marchent</p>
+            <p class="text-p" style="color:red" *ngIf="item.order_status == 'C'">Cancelled By Buyer</p>
           </ion-col>
       </ion-row>
 
     <div class="order-details" >
       <h1>Order Details :</h1>
       <ion-row>
-          <ion-col col-3 text-center>Product Id</ion-col>
-          <ion-col col-4 text-center>Product Name</ion-col>
-          <ion-col col-2 text-center>Qty</ion-col>
-          <ion-col col-3 text-center>Price</ion-col>
+          <!-- <ion-col col-3 text-center>Product Id</ion-col> -->
+          <ion-col col-4 text-center>Product</ion-col>
+          <ion-col col-4 text-center>Qty</ion-col>
+          <ion-col col-4 text-center>Price ($)</ion-col>
       </ion-row>
 
       <ion-row *ngFor="let product of item.order_details">
-        <ion-col col-3 text-center>
+        <!-- <ion-col col-3 text-center>
             
           <p>{{product.id}}</p>
           
-        </ion-col>
+        </ion-col> -->
         <ion-col col-4 text-center>
      
           <p>{{product.product.product_name}}</p>
           
         </ion-col>
-        <ion-col col-2 text-center>
+        <ion-col col-4 text-center>
           
           <p>{{product.quantity}}</p>
           
         </ion-col>
-        <ion-col col-3 text-center>
+        <ion-col col-4 text-center>
         
-          <p>${{product.price}}.00</p>
+          <p>{{product.price}}.00</p>
           </ion-col>
       </ion-row>
   
@@ -133,6 +133,6 @@
      
 
     </div>
-    <button ion-button color="secondary" block *ngIf="item.order_status == 'P' ||  item.order_status == 'S' || item.order_status == 'A'">Cancel Order</button>
+    <button ion-button color="secondary" block *ngIf="item.order_status == 'P' ||  item.order_status == 'S' || item.order_status == 'A'" (click)="cancelOrder()">Cancel Order</button>
   </ion-card>
 </ion-content>

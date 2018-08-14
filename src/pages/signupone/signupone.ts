@@ -17,7 +17,7 @@ import {Storage} from '@ionic/storage'
 })
 export class SignuponePage {
   valueId:any;
-  checked:boolean=false;
+  
   userDataOne:any;
   radio:boolean=false;
 
@@ -29,11 +29,12 @@ merchantForm:FormGroup
   public alertCtrl:AlertController,
 public storage: Storage) {
 
+
     this.formGroup=new FormGroup ({
       name: new FormControl ('',Validators.required),
-      gender: new FormControl ('',Validators.required),
+      gender: new FormControl (''),
       dob: new FormControl ('',Validators.required),
-      utype:new FormControl ('',Validators.required),
+      utype:new FormControl (''),
 
         log:new FormControl (''),
     bank_details:new FormControl (''),
@@ -46,8 +47,8 @@ paypal_email:new FormControl (''),
 store_location:new FormControl (''),
 business_name:new FormControl (''),
     })
-
-  
+    this.formGroup.controls['gender'].setValue('male');
+    this.formGroup.controls['utype'].setValue(1);
   }
   showForm()
 {
@@ -78,7 +79,7 @@ this.formGroup.value.paypal_email='';
   {
 
     console.log(data);
-    // console.log (this.formGroup.value.gender)
+    console.log (this.formGroup.value.gender)
 
     console.log (this.formGroup.value.utype)
 

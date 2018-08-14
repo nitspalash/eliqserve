@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from '@ionic/storage'
+import { trigger } from '@angular/core/src/animation/dsl';
+import {Events} from 'ionic-angular'
 /**
  * Generated class for the CartPage page.
  *
@@ -25,9 +27,11 @@ export class CartPage {
   totalItem:any;
   quantity:any;
   updateIdSet:any;
+  sellerArray:any;
     constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider,
     public alertCtrl:AlertController,
+    public events:Events,
     storage:Storage
   ) {
   this.cartList();
@@ -58,14 +62,19 @@ export class CartPage {
             if(details.cart.length > 0)
             {
               this.cartArray=details.cart
+              console.log('product')
             }
             else{
               this.cartArray='';
+              console.log('no product')
               }
          
           this.totalPrice=details.total_price;
           this.totalItem=details.total_item;
           this.quantity=details.quantity;
+        
+
+        
           // console.log( this.cartArray);  
           // console.log( this.totalPrice);
           // console.log( this.totalItem);
@@ -78,6 +87,7 @@ export class CartPage {
     }
   
     ionViewDidLoad() {
+      this.events.publish('hideFooter', { isHidden: false});
       console.log('ionViewDidLoad CartPage');
     
     }
@@ -221,6 +231,6 @@ this.updateIdSet={
     }
     goForCheckout()
     {
-      this.navCtrl.push ('CheckoutPage')
+      this.navCtrl.push ('CheckoutPage');
     }
 }

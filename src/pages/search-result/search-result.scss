@@ -22,6 +22,24 @@ page-search-result {
     .d-flext-label{display: flex; justify-content: space-between; align-items: center;}
     
     .card{width: 100%; margin: 0; height: 204px;}
-    .card-title{ font-size: 1.3rem; font-weight: 600; margin: 0.5rem;}
-    .card-subtitle{font-size: 1.3rem; font-weight: 400; margin: 0.5rem;}
+    .card img{ height: 100px;}
+    .card-title{ font-size: 1.3rem; font-weight: 600; margin: 0.5rem;
+        }
+    .card-subtitle{font-size: 1.3rem; font-weight: 400; margin: 0.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        line-height: 16px;   
+        max-height: 32px;     
+        -webkit-line-clamp: 2; 
+        -webkit-box-orient: vertical;}
+    .card-md {
+        margin-bottom: 3px !important;
+        
+    }
+
+    .list
+	{
+    margin-bottom: 55px
+	}
 }

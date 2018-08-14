@@ -21,6 +21,7 @@ export class LoginPage {
   userDetails:any;
   public footerIsHidden: boolean = true;
   public unregisterBackButtonAction: any;
+  loginType:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
  public authProvider:AuthProvider,
@@ -50,14 +51,26 @@ public storage: Storage) {
 let detailsTReponse=res.details
 console.log (detailsTReponse)
 
-// let abc=localStorage.setItem('abc', JSON.stringify(res.details['utype']));
-// console.log (abc)
+
         this.storage.ready().then(() => {
           this.userDetails=localStorage.setItem('userDetails', JSON.stringify(detailsTReponse));
           console.log(JSON.parse(localStorage.getItem('userDetails')));
-        this.navCtrl.push('HomePage')
 
+
+          this.loginType=JSON.parse(localStorage.getItem('userDetails'))
+          if (this.loginType.utype==1)
+          {
+            this.navCtrl.push('HomePage')
+          } 
+          else if (this.loginType.utype==2)
+          {
+           
+            this.navCtrl.push('VieworderPage')
+          }
       })
+     
+
+
     }
       else{
 
@@ -77,12 +90,19 @@ forgotPassword()
     this.navCtrl.push('SignuponePage')
   }
 
+
+
   ionViewDidLoad() {
      this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad LoginPage');
+
+  
+
+
     //this.initializeBackButtonCustomHandler();
   }
-  ionViewWillLeave() {   this.navCtrl.setRoot ('HomePage');
+  ionViewWillLeave() {   
+    // this.navCtrl.setRoot ('HomePage');
     // Unregister the custom back button action for this page
    // this.unregisterBackButtonAction && this.unregisterBackButtonAction();
 }

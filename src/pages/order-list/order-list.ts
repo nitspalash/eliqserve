@@ -53,4 +53,12 @@ export class OrderListPage {
     this.navCtrl.push('OrderDetailPage',{param:id})
   }
 
+  goToCartPage()
+  {
+    this.navCtrl.push('CartPage')
+    console.log('cart')
+  }
+
+
+
 }

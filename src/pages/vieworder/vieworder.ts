@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice';
+import {MyApp} from '../../app/app.component';
+import { Events } from 'ionic-angular';
 /**
  * Generated class for the VieworderPage page.
  *
@@ -18,7 +20,10 @@ export class VieworderPage {
   userId:any;
   userIdSet:any;
   orderArray:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    public events: Events,
+    public myApp:MyApp,
     public authProvider:AuthProvider) {
       this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
       this.userId=this.loginuser.id
@@ -46,7 +51,9 @@ export class VieworderPage {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad VieworderPage');
+    this.myApp.abc();
   }
   goTosellerOrderDetails(id)
   {  //alert('here')

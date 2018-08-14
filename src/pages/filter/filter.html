@@ -1,0 +1,97 @@
+<!--
+  Generated template for the FilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+	
+		<ion-card-content class="options-wrap">
+		
+			<form [formGroup]="formGroup" (ngSubmit)="search(formGroup.value)">
+		
+		
+				<ion-item >
+					
+			<ion-input type="text" formControlName="brand_name"  placeholder="Search By Brand Name"></ion-input>
+			</ion-item>
+			<p class="error" *ngIf="formGroup.get('brand_name').hasError('required') && formGroup.get('brand_name').touched"  style="color:red;">
+				Brand Name is required
+			</p>
+      
+			<!-- <h6 class="sub-title">Options</h6>
+      <p class="heading">Postal Code</p> -->
+      
+
+			
+				<ion-item >
+					<ion-label>Product Name</ion-label>
+			<ion-input type="text" value="" formControlName="product_name" ></ion-input>
+			</ion-item>
+			
+		
+		
+			
+				<ion-item >
+					<ion-label>Category</ion-label>
+					<ion-select formControlName="cat_id">
+							<ion-option *ngFor="let item of categoryArray" placeholder="Search By Category" value="{{item.id}}">{{item.name}}</ion-option>
+										</ion-select>
+				</ion-item>
+				    
+      
+  
+              
+                <ion-item >
+                  <ion-label>Popularity</ion-label>
+              <ion-input type="text" value="" formControlName="popularity" ></ion-input>
+              </ion-item>
+               
+
+
+				<ion-item >
+					<ion-label>Rating</ion-label>
+			<ion-input type="text" value="" formControlName="rating" ></ion-input>
+			</ion-item>
+      
+      
+      <ion-item>
+        <ion-range  min="0" max="5000" pin="true" snaps="true" formControlName="min_price"  color="secondary">
+          <ion-label range-left>0</ion-label>
+          <ion-label range-right>5000</ion-label>
+        </ion-range>
+      </ion-item>
+			
+			<ion-item>
+        <ion-range min="0" max="5000" pin="true" snaps="true" formControlName="max_price"  color="secondary">
+          <ion-label range-left>0</ion-label>
+          <ion-label range-right>5000</ion-label>
+        </ion-range>
+			</ion-item>
+			
+			<!-- <ion-range dual-knobs="true" pin="true" snaps="true">
+				<ion-label range-left>0</ion-label>
+          <ion-label range-right>5000</ion-label>
+			</ion-range> -->
+			
+		
+			
+			
+		
+	
+		<p class="list"><button ion-button round>SEARCH</button></p>
+			</form>
+	
+			
+		</ion-card-content>
+
+</ion-content>

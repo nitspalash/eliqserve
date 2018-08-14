@@ -30,7 +30,9 @@ page-order-list {
     .detail-btn{padding: 10px !important; background: #30be21;}
     
     .card .item.item-block .item-inner{ display: flex; align-items: center; justify-content: center;}
-
+    .card-md {
+        margin-bottom: 10px !important;
+    }
     .pl-0{padding-left: 0;}
     .pr-0{padding-right: 0;}
     

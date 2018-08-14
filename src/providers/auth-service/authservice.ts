@@ -222,4 +222,28 @@ sellerorderlist(data:object):Observable<any>{
    });
  }
 
+
+ cancelOrder(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/orderstatus.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
+
+ search(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/searchalcohol.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
+
+ addressList(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/addresslist.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+ 
 }

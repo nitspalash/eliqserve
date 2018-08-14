@@ -24,6 +24,7 @@
 
   
 <ion-content>
+  
     <!-- <ion-card>
         <ion-list>
             <ion-item>                
@@ -53,43 +54,49 @@
     </ion-card> -->
     <ion-card>
         <ion-list>
+            
             <h2>Shipping Details</h2> 
+            <form [formGroup]="shippingForm" >
             <div radio-group>
-                <ion-item>
+                <ion-item *ngFor="let item of addressListArray, let i=index of addressListArray">
                     <ion-label>
-                        <ion-radio value="first" ischecked="true"></ion-radio>
+                        <ion-radio (click)="shippingCheckbox(item.shiping.first_name,
+                        item.shiping.last_name,
+                        item.shiping.mobile,
+                        item.shiping.address1,
+                        item.shiping.address2,
+                        item.shiping.city,
+                        item.shiping.pin,
+                        item.shiping.state,
+                        item.shiping.country)"></ion-radio>
                         <div>
-                            <h3>Monoj Patra</h3>
-                            <p>Puspaloy</p>
-                            <p>Khanakul 1, West Bengal - 712406, India</p>
+                            <!-- <h3>{{item.shiping.id}}</h3> -->
+                            <p>{{item.shiping.first_name}}</p>
+                            <p>{{item.shiping.last_name}}</p>
+                            <p>{{item.shiping.mobile}}</p>
+                            <p>{{item.shiping.address1}}</p>
+                            <p>{{item.shiping.address2}}</p>
+                            <p>{{item.shiping.city}}</p>
+                            <p>{{item.shiping.pin}}</p>
+                            <p>{{item.shiping.state}}</p>
+                            <p>{{item.shiping.country}}</p>
                         </div>
             
                     </ion-label>
                 </ion-item>
-            
-                <ion-item>
-                    <ion-label>
-                        <ion-radio value="second"></ion-radio>
-                        <div>
-                            <h3>Monoj Patra</h3>
-                            <p>Puspaloy</p>
-                            <p>Khanakul 1, West Bengal - 712406, India</p>
-                        </div>
-                    </ion-label>
-            
-                </ion-item>
-            </div>
 
             <ion-item style="margin-bottom: 0;">
-              <ion-label>I want to use an existing address</ion-label>
-              <ion-checkbox color="dark" (click)="toggleCheckbox()" checked></ion-checkbox>
+                    <ion-radio (click)="toggleShippingCheckbox()"></ion-radio>
+              <ion-label>I want to use new address</ion-label>
+             
               
             </ion-item>
+        </div>
 
-<form *ngIf="!showItem"  [formGroup]="shippingForm" >
+
 
             
-
+<div *ngIf="radio==true">
             <ion-item >
                     <ion-label floating>First Name:</ion-label>
                     <ion-input formControlName="ship_fname"></ion-input>
@@ -134,6 +141,7 @@
                         <ion-label floating>Country:</ion-label>
                         <ion-input formControlName="ship_country"></ion-input>
                         </ion-item>
+                    </div>
     
 </form>
               
@@ -144,40 +152,46 @@
     <ion-card>
         <ion-list>
             <h2>Delivery Details</h2>
+            <form [formGroup]="billingForm" (ngSubmit)="submit(billingForm.value,shippingForm.value)">
             <div radio-group>
-                <ion-item>
-                    <ion-label>
-                        <ion-radio ischecked="true" value="go"></ion-radio>
+                <ion-item *ngFor="let item of addressListArray">
+                    <ion-label *ngIf="addressArray">
+                        <ion-radio (click)="deliveryCheckbox(item.deliver.first_name,
+                        item.deliver.last_name,
+                        item.deliver.mobile,
+                        item.deliver.address1,
+                        item.deliver.address2,
+                        item.deliver.city,
+                        item.deliver.pin,
+                        item.deliver.state,
+                        item.deliver.country)" ></ion-radio>
                         <div>
-                            <h3>Monoj Patra</h3>
-                            <p>Puspaloy</p>
-                            <p>Khanakul 1, West Bengal - 712406, India</p>
-                        </div>
+                                <!-- <h3>{{item.deliver.id}}</h3> -->
+                                <p>{{item.deliver.first_name}}</p>
+                                <p>{{item.deliver.last_name}}</p>
+                                <p>{{item.deliver.mobile}}</p>
+                                <p>{{item.deliver.address1}}</p>
+                                <p>{{item.deliver.address2}}</p>
+                                <p>{{item.deliver.city}}</p>
+                                <p>{{item.deliver.pin}}</p>
+                                <p>{{item.deliver.state}}</p>
+                                <p>{{item.deliver.country}}</p>
+                            </div>
             
                     </ion-label>
+                     <ion-label *ngIf="!addressArray">No Address Found</ion-label>
                 </ion-item>
-            
-                <ion-item>
-                    <ion-label>
-                        <ion-radio value="rust"></ion-radio>
-                        <div>
-                            <h3>Monoj Patra</h3>
-                            <p>Puspaloy</p>
-                            <p>Khanakul 1, West Bengal - 712406, India</p>
-                        </div>
-                    </ion-label>
-            
-                </ion-item>
-            </div>
-
-
+               
+                  
             <ion-item style="margin-bottom: 0;">
-                    <ion-label>I want to use an existing address</ion-label>
-                    <ion-checkbox color="dark" (click)="toggleAnotherCheckbox()" checked></ion-checkbox>
+                    <ion-label>I want to use new address</ion-label>
+                    <ion-radio (click)="toggleDeliveryCheckbox()"></ion-radio>
                     
                   </ion-item>
-            <form *ngIf="!showForm" [formGroup]="billingForm" (ngSubmit)="submit(billingForm.value,shippingForm.value)">
-            <ion-item>
+                  </div>
+                 
+            <div *ngIf="deliveryRadio==true">
+                    <ion-item>
                 <ion-label floating>First Name:</ion-label>
                 <ion-input formControlName="bill_fname"></ion-input>
             </ion-item>
@@ -225,10 +239,14 @@
                     <ion-option value="n64">USA</ion-option>
                   </ion-select> -->
             </ion-item>
-              <ion-item>
+        </div>
+              <ion-item class="list">
                   <button ion-button block type="submit" text-uppercase style="height: 40px !important; margin-top: 16px;"  color="secondary">Next</button>
               </ion-item>
               </form>
+              <!-- <ion-item class="list" *ngIf="showItem">
+                  <button ion-button block type="submit" text-uppercase style="height: 40px !important; margin-top: 16px;"  color="secondary">Next</button>
+              </ion-item> -->
           </ion-list>
     </ion-card>
 

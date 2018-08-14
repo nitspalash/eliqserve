@@ -191,7 +191,7 @@ fetchlocation(){
         var address = JSON.stringify(result[0])
         //this.currentaddress = ;
         this.address = JSON.parse(localStorage.getItem('currentaddress'));
-        console.log(address)
+        console.log('address',address)
         
         console.log(this.currentaddress);
       
@@ -241,68 +241,44 @@ fetchlocation(){
 
 
 
-checkLocation()
-{
+// checkLocation()
+// {
 
-  var address = JSON.parse(localStorage.getItem('currentaddress'));
-  console.log(address)
+//   var address = JSON.parse(localStorage.getItem('currentaddress'));
+//   console.log(address)
   
-  console.log(this.currentaddress);
+//   console.log(this.currentaddress);
 
-if(address.thoroughfare)
-{
-  this.currentaddress = address.thoroughfare +',';
-}
-if(address.subLocality)
-{
-  this.currentaddress = this.currentaddress + address.subLocality +',';
-}
-if(address.locality)
-{
-  this.currentaddress = this.currentaddress+ address.locality +',';
-}
-if(address.subAdministrativeArea)
-{
-  this.currentaddress = this.currentaddress + address.subAdministrativeArea +',';
-}
-if(address.administrativeArea)
-{
-  this.currentaddress = this.currentaddress + address.administrativeArea +',';
-}
-if(address.countryName)
-{
-  this.currentaddress = this.currentaddress + address.countryName +',';
-}
-if(address.postalCode)
-{
-  this.currentaddress = this.currentaddress + address.postalCode;
-}
-  // administrativeArea
-  // :
-  // "West Bengal"
-  // countryCode
-  // :
-  // "IN"
-  // countryName
-  // :
-  // "India"
-  // locality
-  // :
-  // "New Town"
-  // postalCode
-  // :
-  // "700156"
-  // subAdministrativeArea
-  // :
-  // "Kolkata"
-  // subLocality
-  // :
-  // "Newtown"
-  // thoroughfare
-  // :
-  // "Street no 0360"
+// if(address.thoroughfare)
+// {
+//   this.currentaddress = address.thoroughfare +',';
+// }
+// if(address.subLocality)
+// {
+//   this.currentaddress = this.currentaddress + address.subLocality +',';
+// }
+// if(address.locality)
+// {
+//   this.currentaddress = this.currentaddress+ address.locality +',';
+// }
+// if(address.subAdministrativeArea)
+// {
+//   this.currentaddress = this.currentaddress + address.subAdministrativeArea +',';
+// }
+// if(address.administrativeArea)
+// {
+//   this.currentaddress = this.currentaddress + address.administrativeArea +',';
+// }
+// if(address.countryName)
+// {
+//   this.currentaddress = this.currentaddress + address.countryName +',';
+// }
+// if(address.postalCode)
+// {
+//   this.currentaddress = this.currentaddress + address.postalCode;
+// }
+ 
 
-
-}
+// }
 
 }
