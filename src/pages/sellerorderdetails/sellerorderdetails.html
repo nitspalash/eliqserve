@@ -20,7 +20,7 @@
         <h2 class="tittle-text">Order Id :</h2>
       </ion-col>
       <ion-col>
-        <p class="text-p">#{{item.id}}</p>
+        <p class="text-p">#00{{item.id}}</p>
       </ion-col>
     </ion-row>
 
@@ -28,7 +28,7 @@
 
     <ion-row>
       <ion-col>
-        <h2 class="tittle-text">Delivery Address:</h2>
+        <h2 class="tittle-text">Delivery:</h2>
       </ion-col>
       <ion-col *ngIf="deliver">
         <p class="text-p">{{deliver.first_name}} {{item.deliver.last_name}}</p>
@@ -42,7 +42,7 @@
 
     <ion-row>
         <ion-col>
-          <h2 class="tittle-text">Shipping Address:</h2>
+          <h2 class="tittle-text">Shipping:</h2>
         </ion-col>
         <ion-col *ngIf="shiping">
             <p class="text-p">{{shiping.first_name}} {{shiping.last_name}}</p>
@@ -56,7 +56,7 @@
 
     <ion-row>
       <ion-col>
-        <h2 class="tittle-text">Payment Mode:</h2>
+        <h2 class="tittle-text">Payment:</h2>
       </ion-col>
       <ion-col>
         <p class="text-p">{{item.payment_mode}}</p>
@@ -89,29 +89,29 @@
     <div class="order-details" >
       <h1>Order Details :</h1>
       <ion-row>
-          <ion-col col-3 text-center>Product Id</ion-col>
+          <!-- <ion-col col-3 text-center>Product Id</ion-col> -->
           <ion-col col-4 text-center>Product Name</ion-col>
-          <ion-col col-2 text-center>Qty</ion-col>
-          <ion-col col-3 text-center>Price</ion-col>
+          <ion-col col-4 text-center>Qty</ion-col>
+          <ion-col col-4 text-center>Price</ion-col>
       </ion-row>
 
       <ion-row *ngFor="let product of item.order_details">
-        <ion-col col-3 text-center>
+        <!-- <ion-col col-3 text-center>
             
           <p>{{product.id}}</p>
           
-        </ion-col>
+        </ion-col> -->
         <ion-col col-4 text-center>
      
           <p>{{product.product.product_name}}</p>
           
         </ion-col>
-        <ion-col col-2 text-center>
+        <ion-col col-4 text-center>
           
           <p>{{product.quantity}}</p>
           
         </ion-col>
-        <ion-col col-3 text-center>
+        <ion-col col-4 text-center>
         
           <p>${{product.price}}.00</p>
           </ion-col>

@@ -9,6 +9,8 @@ import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms'
  import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
  import { FilePath } from '@ionic-native/file-path';
  import { File } from '@ionic-native/file';
+ import { Events } from 'ionic-angular';
+
 // import { identifierModuleUrl } from '@angular/compiler';
 /**
  * Generated class for the AddProductPage page.
@@ -42,6 +44,7 @@ export class AddProductPage {
      private file: File, 
      public toastCtrl:ToastController,
      public loadingCtrl: LoadingController,
+     public events:Events
      
   ) {
 
@@ -90,6 +93,7 @@ export class AddProductPage {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad AddProductPage');
   }
 

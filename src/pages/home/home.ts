@@ -30,6 +30,8 @@ export class HomePage {
   public currentaddress:any;
   public address:any;
   country:any;
+  loginuser:any;
+  userId:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider,
     private geolocation: Geolocation,
@@ -88,10 +90,15 @@ export class HomePage {
         this.storage.ready().then(() => {
           
           localStorage.setItem('currentlatlong', JSON.stringify(resp.coords));
+          localStorage.setItem('lat', JSON.stringify(resp.coords.latitude));
+          localStorage.setItem('lng', JSON.stringify(resp.coords.longitude));
           localStorage.setItem('currentaddress', JSON.stringify(result[0]));
           var address = JSON.stringify(result[0])
           //this.currentaddress = ;
           this.address = JSON.parse(localStorage.getItem('currentaddress'));
+          console.log('lat',JSON.parse(localStorage.getItem('lat')))
+          console.log('lng',JSON.parse(localStorage.getItem('lng')))
+        
           console.log(address)
           
           console.log(this.currentaddress);
@@ -142,15 +149,35 @@ export class HomePage {
 
 productList(id,name)
   {
-    
+    console.log('product')
     //alert(name);
     this.pet= name
     console.log(id)
-    this.idSet=
-    {
-      'cat_id':id
-    }
 
+if (localStorage.getItem('userDetails'))
+{
+  this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
+  this.userId=this.loginuser.id
+
+  this.idSet=
+  {
+    'cat_id':id,
+    "user_id":this.userId
+  }
+} 
+else{
+  this.idSet=
+  {
+    'cat_id':id,
+    "user_id":''
+  }
+}
+
+    // this.idSet=
+    // {
+    //   'cat_id':id
+    // }
+console.log(this.idSet)
     this.authProvider.listProduct(this.idSet).subscribe(res=>{
       console.log(res);
      

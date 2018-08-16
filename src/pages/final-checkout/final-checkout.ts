@@ -32,6 +32,7 @@ sellerFName:any;
 sellerLName:any;
 sellerEmail:any;
 sellerPhone:any;
+shippingCharges:any;
 // payForm:FormGroup
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public builder:FormBuilder,
@@ -84,6 +85,8 @@ sellerPhone:any;
         console.log( this.cartArray);  
         console.log( this.totalPrice);
         console.log( this.totalItem);
+        this.shippingCharges=this.cartArray[0].shipping_charge;
+        console.log('ship',this.shippingCharges)
         this.sellerFName=this.cartArray[0].user.first_name;
         this.sellerLName=this.cartArray[0].user.last_name;
         this.sellerEmail=this.cartArray[0].user.email;
@@ -106,7 +109,7 @@ this.shipdata=JSON.parse(this.shipParam);
 this.billdata=JSON.parse(this.billParam);
 console.log (this.shipdata)
 this.cartvalue=
-{
+{"ship_id":this.shipdata.ship_id,
   "ship_fname":this.shipdata.ship_fname,
 "ship_lname":this.shipdata.ship_lname,
 "ship_mob":this.shipdata.ship_mob,
@@ -116,6 +119,8 @@ this.cartvalue=
 "ship_city":this.shipdata.ship_city,
 "ship_state":this.shipdata.ship_state,
 "ship_country":this.shipdata.ship_country,
+
+"billing_id":this.billdata.billing_id,
 "bill_fname":this.billdata.bill_fname,
 "bill_lname":this.billdata.bill_lname,
 "bill_mob":this.billdata.bill_mob,
