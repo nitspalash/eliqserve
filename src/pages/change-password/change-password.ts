@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {AuthProvider} from '../../providers/auth-service/authservice'
+import {AuthProvider} from '../../providers/auth-service/authservice';
+import {Events} from 'ionic-angular';
 
 /**
  * Generated class for the ChangePasswordPage page.
@@ -23,7 +24,8 @@ export class ChangePasswordPage {
  
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public builder:FormBuilder,
-public authProvider:AuthProvider) {
+public authProvider:AuthProvider,
+public events:Events,) {
 
     this.user_details =  JSON.parse(localStorage.getItem('userDetails'));
     console.log(this.user_details)
@@ -64,6 +66,7 @@ public authProvider:AuthProvider) {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad ChangePasswordPage');
   }
   

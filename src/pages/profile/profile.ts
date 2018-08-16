@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Events} from 'ionic-angular'
 
 /**
  * Generated class for the ProfilePage page.
@@ -18,7 +19,8 @@ export class ProfilePage {
   userEmail:any;
   userPhone:any;
   userAddress:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public events:Events,) {
 
 
     console.log(JSON.parse(localStorage.getItem('userDetails')));
@@ -52,6 +54,7 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad ProfilePage');
   }
 

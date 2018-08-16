@@ -55,11 +55,12 @@
     <ion-card>
         <ion-list>
             
+            
             <h2>Shipping Details</h2> 
             <form [formGroup]="shippingForm" >
             <div radio-group>
-                <ion-item *ngFor="let item of addressListArray, let i=index of addressListArray">
-                    <ion-label *ngIf="addressArray">
+                <ion-item *ngFor="let item of shippingAddArray">
+                
                         <ion-radio (click)="shippingCheckbox(item.shiping.id,item.shiping.first_name,
                         item.shiping.last_name,
                         item.shiping.mobile,
@@ -69,21 +70,18 @@
                         item.shiping.pin,
                         item.shiping.state,
                         item.shiping.country)"></ion-radio>
-                        <div>
-                            <!-- <h3>{{item.shiping.id}}</h3> -->
-                            <p>{{item.shiping.first_name}}</p>
-                            <p>{{item.shiping.last_name}}</p>
-                            <p>{{item.shiping.mobile}}</p>
-                            <p>{{item.shiping.address1}}</p>
-                            <p>{{item.shiping.address2}}</p>
-                            <p>{{item.shiping.city}}</p>
-                            <p>{{item.shiping.pin}}</p>
-                            <p>{{item.shiping.state}}</p>
-                            <p>{{item.shiping.country}}</p>
-                        </div>
-            
-                    </ion-label>
-                    <ion-label *ngIf="!addressArray">No Address Found</ion-label>
+                      
+                            <ion-label class="nlabel">{{item.shiping.first_name}}</ion-label>
+                            <ion-label>{{item.shiping.last_name}}</ion-label>
+                            <ion-label>{{item.shiping.mobile}}</ion-label>
+                            <ion-label>{{item.shiping.address1}}</ion-label>
+                            <ion-label>{{item.shiping.address2}}</ion-label>
+                            <ion-label>{{item.shiping.city}}</ion-label>
+                            <ion-label>{{item.shiping.pin}}</ion-label>
+                            <ion-label>{{item.shiping.state}}</ion-label>
+                            <ion-label>{{item.shiping.country}}</ion-label>
+                        
+                 
                 </ion-item>
 
             <ion-item style="margin-bottom: 0;">
@@ -160,8 +158,8 @@
             <h2>Delivery Details</h2>
             <form [formGroup]="billingForm" (ngSubmit)="submit(billingForm.value,shippingForm.value)">
             <div radio-group>
-                <ion-item *ngFor="let item of addressListArray">
-                    <ion-label *ngIf="addressArray">
+                <ion-item *ngFor="let item of billingAddArray">
+                    <!-- <ion-label *ngIf="addressArray"> -->
                         <ion-radio (click)="deliveryCheckbox(item.deliver.id,
                         item.deliver.first_name,
                         item.deliver.last_name,
@@ -172,21 +170,21 @@
                         item.deliver.pin,
                         item.deliver.state,
                         item.deliver.country)" ></ion-radio>
-                        <div>
+                       
                                 <!-- <h3>{{item.deliver.id}}</h3> -->
-                                <p>{{item.deliver.first_name}}</p>
-                                <p>{{item.deliver.last_name}}</p>
-                                <p>{{item.deliver.mobile}}</p>
-                                <p>{{item.deliver.address1}}</p>
-                                <p>{{item.deliver.address2}}</p>
-                                <p>{{item.deliver.city}}</p>
-                                <p>{{item.deliver.pin}}</p>
-                                <p>{{item.deliver.state}}</p>
-                                <p>{{item.deliver.country}}</p>
-                            </div>
+                                <ion-label>{{item.deliver.first_name}}</ion-label>>
+                                <ion-label>{{item.deliver.last_name}}</ion-label>>
+                                <ion-label>{{item.deliver.mobile}}</ion-label>>
+                                <ion-label>{{item.deliver.address1}}</ion-label>>
+                                <ion-label>{{item.deliver.address2}}</ion-label>>
+                                <ion-label>{{item.deliver.city}}</ion-label>>
+                                <ion-label>{{item.deliver.pin}}</ion-label>>
+                                <ion-label>{{item.deliver.state}}</ion-label>>
+                                <ion-label>{{item.deliver.country}}</ion-label>>
+                           
             
-                    </ion-label>
-                     <ion-label *ngIf="!addressArray">No Address Found</ion-label>
+                    <!-- </ion-label> -->
+                     <!-- <ion-label *ngIf="!addressArray">No Address Found</ion-label> -->
                 </ion-item>
                
                   

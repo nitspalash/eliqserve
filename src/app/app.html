@@ -51,9 +51,7 @@
   <ion-icon name="power"   item-start></ion-icon> Log out
 </ion-item> -->
 
-<ion-item menuClose  *ngIf="istype==2 && user_exist==1" (click)="goSearch()">
-  <ion-icon name="cube"  item-start></ion-icon> Search Product
-</ion-item>
+
 
 <ion-item menuClose  *ngIf="istype==2 && user_exist==1" (click)="listProduct()">
   <ion-icon name="cube"  item-start></ion-icon> List Product
@@ -103,12 +101,12 @@
             </a>
         </ion-col>
 
-        <!-- <ion-col text-center (click)="goSearch()">
+        <ion-col text-center (click)="goSearch()">
           <a>
               <img src="assets/imgs/search.png" alt="" />
             <p class="titl">Search</p>
         </a>
-        </ion-col> -->
+        </ion-col>
 
         <ion-col text-center (click)="goOrder()" *ngIf="user_exist==1 && istype==1" >
           <a>
