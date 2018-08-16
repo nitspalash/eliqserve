@@ -81,14 +81,9 @@ else{
   }
   buynow(prodId)
   {
-
-   
-
-    console.log (prodId)
+ console.log (prodId)
     // alert('Your product added successfully');
-
-
-    if(JSON.parse(localStorage.getItem('userDetails')))
+ if(JSON.parse(localStorage.getItem('userDetails')))
     {
      
       this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
@@ -110,7 +105,7 @@ else{
       if (details.Ack==1)
       {
     const alert = this.alertCtrl.create({
-      title: '!Success',
+      title: 'Success',
       subTitle:'Product added to your cart',
       buttons: ['OK']
     });
@@ -134,9 +129,23 @@ else{
   }
 
 
-  addcart()
+  addcart(data)
   {
 
+    if(JSON.parse(localStorage.getItem('userDetails')))
+    {
+     
+      this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
+      this.userId=this.loginuser.id
+      // console.log (localStorage.getItem('userDetails'))
+      console.log ( this.userId)
+    }
+      this.addCartSet={
+      "user_id":this.userId,
+      "prod_id":data
+    }
+    console.log(this.addCartSet)
+    console.log (this.addCartSet)
     this.authProvider.addToCart(this.addCartSet).subscribe(res=>{
       console.log(res);
      
@@ -145,7 +154,7 @@ else{
       if (details.Ack==1)
       {
     const alert = this.alertCtrl.create({
-      title: '!Success',
+      title: 'Success',
       subTitle:'Product added to your cart',
       buttons: ['OK']
     });

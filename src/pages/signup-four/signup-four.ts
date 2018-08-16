@@ -31,7 +31,8 @@ pickup:any;
 paypal_email:any;
 store_location:any;
 business_name:any;
-
+lat:any;
+lng:any
 
   passwordmatch =true;
 itemEmail:any;
@@ -42,12 +43,16 @@ email:any;
   public builder:FormBuilder,
 public authProvider:AuthProvider) {
 
-
+console.log('lat',JSON.parse(localStorage.getItem('currentlatlong')))
 this.formGroup=new FormGroup
 ({
   password:new FormControl ('',Validators.required),
   con_password: new FormControl ('',Validators.required)
 });
+
+this.lat=JSON.parse(localStorage.getItem('lat'))
+this.lng=JSON.parse(localStorage.getItem('lng'))
+
   }
 
 
@@ -103,6 +108,8 @@ console.log(this.dateOfBirth)
 
     data.phone=localStorage.getItem('ph_number');
     data.email=this.email
+    data.latitude=this.lat
+    data.longitude=this.lng
     console.log(data)
 
     

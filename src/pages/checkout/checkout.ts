@@ -36,6 +36,7 @@ addressArray:any;
 ) {
 
 this.shippingForm=new FormGroup({
+  ship_id:new FormControl (''),
   ship_fname:new FormControl ('',Validators.required),
   ship_lname:new FormControl ('',Validators.required),
   ship_mob:new FormControl ('',Validators.required),
@@ -50,6 +51,7 @@ this.shippingForm=new FormGroup({
 
 
 this.billingForm=new FormGroup({
+  billing_id: new FormControl (''),
   bill_fname:new FormControl ('',Validators.required),
   bill_lname:new FormControl ('',Validators.required),
   bill_mob:new FormControl ('',Validators.required),
@@ -90,8 +92,10 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
     {
       console.log('address found')
       this.addressArray=this.addressListArray[i].shiping;
-      console.log(this.addressArray)
+      // console.log(this.addressArray)
     }
+
+    
     else{
       console.log('address not found')
       this.addressArray='';
@@ -120,7 +124,8 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
   this.radio=true;
     this.showItem = !this.showItem;
 
-
+    
+    this.shippingForm.controls ['ship_id'].setValue ('');
     this.shippingForm.controls ['ship_fname'].setValue ('');
     this.shippingForm.controls ['ship_lname'].setValue('');
     this.shippingForm.controls['ship_mob'].setValue('');
@@ -136,10 +141,10 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
 
  
 
-  shippingCheckbox(firstname,lastname,mobile,address1,address2,city,pin,state,country)
+  shippingCheckbox(id,firstname,lastname,mobile,address1,address2,city,pin,state,country)
   {
     this.radio=false;
-
+console.log(id);
 console.log(firstname)
 console.log(lastname)
 console.log(mobile)
@@ -151,7 +156,7 @@ console.log(state)
 console.log(country)
 
 
-
+this.shippingForm.controls ['ship_id'].setValue (id);
 this.shippingForm.controls ['ship_fname'].setValue (firstname);
 this.shippingForm.controls ['ship_lname'].setValue(lastname);
 this.shippingForm.controls['ship_mob'].setValue(mobile);
@@ -164,11 +169,11 @@ this.shippingForm.controls['ship_country'].setValue(country);
   }
 
 
-  deliveryCheckbox(firstname,lastname,mobile,address1,address2,city,pin,state,country)
+  deliveryCheckbox(id,firstname,lastname,mobile,address1,address2,city,pin,state,country)
   {
 this.deliveryRadio=false;
 
-
+console.log(id)
 console.log(firstname)
 console.log(lastname)
 console.log(mobile)
@@ -189,8 +194,11 @@ console.log(country)
 // this.billingForm.value.bill_state=firstname;
 // this.billingForm.value.bill_country=firstname;
 
-this.billingForm.controls ['bill_fname'].setValue (firstname);
-this.billingForm.controls ['bill_lname'].setValue(lastname);
+
+
+this.billingForm.controls['billing_id'].setValue(id);
+this.billingForm.controls['bill_fname'].setValue(firstname);
+this.billingForm.controls['bill_lname'].setValue(lastname);
 this.billingForm.controls['bill_mob'].setValue(mobile);
 this.billingForm.controls['billadd_one'].setValue(address1);
 this.billingForm.controls['billadd_two'].setValue(address2);
@@ -206,7 +214,8 @@ this.billingForm.controls['bill_country'].setValue(country);
     this.deliveryRadio=true;
 this.showForm=!this.showForm
 
-this.billingForm.controls ['bill_fname'].setValue ('');
+this.billingForm.controls ['billing_id'].setValue('');
+this.billingForm.controls ['bill_fname'].setValue('');
 this.billingForm.controls ['bill_lname'].setValue('');
 this.billingForm.controls['bill_mob'].setValue('');
 this.billingForm.controls['billadd_one'].setValue('');
