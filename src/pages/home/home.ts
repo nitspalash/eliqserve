@@ -67,7 +67,7 @@ export class HomePage {
   ionViewDidLoad() {
     this.events.publish('hideFooter', { isHidden: false});
     console.log('ionViewDidLoad HomePage');
-    this.myApp;
+    this.myApp.abc();
     
     this.address = JSON.parse(localStorage.getItem('currentaddress'));
     if(this.address)

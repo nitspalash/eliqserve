@@ -20,20 +20,19 @@
 			<form [formGroup]="formGroup" (ngSubmit)="search(formGroup.value)">
 		
 		
-				<ion-item >
-					
-			<ion-input type="text" formControlName="brand_name"  placeholder="Search By Brand Name"></ion-input>
+				<ion-item>
+					<ion-input type="text" formControlName="brand_name"  placeholder="Search By Brand Name"></ion-input>
 			</ion-item>
+
 			<p class="error" *ngIf="formGroup.get('brand_name').hasError('required') && formGroup.get('brand_name').touched"  style="color:red;">
 				Brand Name is required
 			</p>
       
-			<!-- <h6 class="sub-title">Options</h6>
-      <p class="heading">Postal Code</p> -->
-      
+
+       
 
 			
-				<ion-item >
+				 <ion-item >
 					<ion-label>Product Name</ion-label>
 			<ion-input type="text" value="" formControlName="product_name" ></ion-input>
 			</ion-item>
@@ -44,7 +43,7 @@
 				<ion-item >
 					<ion-label>Category</ion-label>
 					<ion-select formControlName="cat_id">
-							<ion-option *ngFor="let item of categoryArray" placeholder="Search By Category" value="{{item.id}}">{{item.name}}</ion-option>
+							<ion-option *ngFor="let item of categoryArray" value="{{item.id}}">{{item.name}}</ion-option>
 										</ion-select>
 				</ion-item>
 				    
@@ -78,10 +77,10 @@
         </ion-range>
 			</ion-item>
 			
-			<!-- <ion-range dual-knobs="true" pin="true" snaps="true">
+			<ion-range dualKnobs="true" pin="true" snaps="true" >
 				<ion-label range-left>0</ion-label>
           <ion-label range-right>5000</ion-label>
-			</ion-range> -->
+			</ion-range>
 			
 		
 			

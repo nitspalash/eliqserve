@@ -23,6 +23,7 @@ userId:any;
 loginuser:any;
 sellerArray:any;
 user_exist:any;
+shippingDetailsArray:any;
 wish: boolean=false;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
@@ -52,11 +53,14 @@ let dataSet={
           this.wish = details.is_wish;
         
       this.detailArray=details.product
+      this.shippingDetailsArray=details.shippingdetails
       this.imageLink=details.image_link
       this.sellerArray=this.detailArray[0].Users;
+      console.log(this.detailArray)
+      console.log(this.shippingDetailsArray)
       console.log (this.sellerArray);
      
-      console.log (this.imageLink);
+      // console.log (this.imageLink);
       
 
       }

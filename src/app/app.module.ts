@@ -27,17 +27,21 @@ import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+// import {AppRate} from '@ionic-native/app-rate';
+
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     AboutPage
+    
     // AfterSplashPage
   ],
   imports: [
     BrowserModule,HttpModule,HttpClientModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
+    
     
   ],
   exports: [
@@ -66,6 +70,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     NativeGeocoder,
     LocationAccuracy,
     Network,
+    // AppRate,
   ]
 })
 export class AppModule {}

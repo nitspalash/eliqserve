@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController,LoadingController, NavParams } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from '@ionic/storage'
-
+import { Events } from 'ionic-angular';
 /**
  * Generated class for the WishlistPage page.
  *
@@ -26,10 +26,12 @@ image_link:any;
 addCartSet:any = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider,public loadingCtrl: LoadingController,
+    public events:Events,
     storage:Storage) {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: false});
     //console.log('ionViewDidLoad WishlistPage');
 
     if(JSON.parse(localStorage.getItem('userDetails')))

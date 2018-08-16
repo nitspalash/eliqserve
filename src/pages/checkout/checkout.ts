@@ -25,7 +25,8 @@ billingForm:FormGroup;
 loginuser:any;
 userId:any;
 userIdSet:any;
-addressListArray:any;
+shippingAddArray:any;
+billingAddArray:any;
 addressArray:any;
 
 
@@ -79,28 +80,18 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
  
   let details = res
   if(details.Ack == 1){
+    
     console.log('addresslist')
-    this.addressListArray=details.addresslist
-  
+    this.shippingAddArray=details.shipping
+    console.log('shi', this.shippingAddArray)
+    this.billingAddArray=details.billing
+    console.log('bill', this.billingAddArray)
     // this.shippingForm.controls['existAdd'].setValue(this.addressListArray[0].shiping.id);
     // console.log (this.addressListArray[0].shiping.length);
   
 
-  for (var i=0;i<this.addressListArray.length;i++)
-  {
-    if (this.addressListArray[i].shiping!=null)
-    {
-      console.log('address found')
-      this.addressArray=this.addressListArray[i].shiping;
-      // console.log(this.addressArray)
-    }
-
+  
     
-    else{
-      console.log('address not found')
-      this.addressArray='';
-    }
-  }
 
   }
 });
