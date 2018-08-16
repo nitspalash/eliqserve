@@ -139,14 +139,14 @@
 			<div class="gender-area mt-0">
 				<h5>Date Of Birth</h5>
 				<ion-row  >
-					<input formControlName="dob" type="date"/>
-				
+					<input formControlName="dob" type="date" class="date-input">
+					<!-- <ion-input formControlName="dob" type="date"></ion-input> -->
 				</ion-row>
 			</div>
 	
-			<ion-item>
+			<ion-item class="btn-area">
 				<button ion-button color="secondary" block [disabled]="!formGroup.valid" >Continue
-					<ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
+					<ion-icon name="md-arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
 				</button>
 			</ion-item>
 		</ion-list>

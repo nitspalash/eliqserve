@@ -25,3 +25,16 @@
 .titl{ margin-top: 0; margin-bottom: 0; color: #646464;}
 
 .card-md{margin-bottom: 100px !important ;}
+.header .back-button{
+    color: #606060 !important;
+}
+.header .back-button-text{
+    display: none;
+}
+
+.header .bar-button-default{
+    color: #606060 !important;
+}
+.header .ion-ios-arrow-back:before {
+    content: "\f27d";
+}
