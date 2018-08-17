@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { FormControl, AbstractControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import { Events } from 'ionic-angular';
 
@@ -20,7 +20,10 @@ import { Events } from 'ionic-angular';
 export class FilterPage {
   public formGroup: FormGroup;
   categoryArray:any;
+  searchset:any;
     
+  minValue: any = { lower: 500, upper: 5000 };
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private builder: FormBuilder,
   public authProvider:AuthProvider,
@@ -28,6 +31,9 @@ export class FilterPage {
   public events:Events,
 ) {
 
+
+  // this.min_price = this.formGroup.controls['min_price'];
+// this.lookingForRadius = this.userProfileForm.controls['lookingForRadius'];
  
 this.formGroup=new FormGroup({
   brand_name:new FormControl ('',Validators.required),
@@ -35,17 +41,16 @@ this.formGroup=new FormGroup({
   cat_id:new FormControl (''), 
   popularity:new FormControl (''), 
   rating:new FormControl (''), 
-  min_price:new FormControl (''), 
-  max_price:new FormControl (''), 
+  min_price:new FormControl ([{lower: this.minValue, upper: this.minValue}]), 
+  // max_price:new FormControl (''), 
     
 });
 
 
 
 
-
   }
-
+  
 
   categorylist()
   {
@@ -69,8 +74,23 @@ this.formGroup=new FormGroup({
 
   search(data)
   {
+    console.log( this.minValue.lower)
+    console.log( this.minValue.upper)
 console.log (data)
-localStorage.setItem('filterdata', JSON.stringify(data));
+
+
+this.searchset=
+{
+  "brand_name": data.brand_name,
+​"cat_id": data.cat_id,
+​"min_price": this.minValue.lower,
+"max_price": this.minValue.upper,
+​"popularity": data.popularity,
+​"product_name": data.product_name,
+​"rating":data.rating
+}
+console.log(this.searchset)
+localStorage.setItem('filterdata', JSON.stringify(this.searchset));
 
 if (!this.formGroup.value.brand_name)
 {
