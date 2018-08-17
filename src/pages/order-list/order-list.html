@@ -39,7 +39,7 @@
             <h2 class="f-w-5">Order Id:</h2>
           </ion-col>
           <ion-col col-8>
-            <h2>{{item.id}}</h2>
+            <h2>#00{{item.id}}</h2>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -55,13 +55,13 @@
             <h2 class="f-w-5">Total:</h2>
           </ion-col>
           <ion-col col-8>
-            <p>${{item.total_price}}</p>
+            <p>${{item.total_price}}.00</p>
           </ion-col>
         </ion-row>
   
         <button item-end ion-button class="detail-btn" (click)="goToOrderDetails(item.id)"> Detail </button>
       
-        <button item-end ion-button class="detail-btn" (click)="review()"> Review </button>
+        <!-- <button item-end ion-button class="detail-btn" (click)="review()"> Review </button> -->
         <!-- <rating [(ngModel)]="rate"
         readOnly="false" 
         max="5" 
@@ -74,6 +74,7 @@
 </rating> -->
 
       </ion-item>
+      <!-- <button item-end ion-button class="detail-btn" (click)="alert()"> alert </button> -->
     </ion-card>
 
     <!-- <ion-card>
