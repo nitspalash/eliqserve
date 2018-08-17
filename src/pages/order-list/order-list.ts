@@ -4,6 +4,7 @@ import {AuthProvider} from '../../providers/auth-service/authservice';
 // import { AppRate } from '@ionic-native/app-rate';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { Events } from 'ionic-angular';
+import { CssSelector } from '@angular/compiler';
 /**
  * Generated class for the OrderListPage page.
  *
@@ -22,6 +23,7 @@ export class OrderListPage {
   userIdSet:any;
   orderArray:any;
   rate:any;
+  className: string = 'alertstar';
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
   public alertCtrl: AlertController,
@@ -52,51 +54,87 @@ export class OrderListPage {
 })
   }
 
-  review()
-  {
-  const alert = this.alertCtrl.create({
-    title: 'Rate your speech:',
+//   review()
+//   {
+//   const alert = this.alertCtrl.create({
+//     title: 'Rate your speech:',
 
-    cssClass: 'alertstar',
-    enableBackdropDismiss:true,
+//     cssClass:this.className,
+//     enableBackdropDismiss:true,
 
-    inputs:[
-      {
-        name:'comment',
-        placeholder:'Comments'
-      }
-    ],
+//     inputs:[
+//       {
+//         name:'comment',
+//         placeholder:'Comments'
+//       }
+//           ],
 
 
-    // inputs: [
-    //      { text: '1', handler: data => {
-           
-          
-    //        this.rating(1,data.comment),
-    //       console.log(JSON.stringify(data)),
-    //       console.log(data.comment)
+//     buttons: [
+//          { text: '1',
+//          handler: (data) => { 
+//           this.rating(1,data.comment)
+//          return false;
+//          }
+//         },
+         
+//          { text: '2',
+//          handler: (data) => { 
+//           this.rating(2,data.comment)
+//           return false;
+//           }},
+//          { text: '3',
+//          handler: (data) => { 
+//           this.rating(3,data.comment)
+//           return false;
+//           }},
 
-    //      }},
-    //      { text: '2', handler: data => { this.rating(2,data.comment);}},
-    //      { text: '3', handler: data => { this.rating(3,data.comment);}},
-    //      { text: '4', handler: data => { this.rating(4,data.comment);}},
-    //      { text: '5', handler: data => { this.rating(5,data.comment);}}
-    // ]
-});
-alert.present();
+//          { text: '4',
+//          handler: (data) => { 
+//           this.rating(4,data.comment)
+//           return false;
+//           }},
+//          { text: '5',
+//          handler: (data) => { 
+//           this.rating(5,data.comment)
+//           return false;
+//           }},
+
+//         {
+//                   text: 'Submit',
+//                   handler: (data) => {
+//                     this.rating(data,data.comment);
+//                       console.log('logged in!')
+//                       console.log(data.comment)
+//                       console.log(data)
+//                       this.onclick();
+//                       // console.log(data.comment)
+                      
+                   
+//                   },cssClass:'btnsubmit'
+//                 }
+        
+//     ]
+// });
+// alert.present();
 
 
   
  
-  }
+//   }
 
-  rating(i,data)
-  {
-console.log(i)
-console.log(data)
+//   onclick()
+//   {
+//     console.log('hi')
+//     this.className = 'another-class'
+//   }
 
+//   rating(i,data)
+//   {
+// console.log(i)
+// console.log(data)
 
-  }
+//   }
 
   ionViewDidLoad() {
     this.events.publish('hideFooter', { isHidden: false});
@@ -116,5 +154,63 @@ console.log(data)
   }
 
 
+//   alert()
+// {
+//   let alert = this.alertCtrl.create({
+//     title: 'Login',
+//     inputs: [
+     
+//       {
+//         name:'comment',
+//         placeholder:'Comments',
+//         type:'string'
+//       },
+     
+//       {
+//         name: 'radio',
+//         placeholder: 'good',
+//         type:'radio',
+//         value:'1'
+//       },
+//       {
+//         name: 'radio',
+//         label: 'very good',
+//         type:'radio',
+//         value:'2'
+//       },
 
+//       {
+//         name: 'radio',
+//         placeholder: 'excellent',
+//         type:'radio',
+//         value:'3'
+//       },
+
+
+//     ],
+//     buttons: [
+
+           
+//       {
+//         text: 'Cancel',
+//         role: 'cancel',
+//         handler: data => {
+//           console.log('Cancel clicked');
+//         }
+//       },
+//       {
+//         text: 'Submit',
+//         handler: (data:string) => {
+         
+//             console.log('logged in!')
+//             console.log(data)
+//             // console.log(data.comment)
+            
+         
+//         }
+//       }
+//     ]
+//   });
+//   alert.present();
+// }
 }

@@ -61,14 +61,15 @@ public alertCtrl:AlertController) {
         console.log(this.searchArray)
         this.imageLink=details.image_link
         console.log (this.imageLink) 
-  } else{
+  } 
+  else
+  {
 
     let alert = this.alertCtrl.create({
       title: 'No Result',
       message: details.message,
       buttons: ['ok']
-  
-  })
+    });alert.present();
 }
 })
   }
