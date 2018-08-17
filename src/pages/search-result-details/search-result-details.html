@@ -1,4 +1,4 @@
-<!--
+<!-- 
   Generated template for the SearchResultDetailsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -47,7 +47,7 @@
             <div padding class="about-info">
               <ion-item style="margin-bottom:0;" >
                 <h4>{{item.product_name}}</h4>
-                <h6 text-uppercase>Blended Scotch</h6>
+                <!-- <h6 text-uppercase>Blended Scotch</h6> -->
                 
                 
                 <a (click)="makeWishlist(item.id,wish)" *ngIf="wish"><ion-icon class="wish-icon" item-end name="heart"></ion-icon>
@@ -58,14 +58,15 @@
               </ion-item>
               <div class="brdr-btm">
                 <h6 class="ml" text-uppercase>{{item.quantity}} ml
-                  <span class="price"> ${{item.price}}</span>
+                  <span class="price"> ${{item.price}}.00</span>
                 </h6>
-                <p class="price">Cashback of $5.00, valid till 31 july, 2018.</p>
+                <!-- <p class="price">Cashback of $5.00, valid till 31 july, 2018.</p> -->
               </div>
             
               <p>
                 {{item.description}}.
               </p>
+              <p class="price">**Estimated Delivery time {{item.setcharge.shipping_day}} days</p>
             </div>
           </ion-card>
 

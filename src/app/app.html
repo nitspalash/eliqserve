@@ -51,6 +51,8 @@
   <ion-icon name="power"   item-start></ion-icon> Log out
 </ion-item> -->
 
+
+
 <ion-item menuClose  *ngIf="istype==2 && user_exist==1" (click)="listProduct()">
   <ion-icon name="cube"  item-start></ion-icon> List Product
 </ion-item>
@@ -65,7 +67,9 @@
   <ion-item menuClose (click)="wishlist()" *ngIf="user_exist==1 && istype==1">
     <ion-icon name="list-box" item-start></ion-icon> My Wishlist
   </ion-item>
-  <ion-item menuClose (click)="earning()" *ngIf="user_exist==1 && istype==2">
+  
+  
+  <!-- <ion-item menuClose (click)="earning()" *ngIf="user_exist==1 && istype==2">
     <ion-icon name="list-box" item-start></ion-icon> My Earning
   </ion-item>
   <ion-item menuClose (click)="reviews()" *ngIf="user_exist==1 && istype==2">
@@ -73,7 +77,9 @@
   </ion-item>
   <ion-item menuClose (click)="settings()" *ngIf="user_exist==1 && istype==2">
     <ion-icon name="list-box" item-start></ion-icon> Settings
-  </ion-item>
+  </ion-item> -->
+
+
 <ion-item menuClose *ngIf="user_exist==1"  (click)="logout()">
   <ion-icon name="power"   item-start></ion-icon> Log out
 </ion-item>
@@ -94,12 +100,14 @@
                 <p class="titl">Home</p>
             </a>
         </ion-col>
+
         <ion-col text-center (click)="goSearch()">
-          <a >
+          <a>
               <img src="assets/imgs/search.png" alt="" />
             <p class="titl">Search</p>
-          </a>
+        </a>
         </ion-col>
+
         <ion-col text-center (click)="goOrder()" *ngIf="user_exist==1 && istype==1" >
           <a>
               <img src="assets/imgs/orders.png" alt="" />

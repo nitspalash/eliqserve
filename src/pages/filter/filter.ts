@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams,AlertController} from 'ionic-angula
 import { Storage } from '@ionic/storage';
 import { FormControl, AbstractControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import {AuthProvider} from '../../providers/auth-service/authservice'
-
+import { Events } from 'ionic-angular';
 
 /**
  * Generated class for the FilterPage page.
@@ -20,11 +20,12 @@ import {AuthProvider} from '../../providers/auth-service/authservice'
 export class FilterPage {
   public formGroup: FormGroup;
   categoryArray:any;
-  
+    
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private builder: FormBuilder,
   public authProvider:AuthProvider,
-  public alertCtrl:AlertController
+  public alertCtrl:AlertController,
+  public events:Events,
 ) {
 
  
@@ -40,21 +41,29 @@ this.formGroup=new FormGroup({
 });
 
 
-this.authProvider.categoryListing().subscribe((res:any) => {
+
+
+
+  }
+
+
+  categorylist()
+  {
+    this.authProvider.categoryListing().subscribe((res:any) => {
      
 
-  if (res.Ack==1)
-  {
-   
-    this.categoryArray=res.categories;
-    console.log(this.categoryArray);
-  }
-});
-
-
+      if (res.Ack==1)
+      {
+       
+        this.categoryArray=res.categories;
+        console.log(this.categoryArray);
+      }
+    });
   }
 
   ionViewDidLoad() {
+    this.categorylist();
+    this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad FilterPage');
   }
 

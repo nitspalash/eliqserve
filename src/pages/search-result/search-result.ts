@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 //import {HomePage} from '../pages/home/home'
 
 import {AboutPage} from "../../pages/about/about";
@@ -25,7 +25,8 @@ export class SearchResultPage {
   imageLink:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public authProvider:AuthProvider) {
+  public authProvider:AuthProvider,
+public alertCtrl:AlertController) {
     console.log(JSON.parse(localStorage.getItem('filterdata')))
     this.searchParameter=JSON.parse(localStorage.getItem('filterdata'));
     console.log(this.searchParameter)
@@ -61,8 +62,14 @@ export class SearchResultPage {
         this.imageLink=details.image_link
         console.log (this.imageLink) 
   } else{
-    alert (details.message)
-  }
+
+    let alert = this.alertCtrl.create({
+      title: 'No Result',
+      message: details.message,
+      buttons: ['ok']
+  
+  })
+}
 })
   }
 

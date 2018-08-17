@@ -23,8 +23,8 @@
 
 .footer .toolbar .row .col a img{width: 24px; height: 24px;}
 .titl{ margin-top: 0; margin-bottom: 0; color: #646464;}
-
 .card-md{margin-bottom: 100px !important ;}
+
 .header .back-button{
     color: #606060 !important;
 }
@@ -37,4 +37,18 @@
 }
 .header .ion-ios-arrow-back:before {
     content: "\f27d";
+
+.alertstar{
+    button{
+         width: 40px;
+         margin: 0 !important;
+         background-image:url("../assets/imgs/star.png");
+         background-repeat: no-repeat;
+         background-position: center;
+         color: transparent!important;
+    }
+    .alert-button-group{padding:0; margin-top: 10px; flex-direction: row; justify-content: space-around;}
+    border-radius: 12px;
+    .alert-wrapper{border-radius: 12px;}
+
 }

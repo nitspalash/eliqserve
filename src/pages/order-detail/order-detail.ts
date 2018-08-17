@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AuthProvider} from '../../providers/auth-service/authservice'
+import {AuthProvider} from '../../providers/auth-service/authservice';
+import { Events } from 'ionic-angular';
 /**
  * Generated class for the OrderDetailPage page.
  *
@@ -24,7 +25,8 @@ export class OrderDetailPage {
   deliverarray:any;
   shippingarray:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public authProvider:AuthProvider) {
+  public authProvider:AuthProvider,
+public events:Events) {
 
     
 this.parameter=this.navParams.get ('param')
@@ -88,6 +90,7 @@ console.log('shi',this.shippingarray);
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: false});
     console.log('ionViewDidLoad OrderDetailPage');
   }
 

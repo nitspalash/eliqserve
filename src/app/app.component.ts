@@ -49,9 +49,7 @@ export class MyApp {
      
       console.log('Welcome', 'at', time);
     })
-    events.subscribe('hideFooter', (data) => {
-      this.footerIsHidden = data.isHidden;
-    })
+   
   }
 
   abc()
@@ -72,6 +70,9 @@ export class MyApp {
     this.istype=2;
     console.log (this.istype)
   
+    this.events.subscribe('hideFooter', (data) => {
+      this.footerIsHidden = data.isHidden;
+    })
     }
 
 

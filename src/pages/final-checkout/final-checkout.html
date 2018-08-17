@@ -86,12 +86,25 @@
                               
                         </ion-item>
 
+                        <ion-item>
+                            <div item-start> Total Shipping Charges </div>
+                            <div item-end text-right>
+                              <div class="total-price">{{totalItem*shippingCharges}}</div>
+                            </div>
+                          </ion-item>
           <ion-item>
             <div item-start> Total </div>
             <div item-end text-right>
               <div class="total-price"> ${{totalPrice}}.00 </div>
             </div>
           </ion-item>
+
+          <ion-item>
+              <div item-start> Payable Amount </div>
+              <div item-end text-right>
+                <div class="total-price"> ${{(totalItem*shippingCharges)+totalPrice}}.00 </div>
+              </div>
+            </ion-item>
         
     
     
