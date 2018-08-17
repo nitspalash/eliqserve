@@ -21,7 +21,8 @@
 .logo img{ width: 120px;}
 .toolbar{ padding: 0;}
 
-.footer .toolbar .row .col a img{width: 24px; height: 24px;}
+.footer .toolbar .row .col a img{width: 20px; height: 20px;}
+.footer .toolbar .row .col a .title{font-size:12px !important;}
 .titl{ margin-top: 0; margin-bottom: 0; color: #646464;}
 .card-md{margin-bottom: 100px !important ;}
 
@@ -40,6 +41,13 @@
 
 
 }
+
+
+.input-wrapper .label{font-size:12px !important;}
+.list .item-input:last-child{border-bottom:0 !important;}
+.button{font-weight:bold !important; box-shadow:none !important;}
+.las-item{ border-bottom: 0; bottom:0px; left:0; right:0; margin: 0 auto;}
+.no-bdr{border:0 !important;}
 
 
 //     .alertstar{
@@ -84,6 +92,7 @@
            
 //        }
     // }
+
 
 
 

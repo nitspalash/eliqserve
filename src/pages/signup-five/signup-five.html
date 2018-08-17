@@ -21,10 +21,7 @@
    
       
         <ion-list>
-          <ion-item class="top-hdr">
-            <h4>Verify Email Address</h4>
-          </ion-item>
-    
+    		<h4>Verify Email Address</h4>
           <ion-item>
             <ion-label text-uppercase floating>otp</ion-label>
             <ion-input type="text" [(ngModel)]="data"></ion-input>
@@ -36,7 +33,7 @@
           </ion-item>
     
     
-          <ion-item>
+          <ion-item class="las-item no-brdr-btm">
             <button ion-button color="secondary" block (click)="finalSubmit()" [disabled]="!data">Submit
               <ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
             </button>

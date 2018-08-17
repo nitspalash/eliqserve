@@ -41,12 +41,13 @@
 
 
 			<ion-item class="no-brdr-btm label-no-mb">
+			<p (click)="forgotPassword()">Forgot your password?</p>
 				<button ion-button color="secondary" block [disabled]="!formGroup.valid">Log In
 					<ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"></ion-icon>
 				</button>
 			
 
-				<p (click)="forgotPassword()">Forgot your password?</p>
+				
 
 				<p text-uppercase text-center class="or" style="padding-bottom:1rem;" >OR</p>
 			</ion-item>
@@ -57,12 +58,12 @@
 			<ion-item class="no-brdr-btm fb-item" >
 				<button ion-button class="fb-btn" color="facebook" outline block> <img class="fb" src="assets/imgs/fb.png" alt=""> Connect With &nbsp; <span class="bold-text">Facebook</span> </button>
 			</ion-item>
-			<ion-item class="g-item">
+			<ion-item class="g-item no-brdr-btm">
 				<button ion-button class="gp-btn" color="google" outline block>
 					<img class="g-plus" src="assets/imgs/g-plus.png" alt=""> Connect With &nbsp; <span class="bold-text">Google Plus</span>
 				</button>
 			</ion-item>
-			<button ion-button full (click)="signupPage()" style="background-color:rgb(57, 214, 96)">Sign Up</button>
+			<!--<button ion-button full (click)="signupPage()" style="background-color:rgb(57, 214, 96)">Sign Up</button>-->
 		</ion-list>
 	
 </ion-content>

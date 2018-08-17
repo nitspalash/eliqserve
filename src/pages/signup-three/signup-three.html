@@ -22,10 +22,7 @@
  
     <form [formGroup]="formGroup" (ngSubmit)="signupFour(formGroup.value)">
       <ion-list>
-        <ion-item class="top-hdr">
-          <h4>New to eLiqServ?</h4>
-        </ion-item>
-        
+        <h4>New to eLiqServ?</h4>
         <ion-item>
           <ion-label floating>Email address</ion-label>
           <!-- <ion-input type="email"  [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input> -->
@@ -45,7 +42,7 @@
             for my use</p>
         </ion-item>
         
-        <ion-item>
+        <ion-item class="las-item no-brdr-btm">
             <button ion-button color="secondary" block [disabled]="!formGroup.valid">Continue
               <ion-icon name="arrow-forward" style="color:#ffffff; margin-left: 1rem;"> </ion-icon>
             </button>

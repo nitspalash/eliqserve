@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,Events } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import { SocialSharing } from '@ionic-native/social-sharing';
 /**
@@ -27,6 +27,7 @@ shippingDetailsArray:any;
 wish: boolean=false;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
+  public events:Events,
 public alertCtrl:AlertController,private socialSharing: SocialSharing) {
     this.pamater=navParams.get('param')
     console.log(this.pamater)
@@ -70,6 +71,7 @@ let dataSet={
   }
 
   ionViewDidLoad() {
+  	this.events.publish('hideFooter',{isHidden: true});
     console.log('ionViewDidLoad SearchResultDetailsPage');
 
     if (localStorage.getItem('userDetails'))

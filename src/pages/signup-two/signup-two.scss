@@ -28,7 +28,7 @@ page-signup-two {
     .list .item-block.no-brdr-btm .item-inner{ border-bottom: 0 !important;}
      .list > .item-block ion-label{ margin-right: 0 !important;  }
     //  .list > .item-block:last-child ion-label:last-child{ margin: 0;}
-    .list > .item-block:last-child{ border-bottom: 0; margin-top: 22rem;}
+    .list > .item-block:last-child{ border-bottom: 0; margin-top:80px;}
     .label-no-mb .item-inner .input-wrapper .label{margin-bottom: 0 !important;}
     .fb-item .item-inner .input-wrapper .label { margin-bottom: 0 !important; margin-top: 0 !important;}
     .g-item .item-inner .input-wrapper .label { margin-top: 5px !important;}
@@ -62,6 +62,7 @@ page-signup-two {
     // .list .item{ margin-bottom: 3rem;}
     
     // .list > .item-block:last-child{ margin-top: 7rem; }
+  .item:last-child{border-bottom:0;}
     
     .pt-0{padding-top: 0;}
     .pl-0{ padding-left: 0; }

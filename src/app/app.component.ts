@@ -41,6 +41,9 @@ export class MyApp {
     public events: Events
     
   ) {
+  	 this.events.subscribe('hideFooter', (data) => {
+      this.footerIsHidden = data.isHidden;
+    })
    
     this.abc();
     this.initializeApp();
@@ -70,9 +73,7 @@ export class MyApp {
     this.istype=2;
     console.log (this.istype)
   
-    this.events.subscribe('hideFooter', (data) => {
-      this.footerIsHidden = data.isHidden;
-    })
+   
     }
 
 
