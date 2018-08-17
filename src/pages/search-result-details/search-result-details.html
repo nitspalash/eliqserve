@@ -38,7 +38,9 @@
             <ion-icon item-end name="share"></ion-icon>
           </ion-item> -->
           <ion-card class="img-dv">
-
+			<div class="fr">
+			<a (click)="makeWishlist(item.id,wish)" *ngIf="wish"><ion-icon class="wish-icon" item-end name="heart"></ion-icon>
+                </a></div>
                 <img  src="{{imageLink+item.productsimages[0].name}}" alt="">
            
           </ion-card>
@@ -50,8 +52,7 @@
                 <!-- <h6 text-uppercase>Blended Scotch</h6> -->
                 
                 
-                <a (click)="makeWishlist(item.id,wish)" *ngIf="wish"><ion-icon class="wish-icon" item-end name="heart"></ion-icon>
-                </a>
+                
 
                 <a (click)="makeWishlist(item.id,wish)" *ngIf="!wish"><ion-icon class="wish-icon" item-end name="heart-outline"></ion-icon>
                 </a>
@@ -74,17 +75,11 @@
             <div padding class="about-info">
               <h2>Seller Information</h2>
               <ion-item >
-                <h4>{{sellerArray['first_name']}} {{sellerArray['last_name']}}</h4>
+                <h5>{{sellerArray['first_name']}} {{sellerArray['last_name']}}</h5>
+                <p><ion-icon name="mail"></ion-icon> {{sellerArray['email']}}</p>
+                <p><ion-icon name="call"></ion-icon> {{sellerArray['phone']}}</p>
                 </ion-item>
-
-                <ion-item >
-                  <h4>{{sellerArray['email']}}</h4>
-                  </ion-item>
-
-                  <ion-item >
-                    <h4>{{sellerArray['phone']}}</h4>
-                    </ion-item>
-                </div>
+            </div>
           </ion-card>
   
           <!-- <div class="wishlist-area" padding>

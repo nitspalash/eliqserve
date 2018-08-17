@@ -42,9 +42,9 @@ page-home {
 
     ion-card img{ width: auto; height: 100px; margin: 0 auto;;}
     
-    .card{width: 100%; margin: 0;height: 180px;}
-    .card-title{ font-size: 1.3rem; font-weight: 600; margin: 0.5rem;}
-    .card-subtitle{font-size: 1.3rem; font-weight: 400; margin: 0.5rem;
+    .card{width: 100%; margin: 0;height: 180px; padding:10px 5px !important;}
+    .card-title{ font-size: 12px; font-weight: 600; margin: 0.5rem; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;}
+    .card-subtitle{font-size: 12px; font-weight: 400; margin: 0.5rem;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -55,4 +55,6 @@ page-home {
         .card-md {
             margin-bottom: 2px !important;
         }
+      .pd{padding:5px}
+      .mb-50{margin-bottom: 60px; overflow: hidden;}
 }

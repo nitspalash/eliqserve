@@ -13,7 +13,7 @@ page-signup-four {
     
     .list h4{ font-weight: 600; color: #272727 !important; font-size: 2rem;}
     .list h6{ font-weight: 500; color: #636363; text-transform: uppercase;}
-    .list .item p{text-overflow: normal; white-space: normal; word-wrap: break-all; padding-bottom: 0 !important; padding-top: 30px !important; font-size: 1.3rem; font-weight: 400; }
+    .list .item p{text-overflow: normal; white-space: normal; word-wrap: break-all; padding-bottom: 0 !important; padding-top: 0px !important; font-size: 1.3rem; font-weight: 400; }
     .item-input .label{ color: #636363; text-transform: uppercase;  }
      .text-input{ color: #636363; font-size: 1.3rem; font-weight: 400;  }
     .item-input-has-focus .label[floating], .input-has-focus .label[floating]{ color: #30be21 !important; width: 100% !important; padding: 0; }
@@ -30,7 +30,7 @@ page-signup-four {
     .list .item-block.no-brdr-btm .item-inner{ border-bottom: 0 !important;}
      .list > .item-block ion-label{ margin-right: 0 !important;  }
     //  .list > .item-block:last-child ion-label:last-child{ margin: 0;}
-    .list > .item-block:last-child{ border-bottom: 0; margin-top: 22rem;}
+    .list > .item-block:last-child{ border-bottom: 0; margin-top: 15%;}
     .label-no-mb .item-inner .input-wrapper .label{margin-bottom: 0 !important;}
     .fb-item .item-inner .input-wrapper .label { margin-bottom: 0 !important; margin-top: 0 !important;}
     .g-item .item-inner .input-wrapper .label { margin-top: 5px !important;}
