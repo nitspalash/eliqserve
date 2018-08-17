@@ -6,12 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-		<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-
-	</ion-navbar>
+	<ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    
+      </ion-navbar>
 
 </ion-header>
 
@@ -29,7 +29,7 @@
 				<h5>Gender</h5>
 				<!-- <ion-grid radio-group > -->
 				<ion-row radio-group formControlName="gender">
-					<ion-col col-3 class="pt-0 pb-0" >
+					<ion-col col-4 class="pt-0 pb-0" >
 						<ion-item>
 							<ion-label>Male</ion-label>
 							<ion-radio value="male" ></ion-radio>
@@ -41,7 +41,7 @@
 							<ion-radio value="female"></ion-radio>
 						</ion-item>
 					</ion-col>
-					<ion-col col-5 class="pt-0 pb-0" >
+					<ion-col col-4 class="pt-0 pb-0" >
 						<ion-item>
 							<ion-label>Not Specified</ion-label>
 							<ion-radio value="not-specified" ></ion-radio>
@@ -57,7 +57,7 @@
 				<h5>User Type</h5>
 				<ion-row radio-group formControlName="utype">
 					<!-- <h3>Gender</h3>	 -->
-					<ion-col col-6 class="pt-0 pb-0" >
+					<ion-col col-4 class="pt-0 pb-0" >
 						<ion-item>
 								<ion-radio value="2" (click)="showForm()" ></ion-radio>
 							<ion-label>Merchant</ion-label>
@@ -67,7 +67,7 @@
 
 
 			
-<ion-col col-6 class="pt-0 pb-0" >
+<ion-col col-5 class="pt-0 pb-0" >
 						<ion-item>
 								<ion-radio value="1"(click)="hideForm()" ></ion-radio>
 							<ion-label>Customer</ion-label>
@@ -136,7 +136,7 @@
 		</div>
 	
 
-			<div class="gender-area mt-0">
+			<div class="gender-area mt-5">
 				<h5>Date Of Birth</h5>
 				<ion-row  >
 					<input formControlName="dob" type="date" class="date-input">

@@ -1,4 +1,8 @@
-
+page-signupone {
+	 .toolbar-background{ background: transparent;}
+    .bar-button-default{ color: #606060; }
+    .header::after{ background-image: none;}
+    .header-ios .toolbar-background-ios{ border-bottom: 0;}
     .item-cover{ padding-left: 0; padding-right: 0;  text-overflow: normal; white-space: normal; word-wrap: break-all;}
     .item-radio .item-inner .input-wrapper .label{ text-overflow: normal; white-space: normal; word-wrap: break-all; margin-right: 0; font-weight: 500; font-size: 1.5rem; color: #1f1f1f; }
     // .item-radio-checked.item ion-label{ font-size: 1.5rem; color: #1f1f1f; font-weight: 500;}
@@ -13,7 +17,7 @@
     
     .list .item{ margin-bottom: 3rem; padding-left: 0; }
     
-    .list > .item-block:last-child{ margin-top: 7rem; }
+    .list > .item-block:last-child{ margin-top: 2rem; }
     
     .pt-0{padding-top: 0;}
     .pb-0{padding-bottom: 0;}
@@ -79,8 +83,9 @@
     .date-input{
         width: 100%;
         border: none;
-        border-bottom: #d1d1d1 1px solid;
+        border-bottom: #d1d1d1 1px solid !important;
         padding: 15px 0;
+        background: transparent;
     }
     .radio-ios .radio-checked .radio-inner{
         
@@ -106,3 +111,11 @@
     .btn-area.item .label{
         margin: 13px 0 13px 0;
     }
+.toolbar-background{ background: transparent;}
+.checkbox .checkbox-checked {
+    border-color: #32db64 !important;
+    background-color: #32db64 !important;
+   border-radius: 100% !important;
+}
+.item-checkbox.item.item-block .item-inner{border:0 !important;}
+}

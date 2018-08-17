@@ -57,5 +57,7 @@ page-login {
     :-moz-placeholder { /* Firefox 18- */
       color: #7a7a7a; font-weight: 400; 
     }
-    
+    ion-label{margin:11px 0 !important;}
+    .gp-btn{border:solid 1px #ff3c00 !important; color:#ff3c00 !important;}
+    .gp-btn .bold-text{font-weight:bold;}
 }
