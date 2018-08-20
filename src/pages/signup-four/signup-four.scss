@@ -15,7 +15,7 @@ page-signup-four {
     .list h6{ font-weight: 500; color: #636363; text-transform: uppercase;}
     .list .item p{text-overflow: normal; white-space: normal; word-wrap: break-all; padding-bottom: 0 !important; padding-top: 0px !important; font-size: 1.3rem; font-weight: 400; }
     .item-input .label{ color: #636363; text-transform: uppercase;  }
-     .text-input{ color: #636363; font-size: 1.3rem; font-weight: 400;  }
+     .text-input{ color: #636363; font-size: 1.3rem; font-weight: 400; margin: 12px 0 !important;}
     .item-input-has-focus .label[floating], .input-has-focus .label[floating]{ color: #30be21 !important; width: 100% !important; padding: 0; }
     .item.item-input.item-input-has-focus .item-inner, .item.item-input.input-has-focus .item-inner{ border-bottom-color: #30be21; box-shadow: none; }
     .list-md .item-input.item-input-has-focus:last-child, .list-md .item-input.input-has-focus:last-child{ border-bottom-color: #30be21; box-shadow: none; }
@@ -36,8 +36,7 @@ page-signup-four {
     .g-item .item-inner .input-wrapper .label { margin-top: 5px !important;}
     
     .top-hdr.item .item-inner{ border-bottom: 0; padding-right: 0;}
-    .back-arrow{ color: #606060;}
-    
+    .back-arrow{color: #606060;}   
     .no-brdr-btm{border-bottom: 0;}
     
     
