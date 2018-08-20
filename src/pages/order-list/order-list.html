@@ -32,8 +32,8 @@
 
 <ion-content>
   <ion-list >
-    <ion-card  *ngFor="let item of orderArray">
-      <ion-item>
+    <ion-card  *ngFor="let item of orderArray"   >
+      <ion-item >
         <ion-row>
           <ion-col col-4>
             <h2 class="f-w-5">Order Id:</h2>
@@ -61,7 +61,7 @@
   
         <button item-end ion-button class="detail-btn" (click)="goToOrderDetails(item.id)"> Detail </button>
       
-        <!-- <button item-end ion-button class="detail-btn" (click)="review()"> Review </button> -->
+        <button item-end ion-button class="detail-btn" (click)="review(item.id)"> Review </button>
         <!-- <rating [(ngModel)]="rate"
         readOnly="false" 
         max="5" 
@@ -73,9 +73,10 @@
         > 
 </rating> -->
 
-      </ion-item>
+      </ion-item >
+      <ion-item>you have rated <p>{{rate}}</p></ion-item>
       <!-- <button item-end ion-button class="detail-btn" (click)="alert()"> alert </button> -->
-    </ion-card>
+    </ion-card >
 
     <!-- <ion-card>
       <ion-item>
@@ -198,5 +199,5 @@
     </ion-card> -->
 
     
-  </ion-list>
+  </ion-list >
 </ion-content>

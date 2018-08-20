@@ -32,6 +32,7 @@ export class HomePage {
   country:any;
   loginuser:any;
   userId:any;
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider,
     private geolocation: Geolocation,
@@ -42,7 +43,8 @@ export class HomePage {
     public myApp:MyApp) {
       this.myApp.abc();
       this.fetchlocation();
-      
+      this.myApp.abc();
+    this.events.publish('hideFooter',{isHidden:false});
       
     this.authProvider.categoryListing().subscribe((res:any) => {
      
@@ -65,9 +67,9 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.events.publish('hideFooter', { isHidden: false});
+    
     console.log('ionViewDidLoad HomePage');
-    this.myApp.abc();
+   
     
     this.address = JSON.parse(localStorage.getItem('currentaddress'));
     if(this.address)

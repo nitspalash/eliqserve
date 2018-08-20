@@ -50,48 +50,223 @@
 .no-bdr{border:0 !important;}
 
 
-//     .alertstar{
-//         button{
-//              width: 40px;
-//              margin: 0 !important;
-//              background-image:url("../assets/imgs/starn.png");
-//              background-repeat: no-repeat;
-//              background-position: center;
-//              color: transparent!important;
+    .alertstar{
+        button{
+             width: 40px;
+             margin: 0 !important;
+             background-image:url("../assets/imgs/white-star.png");
+             background-repeat: no-repeat;
+             background-position: center;
+             color: transparent!important;
             
-//         }
+        }
         
-//         .alert-button-group{padding:0; margin-top: 10px; flex-direction: row; justify-content: space-around;}
-//         border-radius: 12px;
-//         .alert-wrapper{border-radius: 12px;}
+        .alert-button-group{padding:0; margin-top: 10px; flex-direction: row; justify-content: space-around;}
+        border-radius: 12px;
+        .alert-wrapper{border-radius: 12px;}
 
 
 
 
-// }
+}
 
 
-// .another-class
-//     {
-//         .alert-button:nth-child(1){
-//         width: 40px;
-//         margin: 0 !important;
-//         background-image:url("../assets/imgs/star.png");
-//         background-repeat: no-repeat;
-//         background-position: center;
-//         color:transparent !important; 
-//         }  
+.another-classone
+    {
+        .alert-button:nth-child(1){
+        width: 40px;
+        margin: 0 !important;
+        background-image:url("../assets/imgs/star.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        color:transparent !important; 
+        }  
 
-//         button{
-//             width: 40px;
-//             margin: 0 !important;
-//             background-image:url("../assets/imgs/starn.png");
-//             background-repeat: no-repeat;
-//             background-position: center;
-//             color: transparent!important;
+        button{
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/white-star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent!important;
            
-//        }
-    // }
+       }
+    }
+
+    .another-classtwo
+    {
+        .alert-button:nth-child(2){
+        width: 40px;
+        margin: 0 !important;
+        background-image:url("../assets/imgs/star.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        color:transparent !important; 
+        }  
+        .alert-button:nth-child(1){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            }  
+
+        button{
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/white-star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent!important;
+           
+       }
+    }
+
+    .another-classthree
+    {
+
+        .alert-button:nth-child(3){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            }  
+        .alert-button:nth-child(2){
+        width: 40px;
+        margin: 0 !important;
+        background-image:url("../assets/imgs/star.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        color:transparent !important; 
+        }  
+        .alert-button:nth-child(1){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            }  
+
+        button{
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/white-star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent!important;
+           
+       }
+    }
+    .another-classfour
+    {
+
+
+        .alert-button:nth-child(4){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            } 
+        .alert-button:nth-child(3){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            }  
+        .alert-button:nth-child(2){
+        width: 40px;
+        margin: 0 !important;
+        background-image:url("../assets/imgs/star.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        color:transparent !important; 
+        }  
+        .alert-button:nth-child(1){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            }  
+
+        button{
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/white-star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent!important;
+           
+       }
+    }
+   
+    
+    .another-classfive
+    {
+
+        .alert-button:nth-child(5){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            } 
+        .alert-button:nth-child(4){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            } 
+        .alert-button:nth-child(3){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            }  
+        .alert-button:nth-child(2){
+        width: 40px;
+        margin: 0 !important;
+        background-image:url("../assets/imgs/star.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        color:transparent !important; 
+        }  
+        .alert-button:nth-child(1){
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color:transparent !important; 
+            }  
+
+        button{
+            width: 40px;
+            margin: 0 !important;
+            background-image:url("../assets/imgs/white-star.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent!important;
+           
+       }
+    }
+   
+    
+
 
 
 .disable-hover{opacity:1 !important;}

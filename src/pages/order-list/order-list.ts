@@ -5,6 +5,8 @@ import {AuthProvider} from '../../providers/auth-service/authservice';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { Events } from 'ionic-angular';
 import { CssSelector } from '@angular/compiler';
+import { Title } from '@angular/platform-browser/src/browser/title';
+import { debounce } from 'ionic-angular/util/util';
 /**
  * Generated class for the OrderListPage page.
  *
@@ -23,6 +25,9 @@ export class OrderListPage {
   userIdSet:any;
   orderArray:any;
   rate:any;
+  idSet:any;
+  productId:any;
+  disableBtn:boolean=false;
   className: string = 'alertstar';
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
@@ -30,7 +35,7 @@ export class OrderListPage {
   public events:Events
 ) {
 
-  console.log('rate',this.rate)
+  // console.log('rate',this.rate)
     console.log('hello');
     this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
     this.userId=this.loginuser.id
@@ -54,87 +59,172 @@ export class OrderListPage {
 })
   }
 
-//   review()
-//   {
-//   const alert = this.alertCtrl.create({
-//     title: 'Rate your speech:',
+  review(prod_id)
+  {
+    console.log(this.productId);
+    console.log(prod_id);
 
-//     cssClass:this.className,
-//     enableBackdropDismiss:true,
+    if (this.productId==prod_id)
+    {
 
-//     inputs:[
-//       {
-//         name:'comment',
-//         placeholder:'Comments'
-//       }
-//           ],
+      const alert = this.alertCtrl.create({
+        title: 'You have already submitted rating on this product',
+           buttons: ['ok']
+      });
+      alert.present();
 
+    }
+else{
+    this.productId=prod_id;
+  const alert = this.alertCtrl.create({
+    title: 'Rate your product:',
 
-//     buttons: [
-//          { text: '1',
-//          handler: (data) => { 
-//           this.rating(1,data.comment)
-//          return false;
-//          }
-//         },
-         
-//          { text: '2',
-//          handler: (data) => { 
-//           this.rating(2,data.comment)
-//           return false;
-//           }},
-//          { text: '3',
-//          handler: (data) => { 
-//           this.rating(3,data.comment)
-//           return false;
-//           }},
+    cssClass:this.className,
+    enableBackdropDismiss:true,
 
-//          { text: '4',
-//          handler: (data) => { 
-//           this.rating(4,data.comment)
-//           return false;
-//           }},
-//          { text: '5',
-//          handler: (data) => { 
-//           this.rating(5,data.comment)
-//           return false;
-//           }},
-
-//         {
-//                   text: 'Submit',
-//                   handler: (data) => {
-//                     this.rating(data,data.comment);
-//                       console.log('logged in!')
-//                       console.log(data.comment)
-//                       console.log(data)
-//                       this.onclick();
-//                       // console.log(data.comment)
-                      
-                   
-//                   },cssClass:'btnsubmit'
-//                 }
+    inputs:[
+      {
+        name:'comment',
+        placeholder:'Write your comments',
         
-//     ]
-// });
-// alert.present();
+        
+      }
+          ],
+
+
+    buttons: [
+         { text: '1',
+         handler: (data) => { 
+          this.rating(1,data.comment)
+          this.onclickone()
+         return false;
+         }
+        },
+         
+         { text: '2',
+         handler: (data) => { 
+          this.rating(2,data.comment)
+          this.onclicktwo()
+          
+          return false;
+          }},
+         { text: '3',
+         handler: (data) => { 
+          this.rating(3,data.comment)
+          this.onclickthree()
+        
+          return false;
+          }},
+
+         { text: '4',
+         handler: (data) => { 
+          this.rating(4,data.comment)
+          this.onclickfour()
+          return false;
+          }},
+         { text: '5',
+         handler: (data) => { 
+          this.rating(5,data.comment)
+          this.onclickfive()
+          
+          return false;
+          }},
+
+        {
+                  text: 'Submit',
+                  handler: (data) => {
+
+                    if (!data.comment)
+                    {
+                      console.log('false')
+                      return false;
+                      
+                    }else
+                    {
+                    
+                      console.log('logged in!')
+                      // console.log(data.comment)
+                      console.log('idset',this.idSet);
+
+                      this.authProvider.productRating(this.idSet).subscribe(res => {
+     
+                        console.log(res);
+                        
+                        let details = res
+                        console.log("review")
+                        // this.disableBtn=!this.disableBtn;
+                        if(details.Ack == 1){
+                          this.rate=details.rating;
+                          this.className='alertstar';
+                          console.log(this.rate);
+                    //    
+                    }
+                  })
+                     
+                    }
+                   
+                  },cssClass:'btnsubmit'
+                }
+        
+    ]
+});
+alert.present();
+}
 
 
   
  
-//   }
+  }
 
-//   onclick()
-//   {
-//     console.log('hi')
-//     this.className = 'another-class'
-//   }
+  onclickone()
+  {
+    console.log('one')
+    this.className = 'another-classone'
+  }
 
-//   rating(i,data)
-//   {
-// console.log(i)
-// console.log(data)
 
-//   }
+  onclicktwo()
+  {
+    console.log('two')
+    this.className = 'another-classtwo'
+  }
+
+  onclickthree()
+  {
+    console.log('three')
+    this.className = 'another-classthree'
+  }
+
+  onclickfour()
+  {
+    console.log('four')
+    this.className = 'another-classfour'
+  }
+  onclickfive()
+  {
+    console.log('five')
+    this.className = 'another-classfive'
+  }
+  // onclick()
+  // {
+  //   console.log('hi')
+  //   this.className = 'another-class'
+  // }
+
+  rating(rating,comment)
+  {
+console.log(rating)
+console.log(comment)
+
+this.idSet={
+"user_id":this.userId,
+"prod_id":this.productId,
+"rating":rating,
+"review":comment,
+}
+
+console.log(this.idSet);
+  }
 
   ionViewDidLoad() {
     this.events.publish('hideFooter', { isHidden: false});
@@ -144,7 +234,8 @@ export class OrderListPage {
   goToOrderDetails(id)
   {
     this.navCtrl.push('OrderDetailPage',{param:id})
-    console.log('rate',this.rate)
+    // console.log('rate',this.rate)
+    
   }
 
   goToCartPage()
@@ -154,63 +245,4 @@ export class OrderListPage {
   }
 
 
-//   alert()
-// {
-//   let alert = this.alertCtrl.create({
-//     title: 'Login',
-//     inputs: [
-     
-//       {
-//         name:'comment',
-//         placeholder:'Comments',
-//         type:'string'
-//       },
-     
-//       {
-//         name: 'radio',
-//         placeholder: 'good',
-//         type:'radio',
-//         value:'1'
-//       },
-//       {
-//         name: 'radio',
-//         label: 'very good',
-//         type:'radio',
-//         value:'2'
-//       },
-
-//       {
-//         name: 'radio',
-//         placeholder: 'excellent',
-//         type:'radio',
-//         value:'3'
-//       },
-
-
-//     ],
-//     buttons: [
-
-           
-//       {
-//         text: 'Cancel',
-//         role: 'cancel',
-//         handler: data => {
-//           console.log('Cancel clicked');
-//         }
-//       },
-//       {
-//         text: 'Submit',
-//         handler: (data:string) => {
-         
-//             console.log('logged in!')
-//             console.log(data)
-//             // console.log(data.comment)
-            
-         
-//         }
-//       }
-//     ]
-//   });
-//   alert.present();
-// }
 }

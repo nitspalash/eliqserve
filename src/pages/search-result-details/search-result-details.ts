@@ -71,7 +71,7 @@ let dataSet={
   }
 
   ionViewDidLoad() {
-  	this.events.publish('hideFooter',{isHidden: true});
+  	this.events.publish('hideFooter',{isHidden:false});
     console.log('ionViewDidLoad SearchResultDetailsPage');
 
     if (localStorage.getItem('userDetails'))
