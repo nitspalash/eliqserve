@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController} from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice';
 // import { AppRate } from '@ionic-native/app-rate';
-import { Ionic2RatingModule } from 'ionic2-rating';
+// import { Ionic2RatingModule } from 'ionic2-rating';
 import { Events } from 'ionic-angular';
 import { CssSelector } from '@angular/compiler';
 import { Title } from '@angular/platform-browser/src/browser/title';
