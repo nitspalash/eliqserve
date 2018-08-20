@@ -62,7 +62,7 @@
         <button item-end ion-button class="detail-btn" (click)="goToOrderDetails(item.id)"> Detail </button>
       
         <button item-end ion-button class="detail-btn" (click)="review(item.id)"> Review </button>
-        <!-- <rating [(ngModel)]="rate"
+        <rating [(ngModel)]="rate"
         readOnly="false" 
         max="5" 
         emptyStarIconName="star-outline" 
@@ -71,7 +71,7 @@
         nullable="false"
         
         > 
-</rating> -->
+</rating>
 
       </ion-item >
       <ion-item>you have rated <p>{{rate}}</p></ion-item>
