@@ -246,4 +246,12 @@ sellerorderlist(data:object):Observable<any>{
    });
  }
  
+
+ productRating(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'products/addratingreview.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+ 
 }

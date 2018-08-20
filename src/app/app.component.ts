@@ -41,10 +41,8 @@ export class MyApp {
     public events: Events
     
   ) {
-  	 this.events.subscribe('hideFooter', (data) => {
-      this.footerIsHidden = data.isHidden;
-    })
-   
+  	 
+   this.eve();
     this.abc();
     this.initializeApp();
     this.hideSplashScreen();
@@ -53,6 +51,13 @@ export class MyApp {
       console.log('Welcome', 'at', time);
     })
    
+  }
+
+  eve()
+  {
+    this.events.subscribe('hideFooter', (data) => {
+      this.footerIsHidden = data.isHidden;
+    })
   }
 
   abc()
@@ -73,7 +78,7 @@ export class MyApp {
     this.istype=2;
     console.log (this.istype)
   
-   
+   this.eve();
     }
 
 
