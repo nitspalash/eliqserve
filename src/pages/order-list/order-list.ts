@@ -63,22 +63,15 @@ export class OrderListPage {
   review(data){
  let prompt = this.alertCtrl.create({
   title: 'Rate Venue',
-  inputs: [{
-      name: 'review',
-      placeholder: 'Review'
-    },
-  ],
+message:"<ion-item> <rating [(ngModel)]='rate' readOnly = 'false' max ='5' emptyStarIconName ='star-outline' halfStarIconName ='star-half' starIconName ='star' nullable ='false' (ngModelChange) ='onModelChange($event)'</rating></ion-item>",
+  // inputs: [{
+  //     name: 'review',
+  //     placeholder: 'Review'
+  //   },
+  // ],
   buttons: [
     {
-      text:`<rating [(ngModel)]= 'rate'         
-       readOnly = 'false'        
-       max = 5        
-       emptyStarIconName =star-outline       
-       halfStarIconName = star-half       
-       starIconName = star        
-       nullable = false       
-      (ngModelChange) = onModelChange($event)>
-      </rating>`,
+      text:'<ion-item> <rating [(ngModel)]="rate" readOnly = "false" max = "5" emptyStarIconName ="star-outline" halfStarIconName ="star-half" starIconName = "star" nullable = "false" (ngModelChange) ="onModelChange($event)"</rating></ion-item>',
 
     },
     {
