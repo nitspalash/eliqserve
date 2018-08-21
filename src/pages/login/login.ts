@@ -21,14 +21,17 @@ export class LoginPage {
   userDetails:any;
   public footerIsHidden: boolean = true;
   public unregisterBackButtonAction: any;
-  loginType:any
-
+  loginType:any;
+  token_id:any;
+  devicetype:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
  public authProvider:AuthProvider,
   private builder: FormBuilder,
   public events: Events,
   public platform: Platform,
-public storage: Storage) {
+  public storage: Storage) {
+
+  
  
   platform.registerBackButtonAction(() => {
     this.navCtrl.setRoot ('HomePage');
@@ -42,14 +45,17 @@ public storage: Storage) {
 
   login (formData)
   {
+    formData.device_type=this.devicetype;
+    formData.device_token_id=this.token_id;
+    console.log ('form',formData);
     this.authProvider.login(formData).subscribe(res=>{
       console.log(res);
      
       // let details = res
       if(res.ack == 1){
         console.log('hello')
-let detailsTReponse=res.details
-console.log (detailsTReponse)
+      let detailsTReponse=res.details
+      console.log (detailsTReponse)
 
 
         this.storage.ready().then(() => {
@@ -93,11 +99,16 @@ forgotPassword()
 
 
   ionViewDidLoad() {
-     this.events.publish('hideFooter', { isHidden: true});
+     this.events.publish('hideFooter', {isHidden: true});
     console.log('ionViewDidLoad LoginPage');
 
-  
-
+    this.token_id= localStorage.getItem('TOKEN');
+    console.log('token',this.token_id)
+    if(this.platform.is('ios')){
+      this.devicetype="ios";
+    }else{
+      this.devicetype="android";
+    }
 
     //this.initializeBackButtonCustomHandler();
   }

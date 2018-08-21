@@ -20,7 +20,7 @@ export class SignuponePage {
   
   userDataOne:any;
   radio:boolean=false;
-
+  today = new Date().toJSON().split('T')[0];
   
 formGroup:FormGroup;
 merchantForm:FormGroup
