@@ -83,4 +83,9 @@ color:black
     .delivery-details-card{
         margin-bottom: 70px !important;
     }
+    .check-form{
+        .item-input:last-child{
+            border-bottom: 1px solid #dedede !important;
+        }
+    }
 }
