@@ -91,7 +91,7 @@
       </ion-item>
     </ion-list>
 
-    <button style="margin-bottom:50px;" block *ngIf="cartArray" ion-button (click)="goForCheckout()">CHECKOUT</button>
+    <button class="grren-btn" style="margin-bottom:50px;" block *ngIf="cartArray" ion-button (click)="goForCheckout()">CHECKOUT</button>
     <ion-list *ngIf="!cartArray">
         <ion-item>
             <div item-start> No product is available in your Bag.  </div>

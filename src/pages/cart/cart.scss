@@ -11,9 +11,9 @@ page-cart {
     .toolbar-title p{ margin-top: 0; margin-bottom: 0; font-size: 1.4rem; font-weight: 400;}
     
     .content{ background: #f5f5f5; }
-    .list .item{ margin-bottom: 1rem;}
+    .list .item{ margin-bottom: 1rem;padding-left: 0;}
     .list > .item-block:last-child{ margin-top: 0;}
-    .item ion-thumbnail img{ width: auto;}
+    .item ion-thumbnail img{width: 56px;height: auto;}
     .item ion-thumbnail{ min-width: 34px;}
     .item-md [item-start]{ margin-left:8px;}
     .item [item-end]{ margin: 0; background-color: transparent !important; }
@@ -25,7 +25,7 @@ page-cart {
     .item .item-button{ padding: 0;}
     .label{ margin-right: 0; text-overflow: inherit; white-space: inherit;}
     
-    .item ion-thumbnail[item-start]{ margin: 8px 16px 8px 16px;}
+    .item ion-thumbnail[item-start]{ margin: 8px 16px 8px 10px;}
     .item-inner{ align-items: flex-start;}
     .item.item-block .item-inner{ border-bottom: 0 !important;}
     .price{ font-size: 1.6rem !important; margin-top: 4rem !important; font-weight: 500 !important; }
@@ -41,4 +41,16 @@ page-cart {
     ion-footer .toolbar ion-title .toolbar-title{ text-align: center; color: #ffffff; font-weight: 500 !important; }
     
     ion-footer .toolbar .toolbar-background{ background: #30be21; border: 0; }
+    .list > .item-block:first-child {
+        border-top: none;
+    }
+    .list-ios > .item-block:last-child{
+        border-bottom: none;
+    }
+    .grren-btn{
+        background: #30be21;
+    }
+    .item [item-start] {
+        margin: 8px 16px 8px 8px;
+    }
 }

@@ -51,13 +51,33 @@ page-checkout {
         margin-bottom: 12px !important;
     }
 
-    .list
-	{
-    margin-bottom: 55px
-    }
+    // .list
+	// {
+    // margin-bottom: 55px
+    // }
     
     .nlabel
     {
 color:black
+    }
+    .item-radio.item{
+        padding-left: 0;
+    }
+    .item-radio.item ion-label {
+        margin-left: 0;
+        display: inline-block;
+        margin-top: 0;
+        color: #777;
+        font-size: 14px !important;
+    }
+    .item-radio.item .input-wrapper{
+        display: block;
+        margin: 10px 10px 10px 0;
+    }
+    .item{
+        padding-left: 0;
+    }
+    .delivery-details-card{
+        margin-bottom: 70px !important;
     }
 }
