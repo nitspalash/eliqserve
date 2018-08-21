@@ -69,6 +69,9 @@ color:black
         margin-top: 0;
         color: #777;
         font-size: 14px !important;
+        &.d-block{
+            display: block;
+        }
     }
     .item-radio.item .input-wrapper{
         display: block;
@@ -79,5 +82,10 @@ color:black
     }
     .delivery-details-card{
         margin-bottom: 70px !important;
+    }
+    .check-form{
+        .item-input:last-child{
+            border-bottom: 1px solid #dedede !important;
+        }
     }
 }

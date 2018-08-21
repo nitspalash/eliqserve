@@ -28,6 +28,7 @@ export class OrderListPage {
   idSet:any;
   productId:any;
   disableBtn:boolean=false;
+  isShow:any;
   //className: string = 'alertstar';
   className:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -58,6 +59,16 @@ export class OrderListPage {
         console.log(this.orderArray)
   }
 })
+
+
+  }
+
+  show() {
+    this.isShow =1;
+  }
+
+  hide() {
+    this.isShow =0;
   }
 
   // review(){
