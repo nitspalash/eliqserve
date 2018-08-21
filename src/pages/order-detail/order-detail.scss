@@ -17,9 +17,17 @@ page-order-detail {
     .order-details h1{ color: #30be21; font-weight: 500; font-size: 1.7rem; margin-bottom: 1rem; }
     .order-details h3{ color: #333333; font-weight: 600;}
     .order-details p{ color: #646464;}
-    .item{ border-top: 1px solid #e1e1e1; display: flex; align-items: center; justify-content: space-between; padding: 0; }
+    .item{ border-top: 1px solid #e1e1e1; display: flex; align-items: center; justify-content: space-between; padding: 0;    margin: 10px 0; }
     .label{ margin-right: 0; display: flex; align-items: center; justify-content: space-between; }
     .sub-total{ color: #646464; font-size: 1.3rem; font-weight: 400;}
     .price{color: #30be21; font-weight: 500; font-size: 1.8rem !important;}
+    .dts-row{
+        border-bottom: #e1e1e1 1px solid;
+        padding-bottom: 10px;
+        margin-top: 10px;
+    }
+    .card-md, .card {
+        margin-bottom: 70px !important;
+    }
     
 }
