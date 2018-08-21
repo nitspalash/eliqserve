@@ -179,7 +179,7 @@ export class MyApp {
             handler: () => {
               console.log(data.message)
               //TODO: Your logic here
-              this.nav.setRoot('NotificationSettingsPage', { message: data.message });
+              this.nav.setRoot('HomePage', { message: data.message });
             }
           }]
         });
