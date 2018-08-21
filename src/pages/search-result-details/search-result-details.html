@@ -40,7 +40,10 @@
           <ion-card class="img-dv">
 			<div class="fr">
 			<a (click)="makeWishlist(item.id,wish)" *ngIf="wish"><ion-icon class="wish-icon" item-end name="heart"></ion-icon>
-                </a></div>
+                </a>
+                <a (click)="makeWishlist(item.id,wish)" *ngIf="!wish"><ion-icon class="wish-icon" item-end name="heart-outline"></ion-icon>
+                </a>
+              </div>
                 <img  src="{{imageLink+item.productsimages[0].name}}" alt="">
            
           </ion-card>
@@ -53,9 +56,9 @@
                 
                 
                 
-
-                <a (click)="makeWishlist(item.id,wish)" *ngIf="!wish"><ion-icon class="wish-icon" item-end name="heart-outline"></ion-icon>
-                </a>
+              <!-- <div class="fr">
+                
+              </div> -->
               </ion-item>
               <div class="brdr-btm">
                 <h6 class="ml" text-uppercase>{{item.quantity}} ml
@@ -113,7 +116,7 @@
           
   
           <ion-card style="background: none; box-shadow: none;">
-            <ion-row>
+            <ion-row  class="btn-area-row">
               <ion-col col-6>
                 <button ion-button block class="add-to-cart" *ngIf="user_exist==1" type="submit" (click)="addcart(item.id)" style="background-color:rgb(57, 214, 96)">AddToCart</button>
               </ion-col>
@@ -125,7 +128,7 @@
           </ion-card>
 
           <ion-card style="background: none; box-shadow: none;">
-            <ion-row>
+            <ion-row class="btn-area-row">
               <ion-col col-6>
                 <button ion-button block class="add-to-cart" *ngIf="user_exist==0" type="submit" (click)="cartAlert()" style="background-color:rgb(57, 214, 96)">AddToCart</button>
               </ion-col>

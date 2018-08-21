@@ -60,61 +60,99 @@ export class OrderListPage {
 })
   }
 
-  review(data){
- let prompt = this.alertCtrl.create({
-  title: 'Rate Venue',
-  inputs: [{
-      name: 'review',
-      placeholder: 'Review'
-    },
-  ],
-  buttons: [
-    {
-      text:`<rating [(ngModel)]= 'rate'         
-       readOnly = 'false'        
-       max = 5        
-       emptyStarIconName =star-outline       
-       halfStarIconName = star-half       
-       starIconName = star        
-       nullable = false       
-      (ngModelChange) = onModelChange($event)>
-      </rating>`,
+  // review(){
+  //   let prompt = this.alertCtrl.create({
+  //     title: 'Rate Venue',
+  //     inputs: [{
+  //         name: 'review',
+  //         placeholder: 'Review'
+  //       },
+  //     ],
+  //     buttons: [
+  //       {
+  //         text:`<rating [(ngModel)]= 'rate'         
+  //          readOnly = 'false'        
+  //          max = 5        
+  //          emptyStarIconName =star-outline       
+  //          halfStarIconName = star-half       
+  //          starIconName = star        
+  //          nullable = false       
+  //         (ngModelChange) = onModelChange($event)>
+  //         </rating>`,
+    
+  //       },
+  //       {
+  //         text: 'Cancel',
+  //         handler: data => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Save',
+  //         handler: data => {
+  //           console.log('Saved clicked');
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   prompt.present();
+  // }
 
-    },
-    {
-      text: 'Cancel',
-      handler: data => {
-        console.log('Cancel clicked');
-      }
-    },
-    {
-      text: 'Save',
-      handler: data => {
-        console.log('Saved clicked');
-      }
-    }
-  ]
-});
-prompt.present();
-    const alert = this.alertCtrl.create({
-      title: 'Rate your speech:',
-      //subTitle: bleu,
-      cssClass: 'alertstar',
-      enableBackdropDismiss:false,
-      buttons: [
-           { text: '1', handler: data => { this.resolveRec(1);}},
-           { text: '2', handler: data => { this.resolveRec(2);}},
-           { text: '3', handler: data => { this.resolveRec(3);}},
-           { text: '4', handler: data => { this.resolveRec(4);}},
-           { text: '5', handler: data => { this.resolveRec(5);}}
-      ]
- });
- alert.present();
-  }
+//   review(data){
+//  let prompt = this.alertCtrl.create({
+//   title: 'Rate Venue',
+//   inputs: [{
+//       name: 'review',
+//       placeholder: 'Review'
+//     },
+//   ],
+//   buttons: [
+//     {
+//       text:`<rating [(ngModel)]= 'rate'         
+//        readOnly = 'false'        
+//        max = 5        
+//        emptyStarIconName =star-outline       
+//        halfStarIconName = star-half       
+//        starIconName = star        
+//        nullable = false       
+//       (ngModelChange) = onModelChange($event)>
+//       </rating>`,
 
-  resolveRec(data){
+//     },
+//     {
+//       text: 'Cancel',
+//       handler: data => {
+//         console.log('Cancel clicked');
+//       }
+//     },
+//     {
+//       text: 'Save',
+//       handler: data => {
+//         console.log('Saved clicked');
+//       }
+//     }
+//   ]
+// });
+// prompt.present();
+//     const alert = this.alertCtrl.create({
+//       title: 'Rate your speech:',
+//       //subTitle: bleu,
+//       cssClass: 'alertstar',
+//       enableBackdropDismiss:false,
+//       buttons: [
+//            { text: '1', handler: data => { this.resolveRec(1);}},
+//            { text: '2', handler: data => { this.resolveRec(2);}},
+//            { text: '3', handler: data => { this.resolveRec(3);}},
+//            { text: '4', handler: data => { this.resolveRec(4);}},
+//            { text: '5', handler: data => { this.resolveRec(5);}}
+//       ]
+//  });
+//  alert.present();
+//   }
 
-  }
+//   resolveRec(data){
+
+//   }
 
   // review(prod_id)
   // {

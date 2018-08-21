@@ -21,6 +21,10 @@ page-wishlist {
       .wishlist-area .item [item-end] {text-align: right; align-items: flex-start; margin-top: 0;}
       .heart{color: #30be21;}
       .wishlist-area .item [item-end] p{ color: #30be21; font-weight: 500;}
+      .item.item-block .item-inner{border-bottom: none !important;}
+      .item {
+        padding-left: 0px;
+      }
     
     }
     

@@ -65,7 +65,7 @@
   </ion-item>
   
   <ion-item menuClose (click)="wishlist()" *ngIf="user_exist==1 && istype==1">
-    <ion-icon name="list-box" item-start></ion-icon> My Wishlist
+    <ion-icon name="heart" item-start></ion-icon> My Wishlist
   </ion-item>
   
   
@@ -93,10 +93,11 @@
  
 <ion-footer  class="footer" *ngIf="!footerIsHidden">
   <ion-toolbar style=" padding: 0;">
-      <ion-row>
+      <ion-row class="bottom-page-tab">
         <ion-col text-center (click)="gohome()">
-            <a >
-                 <img src="assets/imgs/home-menu.png" alt="" />
+            <a class="active">
+                 <img src="assets/imgs/home-menu.png" alt="" class="img-normal" />
+                 <img src="assets/imgs/home-menu-active.png" alt="" class="img-active" />
                 <p class="titl">Home</p>
             </a>
         </ion-col>
@@ -115,7 +116,7 @@
           </a>
         </ion-col>
         <ion-col text-center (click)="sellerOrderList()"  *ngIf="user_exist==1 && istype==2">
-          <a  >
+          <a>
               <img src="assets/imgs/orders.png" alt="" />
             <p class="titl">Orders</p>
           </a>

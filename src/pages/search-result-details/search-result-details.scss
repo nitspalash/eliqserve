@@ -100,8 +100,16 @@ page-search-result-details {
     box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
   }
   .card{margin:0 !important; background:#fff; width: 100% !important; box-shadow: none !important;}
-  .fr{position: absolute; width:30px; height:30px; right:20px; bottom:24px;}
+  .fr{position: absolute; width:30px; height:30px; right:20px; top:24px;}
   .fr a{color:#30be21; font-size:24px;}
   .content{background:#fff !important;}
   h2{font-weight:600; color:#000; text-align:left;}
+  .btn-area-row{
+    .col{
+      padding: 0;
+      .button{
+        border-radius: 0 !important;
+      }
+    }
+  }
   }

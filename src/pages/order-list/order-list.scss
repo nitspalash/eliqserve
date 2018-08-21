@@ -106,4 +106,21 @@ page-order-list {
         margin-bottom: 60px !important;
     }
     .card-md{margin-bottom: 12px !important ;}
+    .rating-area{
+        &.card .item.item-block .item-inner{
+            border-bottom: #eee 1px solid !important;
+        }
+        ul{
+            padding: 0;
+            text-align: center;
+            li{
+                display: inline;
+                border: 0px;
+                background: none;
+                padding: 5px 10px;
+                font-size: 20px;
+                color: #FF9800;
+            }
+        }
+    }
 }
