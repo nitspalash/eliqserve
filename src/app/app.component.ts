@@ -1,17 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-
-import { Platform, MenuController, Nav } from 'ionic-angular';
-
+import { Platform, MenuController, Nav,AlertController } from 'ionic-angular';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import{AfterSplashPage} from '../pages/after-splash/after-splash';
 import {HomePage} from '../pages/home/home'
 import {AboutPage} from '../pages/about/about'
 import { Events } from 'ionic-angular';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {Storage} from '@ionic/storage'
 import {TabsPage} from '../pages/tabs/tabs';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 export interface PageInterface {
  
@@ -31,6 +29,7 @@ export class MyApp {
   user_exist:any;
   loginuser:any;
   istype:any;
+  token:any;
   public footerIsHidden: boolean = false;
   constructor(
     public platform: Platform,
@@ -38,11 +37,13 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public storage: Storage,
-    public events: Events
+    public events: Events,
+    private push: Push,
+    public alertCtrl: AlertController
     
   ) {
   	 
-   this.eve();
+    this.eve();
     this.abc();
     this.initializeApp();
     this.hideSplashScreen();
@@ -51,6 +52,15 @@ export class MyApp {
       console.log('Welcome', 'at', time);
     })
    
+    if(this.token==""){
+      
+      setInterval(() => {
+        alert(localStorage.getItem('TOKEN'));
+           this.initPushNotification();
+        }, 500);
+    }
+
+
   }
 
   eve()
@@ -93,7 +103,7 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
 
-     
+     this.initPushNotification();
 
 
       this.statusBar.styleDefault();
@@ -115,6 +125,79 @@ export class MyApp {
     // this.nav.setRoot(page.component);
   
   }
+
+
+  initPushNotification() {
+    if (!this.platform.is('cordova')) {
+      console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
+      return;
+    }
+    const options: PushOptions = {
+      android: {
+        senderID: '609215899596',
+        icon: "assets/img/alert-icon",
+        sound:true,
+        vibrate:true,
+        messageKey:'message',
+        titleKey:'body',
+        forceShow:true,
+      },
+      ios: {
+        alert: 'true',
+        badge: false,
+        sound: 'true'
+      },
+      windows: {}
+    };
+    const pushObject: PushObject = this.push.init(options);
+  
+    pushObject.on('registration').subscribe((registration: any) => {
+      console.log('Device registered', registration);
+
+
+      localStorage.setItem('TOKEN', registration.registrationId);
+
+      this.token= localStorage.getItem('TOKEN');
+      
+    });
+    pushObject.on('notification').subscribe((data: any) => {
+      console.log('message -> ' + data.body);
+      console.log(data.additionalData.foreground);
+      //if user using app and push notification comes
+      if (data.additionalData.foreground) {
+        console.log(data.additionalData.foreground);
+        // if application open, show popup
+        let confirmAlert = this.alertCtrl.create({
+          title: 'New Notification',
+          message: data.message,
+          buttons: [{
+            text: 'Ignore',
+            role: 'cancel'
+          }, {
+            text: 'View',
+            handler: () => {
+              //TODO: Your logic here
+              this.nav.setRoot('NotificationSettingsPage', { message: data.message });
+            }
+          }]
+        });
+        confirmAlert.present();
+      } else {
+        //if user NOT using app and push notification comes
+        //TODO: Your logic on click of push notification directly
+        //this.nav.setRoot('NotificationSettingsPage', {message: data.message });
+        console.log('Push notification clicked');
+      }
+    });
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+  
+  }
+
+
+
+
+
+
 
   public login()
   {
