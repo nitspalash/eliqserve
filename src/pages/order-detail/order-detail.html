@@ -32,7 +32,7 @@
 
 <ion-content>
   <ion-card padding *ngFor="let item of orderDetailsArray">
-    <ion-row>
+    <ion-row class="dts-row">
       <ion-col>
         <h2 class="tittle-text">Order Id :</h2>
       </ion-col>
@@ -43,25 +43,25 @@
 
 
 
-    <ion-row>
+    <ion-row class="dts-row">
       <ion-col>
         <h2 class="tittle-text">Delivery:</h2>
       </ion-col>
       <ion-col>
-        <p class="text-p" >{{deliverarray['id']}} {{deliverarray['first_name']}} {{deliverarray['last_name']}} {{deliverarray['address1']}} {{deliverarray['address2']}} {{deliverarray['city']}} {{deliverarray['state']}} {{deliverarray['pin']}} {{deliverarray['country']}}</p>
+        <p class="text-p" >{{deliverarray['id']}} <b>{{deliverarray['first_name']}} {{deliverarray['last_name']}}</b> <br> {{deliverarray['address1']}} {{deliverarray['address2']}} {{deliverarray['city']}} {{deliverarray['state']}} {{deliverarray['pin']}} {{deliverarray['country']}}</p>
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="dts-row">
         <ion-col>
           <h2 class="tittle-text">Shipping:</h2>
         </ion-col>
         <ion-col>
-          <p class="text-p">{{shippingarray['id']}} {{shippingarray['first_name']}} {{shippingarray['last_name']}} {{shippingarray['address1']}} {{shippingarray['address2']}} {{shippingarray['city']}} {{shippingarray['state']}} {{shippingarray['pin']}} {{shippingarray['country']}}</p>
+          <p class="text-p">{{shippingarray['id']}} <b>{{shippingarray['first_name']}} {{shippingarray['last_name']}}</b> <br> {{shippingarray['address1']}} {{shippingarray['address2']}} {{shippingarray['city']}} {{shippingarray['state']}} {{shippingarray['pin']}} {{shippingarray['country']}}</p>
         </ion-col>
       </ion-row>
 
-    <ion-row>
+    <ion-row class="dts-row">
       <ion-col>
         <h2 class="tittle-text">Payment:</h2>
       </ion-col>
@@ -70,7 +70,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="dts-row">
       <ion-col>
         <h2 class="tittle-text">Order Date:</h2>
       </ion-col>
@@ -79,7 +79,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="dts-row">
         <ion-col>
           <h2 class="tittle-text">Order Status:</h2>
         </ion-col>
