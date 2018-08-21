@@ -33,7 +33,27 @@
 <ion-content>
   <ion-list >
     <ion-card  *ngFor="let item of orderArray"   >
-      <ion-item >
+        <ion-item>
+            <ion-avatar item-start>
+              <img src="assets/imgs/b-b.png" alt="">
+            </ion-avatar>
+            <ion-row>
+              <ion-col col-8>
+                  <h2>#00{{item.id}}</h2>
+                  <h3>Product Name</h3>
+                  <p>{{item.order_date|date:'MMM dd,yyyy'}}</p>
+                  <h4><b>Total: </b> ${{item.total_price}}.00</h4>
+                  <p>you have rated <span>{{rate}}</span></p>
+              </ion-col>
+              <ion-col col-4>
+                  <button item-end ion-button class="detail-btn" (click)="goToOrderDetails(item.id)"> Detail </button>
+                  <button item-end ion-button class="detail-btn" (click)="review(item.id)"> Review </button>
+              </ion-col>
+            </ion-row>
+                
+            
+          </ion-item>
+      <!-- <ion-item >
         <ion-row>
           <ion-col col-4>
             <h2 class="f-w-5">Order Id:</h2>
@@ -73,8 +93,8 @@
         > 
 </rating>
 
-      </ion-item >
-      <ion-item>you have rated <p>{{rate}}</p></ion-item>
+      </ion-item > -->
+      <!-- <ion-item>you have rated <p>{{rate}}</p></ion-item> -->
       <!-- <button item-end ion-button class="detail-btn" (click)="alert()"> alert </button> -->
     </ion-card >
 
