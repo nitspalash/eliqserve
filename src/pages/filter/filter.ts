@@ -68,7 +68,7 @@ this.formGroup=new FormGroup({
 
   ionViewDidLoad() {
     this.categorylist();
-    this.events.publish('hideFooter', { isHidden: true});
+    this.events.publish('hideFooter', { isHidden: false});
     console.log('ionViewDidLoad FilterPage');
   }
 

@@ -28,25 +28,37 @@
   </ion-navbar>
 
 </ion-header>
-
+<div class="rating-part" *ngIf ="isShow ==1">
+    <ion-card class="rating-area" >
+        <ion-item>
+            <ion-input type="text" placeholder="Write your review"></ion-input>
+          </ion-item>
+        <rating [(ngModel)]="rate"
+        readOnly="false" 
+        max="5" 
+        emptyStarIconName="star-outline" 
+        halfStarIconName="star-half" 
+        starIconName="star" 
+        nullable="false"
+        
+        > 
+  </rating>
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button color="secondary" block>Submit</button>
+    </ion-col>
+    <ion-col col-6>
+        <button ion-button color="light" block  (click)='hide()'>Cancel</button>
+      
+      </ion-col>
+  </ion-row>
+  </ion-card>
+</div>
 
 <ion-content>
   <ion-list >
-      <!-- <ion-card class="rating-area">
-          <ion-item>
-              <ion-input type="text" placeholder="Write your review"></ion-input>
-            </ion-item>
-          <rating [(ngModel)]="rate"
-          readOnly="false" 
-          max="5" 
-          emptyStarIconName="star-outline" 
-          halfStarIconName="star-half" 
-          starIconName="star" 
-          nullable="false"
-          
-          > 
-    </rating>
-    </ion-card> -->
+      
+    
     <ion-card  *ngFor="let item of orderArray"   >
         <ion-item>
             <ion-avatar item-start>
@@ -63,7 +75,7 @@
               <ion-col col-4>
                   <button item-end ion-button class="detail-btn" (click)="goToOrderDetails(item.id)"> Detail </button>
                   <!-- <button item-end ion-button class="detail-btn" (click)="review(item.id)"> Review </button> -->
-                  <button item-end ion-button class="detail-btn"> Review </button>
+                  <button item-end ion-button class="detail-btn" (click)='show()'> Review </button>
               </ion-col>
             </ion-row>
                 
