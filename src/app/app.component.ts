@@ -42,7 +42,8 @@ export class MyApp {
     public alertCtrl: AlertController
     
   ) {
-  	 
+
+    
     this.eve();
     this.abc();
     this.initializeApp();
@@ -176,6 +177,7 @@ export class MyApp {
           }, {
             text: 'View',
             handler: () => {
+              console.log(data.message)
               //TODO: Your logic here
               this.nav.setRoot('NotificationSettingsPage', { message: data.message });
             }
@@ -309,6 +311,8 @@ public settings()
 }
 
 
-
+// payment(){
+//   this.nav.push ('PaymentPage')
+// }
 
 }

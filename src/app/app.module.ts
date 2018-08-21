@@ -28,7 +28,10 @@ import { File } from '@ionic-native/file';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 // import {AppRate} from '@ionic-native/app-rate';
+
+import {Braintree} from '@ionic-native/braintree';
 import { Push } from '@ionic-native/push';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -59,6 +62,7 @@ import { Push } from '@ionic-native/push';
     StatusBar,
     SplashScreen,
     ImagePicker,
+    Braintree,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 
     Camera,
