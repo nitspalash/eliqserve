@@ -61,19 +61,41 @@ export class OrderListPage {
   }
 
   review(data){
-    // let alert = this.alertCtrl.create({
-    //   title: '<h1 class="c-no-margin winner-alert-title">Congratulations!</h1>',
-    //   message: 'fdgdf'+'<rating [(ngModel)]="rate" readOnly="false"max="5"emptyStarIconName="star-outline"halfStarIconName="star-half"'+'starIconName:"star"' +  'nullable="false" >' + '</rating>',
-    //   buttons: [
-    //     {
-    //       text: 'Select Celebrity',
-    //       handler: () => {
-    //         this.navCtrl.push("CelebrityList");
-    //       }
-    //     }
-    //   ]
-    // });
-    // alert.present();
+ let prompt = this.alertCtrl.create({
+  title: 'Rate Venue',
+  inputs: [{
+      name: 'review',
+      placeholder: 'Review'
+    },
+  ],
+  buttons: [
+    {
+      text:`<rating [(ngModel)]= 'rate'         
+       readOnly = 'false'        
+       max = 5        
+       emptyStarIconName =star-outline       
+       halfStarIconName = star-half       
+       starIconName = star        
+       nullable = false       
+      (ngModelChange) = onModelChange($event)>
+      </rating>`,
+
+    },
+    {
+      text: 'Cancel',
+      handler: data => {
+        console.log('Cancel clicked');
+      }
+    },
+    {
+      text: 'Save',
+      handler: data => {
+        console.log('Saved clicked');
+      }
+    }
+  ]
+});
+prompt.present();
     const alert = this.alertCtrl.create({
       title: 'Rate your speech:',
       //subTitle: bleu,
