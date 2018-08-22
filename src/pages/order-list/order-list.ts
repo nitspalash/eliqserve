@@ -7,6 +7,7 @@ import { Events } from 'ionic-angular';
 import { CssSelector } from '@angular/compiler';
 import { Title } from '@angular/platform-browser/src/browser/title';
 import { debounce } from 'ionic-angular/util/util';
+import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 /**
  * Generated class for the OrderListPage page.
  *
@@ -20,14 +21,20 @@ import { debounce } from 'ionic-angular/util/util';
   templateUrl: 'order-list.html',
 })
 export class OrderListPage {
+  ChooseButton:boolean= false;
+  product:any;
   loginuser:any;
+  reviewArray:any;
   userId:any;
   userIdSet:any;
   orderArray:any;
+  itemnumber:any;
   rate:any;
+  comment:any;
   idSet:any;
   productId:any;
-  disableBtn:boolean=false;
+  imagelink:any;
+  // disableBtn:boolean=false;
   isShow:any;
   //className: string = 'alertstar';
   className:any;
@@ -55,282 +62,61 @@ export class OrderListPage {
       
       if(details.Ack == 1){
         console.log("order list")
+        
         this.orderArray=details.orderlist
+        this.reviewArray=details.reviewrating
+        this.imagelink=details.image_link
+        console.log(this.imagelink)
         console.log(this.orderArray)
+        console.log(this.reviewArray)
   }
 })
 
 
   }
 
-  show() {
+  show(prod_id,item) {
     this.isShow =1;
+    this.product=prod_id
+// this.itemnumber=item;
+    item.ChooseButton = true;
+    console.log("listId", item.id);
   }
 
   hide() {
     this.isShow =0;
   }
 
-  // review(){
-  //   let prompt = this.alertCtrl.create({
-  //     title: 'Rate Venue',
-  //     inputs: [{
-  //         name: 'review',
-  //         placeholder: 'Review'
-  //       },
-  //     ],
-  //     buttons: [
-  //       {
-  //         text:`<rating [(ngModel)]= 'rate'         
-  //          readOnly = 'false'        
-  //          max = 5        
-  //          emptyStarIconName =star-outline       
-  //          halfStarIconName = star-half       
-  //          starIconName = star        
-  //          nullable = false       
-  //         (ngModelChange) = onModelChange($event)>
-  //         </rating>`,
-    
-  //       },
-  //       {
-  //         text: 'Cancel',
-  //         handler: data => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       },
-  //       {
-  //         text: 'Save',
-  //         handler: data => {
-  //           console.log('Saved clicked');
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   prompt.present();
-  // }
+  submit()
+  {
+    console.log(this.comment)
+    console.log(this.rate)
+    this.idSet={
+"user_id":this.userId,
+"prod_id": this.product,
+"rating":this.rate,
+"review":this.comment,
+}
 
-//   review(data){
-//  let prompt = this.alertCtrl.create({
-//   title: 'Rate Venue',
-//   inputs: [{
-//       name: 'review',
-//       placeholder: 'Review'
-//     },
-//   ],
-//   buttons: [
-//     {
-//       text:`<rating [(ngModel)]= 'rate'         
-//        readOnly = 'false'        
-//        max = 5        
-//        emptyStarIconName =star-outline       
-//        halfStarIconName = star-half       
-//        starIconName = star        
-//        nullable = false       
-//       (ngModelChange) = onModelChange($event)>
-//       </rating>`,
+console.log(this.idSet)
 
-//     },
-//     {
-//       text: 'Cancel',
-//       handler: data => {
-//         console.log('Cancel clicked');
-//       }
-//     },
-//     {
-//       text: 'Save',
-//       handler: data => {
-//         console.log('Saved clicked');
-//       }
-//     }
-//   ]
-// });
-// prompt.present();
-//     const alert = this.alertCtrl.create({
-//       title: 'Rate your speech:',
-//       //subTitle: bleu,
-//       cssClass: 'alertstar',
-//       enableBackdropDismiss:false,
-//       buttons: [
-//            { text: '1', handler: data => { this.resolveRec(1);}},
-//            { text: '2', handler: data => { this.resolveRec(2);}},
-//            { text: '3', handler: data => { this.resolveRec(3);}},
-//            { text: '4', handler: data => { this.resolveRec(4);}},
-//            { text: '5', handler: data => { this.resolveRec(5);}}
-//       ]
-//  });
-//  alert.present();
-//   }
-
-//   resolveRec(data){
-
-//   }
-
-  // review(prod_id)
-  // {
-  //   console.log(this.productId);
-  //   console.log(prod_id);
-
-    // if (this.productId==prod_id)
-    // {
-
-    //   const alert = this.alertCtrl.create({
-    //     title: 'You have already submitted rating on this product',
-    //        buttons: ['ok']
-    //   });
-    //   alert.present();
-
-    // }
-// else{
-//     this.productId=prod_id;
-//   const alert = this.alertCtrl.create({
-//     title: 'Rate your product:',
-
-//     cssClass:this.className,
-//     enableBackdropDismiss:true,
-
-//     inputs:[
-//       {
-//         name:'comment',
-//         placeholder:'Write your comments',
-        
-        
-//       }
-//           ],
-
-
-//     buttons: [
-//          { text: '1',
-//          handler: (data) => { 
-//           this.rating(1,data.comment)
-//           this.onclickone()
-//          return false;
-//          },
-//         },
-         
-//          { text: '2',
-//          handler: (data) => { 
-//           this.rating(2,data.comment)
-//           this.onclicktwo()
-          
-//           return false;
-//           }},
-//          { text: '3',
-//          handler: (data) => { 
-//           this.rating(3,data.comment)
-//           this.onclickthree()
-        
-//           return false;
-//           }},
-
-//          { text: '4',
-//          handler: (data) => { 
-//           this.rating(4,data.comment)
-//           this.onclickfour()
-//           return false;
-//           }},
-//          { text: '5',
-//          handler: (data) => { 
-//           this.rating(5,data.comment)
-//           this.onclickfive()
-          
-//           return false;
-//           }},
-
-//         {
-//                   text: 'Submit',
-//                   handler: (data) => {
-
-//                     if (!data.comment)
-//                     {
-//                       console.log('false')
-//                       return false;
-                      
-//                     }else
-//                     {
-                    
-//                       console.log('logged in!')
-//                       // console.log(data.comment)
-//                       console.log('idset',this.idSet);
-
-//                       this.authProvider.productRating(this.idSet).subscribe(res => {
+    this.isShow =0;
+    this.authProvider.productRating(this.idSet).subscribe(res => {
      
-//                         console.log(res);
-                        
-//                         let details = res
-//                         console.log("review")
-//                         // this.disableBtn=!this.disableBtn;
-//                         if(details.Ack == 1){
-//                           this.rate=details.rating;
-//                           this.className='alertstar';
-//                           console.log(this.rate);
-//                     //    
-//                     }
-//                   })
-                     
-//                     }
-                   
-//                   },cssClass:'btnsubmit'
-//                 }
-        
-//     ]
-// });
-// alert.present();
-// }
-
-
-  
+  console.log(res);                       
+  let details = res
+  console.log("review")
+  if(details.Ack == 1)
+  {
+    // this.itemnumber.ChooseButton = true;
+    // this.disable=true
+  }
+  })     
  
-  // }
+    this.comment='';
+    this.rate='';
+  }
 
-  // onclickone()
-  // {
-  //   console.log('one')
-  //   this.className = 'another-classone'
-  // }
-
-
-  // onclicktwo()
-  // {
-  //   console.log('two')
-  //   this.className = 'another-classtwo'
-  // }
-
-  // onclickthree()
-  // {
-  //   console.log('three')
-  //   this.className = 'another-classthree'
-  // }
-
-  // onclickfour()
-  // {
-  //   console.log('four')
-  //   this.className = 'another-classfour'
-  // }
-  // onclickfive()
-  // {
-  //   console.log('five')
-  //   this.className = 'another-classfive'
-  // }
-  // onclick()
-  // {
-  //   console.log('hi')
-  //   this.className = 'another-class'
-  // }
-
-//   rating(rating,comment)
-//   {
-// console.log(rating)
-// console.log(comment)
-
-// this.idSet={
-// "user_id":this.userId,
-// "prod_id":this.productId,
-// "rating":rating,
-// "review":comment,
-// }
-
-// console.log(this.idSet);
-//   }
 
   ionViewDidLoad() {
     this.events.publish('hideFooter', { isHidden: false});

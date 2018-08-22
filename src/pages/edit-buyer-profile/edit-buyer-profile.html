@@ -58,7 +58,7 @@
 
   <ion-row>
     <ion-col col>
-      <ion-input type="date" placeholder="dob" formControlName="dob"></ion-input>
+      <input type="date" min="1970-12-31" max="2008-12-31" placeholder="dob" formControlName="dob">
     </ion-col>
   </ion-row>
 
@@ -69,8 +69,8 @@
   </ion-row>
 
   <ion-row>
-    <ion-col col>
-       <button ion-button type="submit" block round >Submit Details</button> 
+    <ion-col col-12>
+       <button class="btn-submit" ion-button type="submit" block >Submit Details</button> 
     </ion-col>
   </ion-row>
 

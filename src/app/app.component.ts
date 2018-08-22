@@ -30,6 +30,11 @@ export class MyApp {
   loginuser:any;
   istype:any;
   token:any;
+  homeactive:boolean=true;
+  searchactive:boolean=false;
+  ordersactive:boolean=false;
+  wishlistactive:boolean=false;
+  profileactive:boolean=false;
   public footerIsHidden: boolean = false;
   constructor(
     public platform: Platform,
@@ -253,31 +258,64 @@ public buyerprofile()
 public gohome()
 {
   this.nav.push ('HomePage')
+  this.homeactive =true
+  this.profileactive =false
+  this.ordersactive =false
+  this.wishlistactive =false
+  this.searchactive =false;
+ 
 }
 
 public goSearch()
 {
   this.nav.push ('FilterPage')
+  this.searchactive =true;
+  this.homeactive=false;
+  this.wishlistactive =false;
+  this.ordersactive =false;
+  this.profileactive =false
 }
 
 public wishlist()
 {
   this.nav.push ('WishlistPage')
+  this.wishlistactive =true
+  this.searchactive =false;
+  this.homeactive=false;
+    this.ordersactive =false;
+  this.profileactive =false
 }
 
 public goOrder()
 {
   this.nav.push ('OrderListPage') 
+  this.ordersactive =true
+  this.wishlistactive =false
+  this.searchactive =false;
+  this.homeactive=false;
+     this.profileactive =false
+  
 }
 
 public goSellerProfile()
 {
   this.nav.push ('ProfilePage') 
+  this.profileactive =true
+  this.ordersactive =false
+  this.wishlistactive =false
+  this.searchactive =false;
+  this.homeactive=false;
+  
 }
 
 public goBuyerProfile()
 {
   this.nav.push ('BuyerProfilePage') 
+  this.profileactive =true
+  this.ordersactive =false
+  this.wishlistactive =false
+  this.searchactive =false;
+  this.homeactive=false;
 }
 
 public goWishlist()

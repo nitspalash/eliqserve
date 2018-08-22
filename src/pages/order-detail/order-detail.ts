@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice';
 import { Events } from 'ionic-angular';
 /**
@@ -15,6 +15,7 @@ import { Events } from 'ionic-angular';
   templateUrl: 'order-detail.html',
 })
 export class OrderDetailPage {
+  disabled:boolean=false;
   parameter:any
   orderSet:any;
   loginuser:any;
@@ -26,6 +27,8 @@ export class OrderDetailPage {
   shippingarray:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
+  public alertCtrl:AlertController,
+  public loadingCtrl:LoadingController,
 public events:Events) {
 
     
@@ -102,29 +105,63 @@ console.log('shi',this.shippingarray);
 
   cancelOrder()
   {
+    this.disabled=true
+
+    
 this.cancelOrderSet=
 {
   "order_id":this.parameter,
-  "order_status":"c"
+  "order_status":"C"
 }
 console.log (this.cancelOrderSet)
 
 
 
 this.authProvider.cancelOrder(this.cancelOrderSet).subscribe(res => {
+  
+  let loading = this.loadingCtrl.create({
+    content: 'Please wait...',
+    duration: 6000
+  });
+
+  loading.present();
   console.log ('cancel order')
   console.log(res);
   
-//   let details = res
+  let details = res
   
-//   if(details.Ack == 1){
+  if(details.Ack == 1){
 
-// this.orderDetailsArray=details.order_details
-// // console.log (this.orderDetailsArray)
-// // console.log (this.orderDetailsArray[0].order_status)
+   
+    console.log('orderset',this.orderSet)
 
-
-//   }
+    this.authProvider.orderDetails(this.orderSet).subscribe(res => {
+     
+      console.log(res);
+      
+      let details = res
+      
+      if(details.Ack == 1){
+    console.log ('orderDetails')
+    this.orderDetailsArray=details.order_details
+    console.log (this.orderDetailsArray)
+    console.log (this.orderDetailsArray[0].order_status)
+    
+    this.deliverarray=this.orderDetailsArray[0].deliver;
+    console.log ('deliver',this.deliverarray);
+    this.shippingarray=this.orderDetailsArray[0].shiping;
+    console.log('shi',this.shippingarray);
+    
+    }
+    })
+    
+    const alert = this.alertCtrl.create({
+      title: details.message,
+         buttons: ['ok']
+    });
+    alert.present();
+    // this.navCtrl.setRoot('HomePage');
+  }
 });
   }
 

@@ -42,5 +42,8 @@ export class BuyerProfilePage {
   {
     this.navCtrl.push ('EditBuyerProfilePage')
   }
-
+  editProfilePic()
+  {
+    console.log('edit profile picture')
+  }
 }

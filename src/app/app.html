@@ -97,50 +97,57 @@
   <ion-toolbar style=" padding: 0;">
       <ion-row class="bottom-page-tab">
         <ion-col text-center (click)="gohome()">
-            <a class="active">
-                 <img src="assets/imgs/home-menu.png" alt="" class="img-normal" />
-                 <img src="assets/imgs/home-menu-active.png" alt="" class="img-active" />
+            <a>
+                 <img src="assets/imgs/home-menu.png" alt=""  *ngIf="!homeactive" class="img-normal" />
+                 <img src="assets/imgs/home-menu-active.png"  *ngIf="homeactive" alt="" class="img-active" />
                 <p class="titl">Home</p>
             </a>
         </ion-col>
 
         <ion-col text-center (click)="goSearch()">
           <a>
-              <img src="assets/imgs/search.png" alt="" />
+              <img src="assets/imgs/search.png" alt=""  *ngIf="!searchactive"  class="img-normal"/>
+              <img src="assets/imgs/search-active.png" *ngIf="searchactive" alt="" class="img-active" />
+              
             <p class="titl">Search</p>
         </a>
         </ion-col>
 
         <ion-col text-center (click)="goOrder()" *ngIf="user_exist==1 && istype==1" >
           <a>
-              <img src="assets/imgs/orders.png" alt="" />
+              <img src="assets/imgs/orders.png" alt="" *ngIf="!ordersactive"  class="img-normal" />
+              <img src="assets/imgs/orders-active.png" *ngIf="ordersactive" alt="" class="img-active" />
             <p class="titl">Orders</p>
           </a>
         </ion-col>
         <ion-col text-center (click)="sellerOrderList()"  *ngIf="user_exist==1 && istype==2">
           <a>
-              <img src="assets/imgs/orders.png" alt="" />
+              <img src="assets/imgs/orders.png" alt="" *ngIf="!ordersactive" class="img-normal"/>
+              <img src="assets/imgs/orders-active.png" *ngIf="ordersactive" alt="" class="img-active" />
             <p class="titl">Orders</p>
           </a>
         </ion-col>
       
         <ion-col text-center (click)="wishlist()" *ngIf="user_exist==1 && istype==1">
-          <a (click)="goWishlist()">
-              <img src="assets/imgs/saved.png" alt="" />
+          <a>
+              <img src="assets/imgs/saved.png" alt="" *ngIf="!wishlistactive" class="img-normal" />
+              <img src="assets/imgs/saved-active.png" *ngIf="wishlistactive" alt="" class="img-active" />
             <p class="titl">Saved</p>
           </a>
         </ion-col>
 
         <ion-col text-center (click)="goSellerProfile()" *ngIf="user_exist==1 && istype==2">
             <a >
-                <img src="assets/imgs/profile.png" alt="" />
+                <img src="assets/imgs/profile.png" alt="" *ngIf="!profileactive" class="img-normal"/>
+                <img src="assets/imgs/profile-active.png" *ngIf="profileactive" alt="" class="img-active" />
               <p class="titl">Profile</p>
             </a>
           </ion-col>
 
           <ion-col text-center (click)="goBuyerProfile()"  *ngIf="user_exist==1 && istype==1">
             <a >
-                <img src="assets/imgs/profile.png" alt="" />
+                <img src="assets/imgs/profile.png" alt="" *ngIf="!profileactive" class="img-normal" />
+                <img src="assets/imgs/profile-active.png" *ngIf="profileactive" alt="" class="img-active" />
               <p class="titl">Profile</p>
             </a>
           </ion-col>
