@@ -7,12 +7,16 @@ page-edit-buyer-profile {
         .edit-buyer-profile input{
             padding: 12px 4px;
             margin: 0;
-            -webkit-box-shadow: 0px 0px 5px 0px rgba(227,218,227,1);
-            -moz-box-shadow: 0px 0px 5px 0px rgba(227,218,227,1);
-            box-shadow: 0px 0px 5px 0px rgba(227,218,227,1);
+            -webkit-box-shadow: 0px 0px 5px 0px #e3dae3;
+            box-shadow: 0px 0px 5px 0px #e3dae3;
             background: #fff;
             text-transform: capitalize;
+            width: 100%;
+            border: none;
         }
-    
-    
+        .btn-submit{
+            margin-bottom: 50px;
+            background-color: #32db64;
+        }
+        
 }

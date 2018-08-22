@@ -134,6 +134,6 @@
      
 
     </div>
-    <button ion-button style="margin-bottom:50px;" color="secondary" block *ngIf="item.order_status == 'P' ||  item.order_status == 'S' || item.order_status == 'A'" (click)="cancelOrder()">Cancel Order</button>
+    <button ion-button style="margin-bottom:50px;" color="secondary" block *ngIf="item.order_status == 'P' ||  item.order_status == 'S' || item.order_status == 'A'" (click)="cancelOrder()" [disabled]="disabled">Cancel Order</button>
   </ion-card>
 </ion-content>

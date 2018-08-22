@@ -58,4 +58,8 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
+  editSellerimage()
+  {
+    console.log('image')
+  }
 }

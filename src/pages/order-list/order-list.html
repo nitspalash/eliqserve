@@ -31,7 +31,7 @@
 <div class="rating-part" *ngIf ="isShow ==1">
     <ion-card class="rating-area" >
         <ion-item>
-            <ion-input type="text" placeholder="Write your review"></ion-input>
+            <ion-input type="text" placeholder="Write your review" [(ngModel)]="comment"></ion-input>
           </ion-item>
         <rating [(ngModel)]="rate"
         readOnly="false" 
@@ -45,7 +45,7 @@
   </rating>
   <ion-row>
     <ion-col col-6>
-      <button ion-button color="secondary" block>Submit</button>
+      <button ion-button color="secondary" block (click)="submit()">Submit</button>
     </ion-col>
     <ion-col col-6>
         <button ion-button color="light" block  (click)='hide()'>Cancel</button>
@@ -59,26 +59,38 @@
   <ion-list >
       
     
-    <ion-card  *ngFor="let item of orderArray"   >
-        <ion-item>
-            <ion-avatar item-start>
-              <img src="assets/imgs/b-b.png" alt="">
+    <ion-card  *ngFor="let item of orderArray"  >
+        <ion-item  *ngFor="let product of item.order_details">
+            <ion-avatar item-start *ngIf="product.product.product_image!=undefined">
+              <img src="{{imagelink+product.product.product_image}}" alt="">
+            </ion-avatar>
+            <ion-avatar item-start *ngIf="product.product.product_image==undefined">
+              <img src="assets/imgs/noimage.png" alt="">
             </ion-avatar>
             <ion-row>
-              <ion-col col-8>
-                  <h2>#00{{item.id}}</h2>
-                  <h3>Product Name</h3>
+              <ion-col col-8 >
+                  <h2>#00{{product.product_id}}</h2>
+                  <h3>{{product.product.product_name}}</h3>
                   <p>{{item.order_date|date:'MMM dd,yyyy'}}</p>
-                  <h4><b>Total: </b> ${{item.total_price}}.00</h4>
-                  <p>you have rated <span>{{rate}}</span></p>
+                  <h4><b>Total: </b> ${{product.product.price}}.00</h4>
+                  <!-- <p>you have rated <span>{{rate}}</span></p> -->
+                  <h5>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="ios-star-outline"></ion-icon>
+                  </h5>
               </ion-col>
               <ion-col col-4>
                   <button item-end ion-button class="detail-btn" (click)="goToOrderDetails(item.id)"> Detail </button>
                   <!-- <button item-end ion-button class="detail-btn" (click)="review(item.id)"> Review </button> -->
-                  <button item-end ion-button class="detail-btn" (click)='show()'> Review </button>
+                  <button item-end ion-button class="detail-btn" (click)='show(item.id,item)'[disabled]="item.ChooseButton"> Review </button>
+             
               </ion-col>
             </ion-row>
-
+                
+            
           </ion-item>
       <!-- <ion-item >
         <ion-row>

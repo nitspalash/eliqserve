@@ -1,3 +1,31 @@
 page-sellerorderdetails {
+.row{
 
+    border-bottom: #dddd 1px solid;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+.card{
+
+    padding: 0 !important;
+    box-shadow: none;
+    h1 {
+        margin: 25px 0 10px !important;
+        font-size: 18px;
+        font-weight: normal;
+        color: #4ec43c;
+    }
+}
+.input-wrapper .label {
+    font-size: 2rem !important;
+    margin-top: 0 !important;
+    display: flex;
+    justify-content: space-between;
+}
+.price {
+    font-size: 2rem !important;
+}
+.item{
+    padding-left: 0;
+}
 }
