@@ -45,7 +45,7 @@ export class VieworderPage {
           console.log(this.orderArray)
     }
     else{
-      this.orderArray = [];
+      this.orderArray = '';
     }
   })
   }

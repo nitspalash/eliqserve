@@ -103,103 +103,80 @@ shippingCharges:any;
   {
     
    
+ this.navCtrl.push ('PaymentPage',{param1:this.billParam,param2:this.shipParam})
+
+// this.shipdata=JSON.parse(this.shipParam);
+// this.billdata=JSON.parse(this.billParam);
+// console.log (this.shipdata)
+// this.cartvalue=
+// {"ship_id":this.shipdata.ship_id,
+//   "ship_fname":this.shipdata.ship_fname,
+// "ship_lname":this.shipdata.ship_lname,
+// "ship_mob":this.shipdata.ship_mob,
+// "ship_pin":this.shipdata.ship_pin,
+// "shipadd_one":this.shipdata.shipadd_one,
+// "shipadd_two":this.shipdata.shipadd_two,
+// "ship_city":this.shipdata.ship_city,
+// "ship_state":this.shipdata.ship_state,
+// "ship_country":this.shipdata.ship_country,
+
+// "billing_id":this.billdata.billing_id,
+// "bill_fname":this.billdata.bill_fname,
+// "bill_lname":this.billdata.bill_lname,
+// "bill_mob":this.billdata.bill_mob,
+// "bill_pin":this.billdata.bill_pin,
+// "billadd_one":this.billdata.billadd_one,
+// "billadd_two":this.billdata.billadd_two,
+// "bill_city":this.billdata.bill_city,
+// "bill_state":this.billdata.bill_state,
+// "bill_country":this.billdata.bill_country,
+// "user_id":this.userId,
+// // "paymethod":data.paymethod
+// }
+// var body ="ship_fname=" + this.shipdata.ship_fname + "ship_lname="+ this.shipdata.ship_lname +
+// + "ship_mob="+this.shipdata.ship_mob+
+// "ship_pin="+this.shipdata.ship_pin+
+// "shipadd_one="+this.shipdata.shipadd_one+
+// "shipadd_two="+this.shipdata.shipadd_two+
+// "ship_city="+this.shipdata.ship_city+
+// "ship_state="+this.shipdata.ship_state+
+// "ship_country="+this.shipdata.ship_country+
+// "bill_fname="+this.billdata.bill_fname+
+// "bill_lname="+this.billdata.bill_lname+
+// "bill_mob="+this.billdata.bill_mob+
+// "bill_pin="+this.billdata.bill_pin+
+// "billadd_one="+this.billdata.billadd_one+
+// "billadd_two="+this.billdata.billadd_two+
+// "bill_city="+this.billdata.bill_city+
+// "bill_state="+this.billdata.bill_state+
+// "bill_country="+this.billdata.bill_country+
+// "user_id="+this.userId+
+// // "paymethod="+data.paymethod
+//     console.log ("boidy",body)
 
 
-this.shipdata=JSON.parse(this.shipParam);
-this.billdata=JSON.parse(this.billParam);
-console.log (this.shipdata)
-this.cartvalue=
-{"ship_id":this.shipdata.ship_id,
-  "ship_fname":this.shipdata.ship_fname,
-"ship_lname":this.shipdata.ship_lname,
-"ship_mob":this.shipdata.ship_mob,
-"ship_pin":this.shipdata.ship_pin,
-"shipadd_one":this.shipdata.shipadd_one,
-"shipadd_two":this.shipdata.shipadd_two,
-"ship_city":this.shipdata.ship_city,
-"ship_state":this.shipdata.ship_state,
-"ship_country":this.shipdata.ship_country,
-
-"billing_id":this.billdata.billing_id,
-"bill_fname":this.billdata.bill_fname,
-"bill_lname":this.billdata.bill_lname,
-"bill_mob":this.billdata.bill_mob,
-"bill_pin":this.billdata.bill_pin,
-"billadd_one":this.billdata.billadd_one,
-"billadd_two":this.billdata.billadd_two,
-"bill_city":this.billdata.bill_city,
-"bill_state":this.billdata.bill_state,
-"bill_country":this.billdata.bill_country,
-"user_id":this.userId,
-// "paymethod":data.paymethod
-}
-var body ="ship_fname=" + this.shipdata.ship_fname + "ship_lname="+ this.shipdata.ship_lname +
-+ "ship_mob="+this.shipdata.ship_mob+
-"ship_pin="+this.shipdata.ship_pin+
-"shipadd_one="+this.shipdata.shipadd_one+
-"shipadd_two="+this.shipdata.shipadd_two+
-"ship_city="+this.shipdata.ship_city+
-"ship_state="+this.shipdata.ship_state+
-"ship_country="+this.shipdata.ship_country+
-"bill_fname="+this.billdata.bill_fname+
-"bill_lname="+this.billdata.bill_lname+
-"bill_mob="+this.billdata.bill_mob+
-"bill_pin="+this.billdata.bill_pin+
-"billadd_one="+this.billdata.billadd_one+
-"billadd_two="+this.billdata.billadd_two+
-"bill_city="+this.billdata.bill_city+
-"bill_state="+this.billdata.bill_state+
-"bill_country="+this.billdata.bill_country+
-"user_id="+this.userId+
-// "paymethod="+data.paymethod
-    console.log ("boidy",body)
-
-
-    // if (!this.payForm.value.paymethod)
-    // {
-    //   let alert = this.alertCtrl.create({
-    //     title: 'Please select the payment method',
-    //            buttons: ['ok']
-    //   });
-    //   alert.present();
-    // } 
-    // else{
-    //   this.authProvider.checkout(this.cartvalue).subscribe(res=>{
-    //     console.log('Hello')
-        
-    //     console.log(res);
-       
-    //     let details = res
-    //     if(details.ack == 1){
-    //       console.log ('checkout')
-    //       this.navCtrl.setRoot('HomePage');
-    //     }
-        
-    //     });
-    // }
-
-    this.authProvider.checkout(this.cartvalue).subscribe(res=>{
-      console.log('Hello')
+//     this.authProvider.checkout(this.cartvalue).subscribe(res=>{
+//       console.log('Hello')
       
-      console.log(res);
+//       console.log(res);
      
-      let details = res
-      if(details.ack == 1){
-        console.log ('checkout')
+//       let details = res
+//       if(details.ack == 1){
+//         console.log ('checkout')
 
         
 
-        const alert = this.alertCtrl.create({
-          title: details.message,
-             buttons: ['ok']
-        });
-        alert.present();
-        this.navCtrl.setRoot('HomePage');
-      }
+//         const alert = this.alertCtrl.create({
+//           title: details.message,
+//              buttons: ['ok']
+//         });
+//         alert.present();
+//         this.navCtrl.setRoot('HomePage');
+//       }
       
-      });
+//       });
  
 
-    // this.navCtrl.push ('PaymentPage')
+   
   }
 }

@@ -81,17 +81,41 @@
 						<ion-input type="text" formControlName="business_name"></ion-input>
 						</ion-item>
 
-				<ion-item *ngIf="radio==true">
+				<!-- <ion-item *ngIf="radio==true">
 						<ion-label floating>Log</ion-label>
 						<ion-input type="text"  formControlName="log"></ion-input>
-						</ion-item>
+						</ion-item> -->
 					
-				<ion-item *ngIf="radio==true">
+				<!-- <ion-item *ngIf="radio==true">
 							<ion-label floating>Store Location</ion-label>
 							<ion-input type="text" formControlName="store_location"></ion-input>
-							</ion-item>
+							</ion-item> -->
 
 			
+
+	<ion-item *ngIf="radio==true">
+	<ion-input type="text" placeholder="Enter Store Location" id="pac-input" formControlName="store_location" name="store_location" (keyup)="updateSearchResults()"></ion-input>
+  	</ion-item>
+	<ion-list [hidden]="autocompleteItems.length == 0">
+	 <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+	{{item.description}}
+		  </ion-item>
+	</ion-list>
+	 <!-- <ion-item class="error-item" no-lines *ngIf="( parcelForm.get('pickup_location').hasError('required') ) && parcelForm.get('pickup_location').touched">
+	<div class="error" *ngIf="parcelForm.get('pickup_location').hasError('required') && parcelForm.get('pickup_location').touched">
+	 Please Enter Pickup Location.
+	</div>
+	</ion-item> -->
+
+
+
+
+
+
+
+
+
+
 				<ion-item *ngIf="radio==true">
 						<ion-label floating>Open At</ion-label>
 						<ion-input type="time" formControlName="open_time"></ion-input>
@@ -118,9 +142,15 @@
 
 
 		<ion-item *ngIf="radio==true">
-				<ion-label floating>Bank Account Details</ion-label>
-				<ion-input type="text" formControlName="bank_details"></ion-input>
+				<ion-label floating>Bank Account Number</ion-label>
+				<ion-input type="text" formControlName="bank_acc_no"></ion-input>
 				</ion-item>
+
+
+				<ion-item *ngIf="radio==true">
+					<ion-label floating>Bank Routing Number</ion-label>
+					<ion-input type="text" formControlName="bank_rout_no"></ion-input>
+					</ion-item>
 
 
 		<ion-item *ngIf="radio==true">
@@ -130,7 +160,7 @@
 
 
 		<ion-item *ngIf="radio==true">
-				<ion-label floating> Trade License</ion-label>
+				<ion-label floating> Business License Number</ion-label>
 				<ion-input type="text" formControlName="trade_license"></ion-input>
 				</ion-item>	
 		</div>

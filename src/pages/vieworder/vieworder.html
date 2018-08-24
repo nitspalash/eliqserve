@@ -21,8 +21,8 @@
 
 
 <ion-content padding>
-  <ion-list >
-    <ion-card (click)="goTosellerOrderDetails(item.order.id)" *ngFor="let item of orderArray">
+  <ion-list *ngIf="orderArray!=''">
+    <ion-card  (click)="goTosellerOrderDetails(item.order.id)" *ngFor="let item of orderArray">
       <ion-item>
         <ion-row>
           <ion-col col-4>
@@ -52,4 +52,11 @@
       </ion-item>
     </ion-card>
   </ion-list>
+
+  <ion-list *ngIf="orderArray==''">
+    <ion-item>
+        <div item-start> No Order is available in your account, upload your product to get order  </div>
+        
+    </ion-item>
+ </ion-list>
 </ion-content>

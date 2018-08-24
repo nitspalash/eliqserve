@@ -4,6 +4,7 @@ import {SignupTwoPage} from '../signup-two/signup-two'
 import moment from 'moment';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 
+
 /**
  * Generated class for the SignupFivePage page.
  *
@@ -98,16 +99,11 @@ export class SignupFivePage {
 
     let loading = this.loadingCtrl.create({
       content: 'Validating your otp...',
-      duration: 6000
+      // duration: 6000
     });
   
     loading.present();
-// alert('Your Profile Created Successfully')
-//     const alert = this.alertCtrl.create({
-//       title: 'Your Profile Created Successfully',
-//        buttons: ['OK']
-// });
-// this.navCtrl.push('LoginPage')
+
     console.log(this.data)
     let currentDateTime = moment().format("MM-DD-YYYY HH:mm:ss")
 
@@ -130,6 +126,7 @@ console.log (this.otpSet)
       let detailsResponse = res.details
       
       if(detailsResponse.ack == 1){
+        loading.dismiss();
         const alert = this.alertCtrl.create({
           title: 'Your Profile Created Successfully',
            buttons: ['OK']
@@ -139,6 +136,7 @@ console.log (this.otpSet)
           this.navCtrl.push('LoginPage')
             } 
             else if (detailsResponse.ack == 0){
+              loading.dismiss();
               alert(detailsResponse.message)
             }
           });

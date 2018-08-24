@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Storage} from '@ionic/storage'
-
+import {FormGroup,FormControl,FormBuilder,AbstractControl,Validators} from '@angular/forms'
 /**
  * Generated class for the SignupTwoPage page.
  *
@@ -19,20 +19,26 @@ export class SignupTwoPage {
   ph_number:any;
   input:any;
   isEnabled:boolean=false;
+  notFocused = false;
+  formGroup: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public storage:Storage) 
     {
-      
+      this.formGroup=new FormGroup
+    ({
+      phone: new FormControl('', Validators.required)
+        
+    }); 
   }
  
-  signupThree()
+  signupThree(phone)
   {
     
-    console.log(this.data)
+    console.log(phone)
     
 
     this.storage.ready().then(() => {
-      this.ph_number=localStorage.setItem ('ph_number',this.data)
+      this.ph_number=localStorage.setItem ('ph_number',JSON.stringify(phone))
     });
 
     this.navCtrl.push('SignupThreePage');
