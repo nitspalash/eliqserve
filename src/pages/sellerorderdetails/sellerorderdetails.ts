@@ -81,8 +81,26 @@ console.log('item',this.deliver);
   }
 
 
-  onChange(status)
+  onChange(status,id)
   {
-    //alert(status);
+    console.log(status,id);
+
+    this.orderstatus={
+      "order_id":id,
+      "order_status":status
+    }
+
+    this.authProvider.sellerorderStatus(this.orderstatus).subscribe(res => {
+     
+      console.log(res);
+      
+      let details = res
+      
+      if(details.Ack == 1){
+        this.navCtrl.push('VieworderPage',{param:id})
+    
+      }
+    })
+
   }
 }

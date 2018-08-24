@@ -24,20 +24,26 @@
 
   <ion-content>
       <ion-item text-center class="price-area" > 
-          <h1>$120.00</h1>  
-          <p>From ABC Store</p>
+          <h1>${{(totalItem*shippingCharges)+totalPrice}}.00</h1>  
+          <!-- <p>From ABC Store</p> -->
         </ion-item>
-      <!-- <ion-card> -->
-          <!-- <ion-list>
+      <ion-card>
+          <ion-list>
 
+            <form [formGroup]="formGroup" (ngSubmit)="payment(formGroup.value)">
               <ion-item>
-                  <ion-label floating>Name as on card</ion-label>
-                  <ion-input ></ion-input>
+                  <ion-label floating>First Name as on card</ion-label>
+                  <ion-input formControlName="firstName"></ion-input>
               </ion-item>
 
               <ion-item>
+                    <ion-label floating>Last Name as on card</ion-label>
+                    <ion-input formControlName="lastName"></ion-input>
+                </ion-item>
+
+              <ion-item>
                   <ion-label floating>Card Number</ion-label>
-                  <ion-input ></ion-input>
+                  <ion-input formControlName="number"></ion-input>
               </ion-item>
 
 
@@ -47,18 +53,31 @@
                   <ion-col>
                       
                       <ion-item> 
-                          <ion-select [(ngModel)]="gaming">
-                              <ion-option value="nes">MM</ion-option>
-                              <ion-option value="n64">1</ion-option>
+                          
+                          <ion-select placeholder="Select Month" formControlName="month">
+                             
+                              <ion-option value="01">Jan</ion-option>
+                              <ion-option value="02">Feb</ion-option>
+                              <ion-option value="03">Mar</ion-option>
+                              <ion-option value="04">Apr</ion-option>
+                              <ion-option value="05">May</ion-option>
+                              <ion-option value="06">Jun</ion-option>
+                              <ion-option value="07">Jul</ion-option>
+                              <ion-option value="08">Aug</ion-option>
+                              <ion-option value="09">Sep</ion-option>
+                              <ion-option value="10">Oct</ion-option>
+                              <ion-option value="11">Nov</ion-option>
+                              <ion-option value="12">Dec</ion-option>
+                       
                             </ion-select>
                         </ion-item>
                   </ion-col>
                   <ion-col>
                       <ion-item>
-                          <ion-select [(ngModel)]="gaming">
-                              <ion-option value="nes">yy</ion-option>
-                              <ion-option value="n64">1</ion-option>
-                            </ion-select>
+                         
+                          <ion-select placeholder="Select Year" formControlName="year">
+                              <ion-option *ngFor="let item of years">{{item}}</ion-option>
+                                                          </ion-select>
                         </ion-item>
                   </ion-col>
                 </ion-row>
@@ -67,15 +86,15 @@
               
             <ion-item>
                 <ion-label floating>CVV Code (Last 4 Digit)</ion-label>
-                <ion-input ></ion-input>
+                <ion-input formControlName="cvv"></ion-input>
             </ion-item>
               
-     -->
-                  <button ion-button block text-uppercase style="height: 40px !important; margin-top: 16px;"  color="secondary" (click)="payment()">Submit</button>
+    
+                  <button ion-button block text-uppercase style="height: 40px !important; margin-top: 16px;"  color="secondary" type="submit">Submit</button>
             
-            
-            <!-- </ion-list> -->
-      <!-- </ion-card> -->
+                </form>
+            </ion-list> 
+      </ion-card>
         
     
     </ion-content>

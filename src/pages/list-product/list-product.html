@@ -25,8 +25,8 @@
 
 <ion-content padding>
 
-    <ion-list *ngFor="let item of alcoholList">
-        <ion-item>
+    <ion-list *ngIf="alcoholList!=''">
+        <ion-item *ngFor="let item of alcoholList">
           <ion-thumbnail item-start>
             <img src="{{imageurl+item.product_image}}" alt="">
           </ion-thumbnail>
@@ -49,5 +49,13 @@
                    </div>    -->
                 
       </ion-list>
+
+
+      <ion-list *ngIf="alcoholList==''">
+        <ion-item>
+            <div item-start> No product is in your list,please upload your product </div>
+            
+        </ion-item>
+     </ion-list>
 
 </ion-content>

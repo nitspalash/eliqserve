@@ -126,7 +126,7 @@
   <button *ngIf="item.order_status=='P'" ion-button (click)="order_status(item.id,'R')">Declined</button>
   <ion-item *ngIf="item.order_status =='A' || item.order_status =='S' ">
       <ion-label>Update order status</ion-label>
-      <ion-select [(ngModel)]="status" (ionChange)="onChange($event)">
+      <ion-select [(ngModel)]="status" (ionChange)="onChange($event,item.id)">
           <ion-option selected value="">Select order status</ion-option>
         <ion-option  value="S">Shipped</ion-option>
         <ion-option  value="D">Delivered</ion-option>

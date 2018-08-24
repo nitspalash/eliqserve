@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 
 /**
  * Generated class for the PaymentSuccessfulPage page.
@@ -15,11 +16,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PaymentSuccessfulPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public events:Events) {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter', { isHidden: true});
     console.log('ionViewDidLoad PaymentSuccessfulPage');
+  }
+
+  goToHomePage()
+  {
+    this.navCtrl.push('HomePage')
   }
 
 }

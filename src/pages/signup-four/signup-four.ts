@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,AlertController } from 'ionic-angular';
 import {FormGroup,FormControl,FormBuilder,AbstractControl,Validators} from '@angular/forms'
 import {AuthProvider} from '../../providers/auth-service/authservice'
 /**
@@ -21,7 +21,7 @@ export class SignupFourPage {
   gender:any;
   dateOfBirth:any;
   utype:any
-  log:any;
+  // log:any;
   bank_details:any;
 trade_license:any;
 open_time:any;
@@ -31,6 +31,8 @@ pickup:any;
 paypal_email:any;
 store_location:any;
 business_name:any;
+bank_acc_no:any;
+bank_rout_no:any;
 lat:any;
 lng:any
 
@@ -40,6 +42,8 @@ email:any;
 
   formGroup: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    public loadingCtrl:LoadingController,
+    public alertCtrl:AlertController,
   public builder:FormBuilder,
 public authProvider:AuthProvider) {
 
@@ -60,23 +64,27 @@ this.lng=JSON.parse(localStorage.getItem('lng'))
 
   signupFive(data)
   
-  { this.disabled=true;
+  { 
+
+
     this.item=JSON.parse(localStorage.getItem('userDataOne'));
     console.log( this.item)
  this.name=this.item.name;
  this.gender=this.item.gender;
  this.dateOfBirth=this.item.dob;
  this.utype=this.item.utype;
- this.log=this.item.log;
- this.bank_details=this.item.bank_details;;
+//  this.log=this.item.log;
+//  this.bank_details=this.item.bank_details;
+this.bank_acc_no=this.item.bank_acc_no;
+this.bank_rout_no=this.item.bank_rout_no;
  this.trade_license=this.item.trade_license;;
- this.open_time=this.item.open_time;;
- this.close_time=this.item.close_time;;
- this.delivery=this.item.delivery;;
- this.pickup=this.item.pickup;;
- this.paypal_email=this.item.paypal_email;;
- this.store_location=this.item.store_location;;
- this.business_name=this.item.business_name;;
+ this.open_time=this.item.open_time;
+ this.close_time=this.item.close_time;
+ this.delivery=this.item.delivery;
+ this.pickup=this.item.pickup;
+ this.paypal_email=this.item.paypal_email;
+ this.store_location=this.item.store_location;
+ this.business_name=this.item.business_name;
 
 
 this.itemEmail=JSON.parse(localStorage.getItem('email_address'));
@@ -94,9 +102,11 @@ console.log(this.dateOfBirth)
     data.dob=this.dateOfBirth;
 
     data.utype=this.utype;
-    data.log=this.log;
+    // data.log=this.log;
 
-    data.bank_details=this.bank_details
+    // data.bank_details=this.bank_details
+     data.bank_acc_no=this.bank_acc_no
+      data.bank_rout_no=this.bank_rout_no
     data.trade_license=this.trade_license
     data.open_time=this.open_time
     data.close_time=this.close_time
@@ -112,24 +122,49 @@ console.log(this.dateOfBirth)
     data.longitude=this.lng
     console.log(data)
 
-    
+      let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      // duration: 6000
+    });
+  
+    loading.present();
     
     this.authProvider.signup(data).subscribe(res=>{
       console.log(res.details);
      
       let detailResponse = res.details
       if(detailResponse.ack == 1){
-        console.log('hello')
-      //  alert (detailResponse.message)
-    
-        this.navCtrl.setRoot('SignupFivePage')
-        alert ('Please check your mail for otp');
+        console.log('hello')     
+      loading.dismiss();
+
+if (this.utype==2)
+{
+  let alert = this.alertCtrl.create({
+    title: 'Please wait for admin approval',
+           buttons: ['ok']
+  });
+  alert.present();
+  this.navCtrl.push('HomePage')
+}
+
+else if (this.utype==1)
+{
+  let alert = this.alertCtrl.create({
+    title: 'Please check your mail for otp',
+           buttons: ['ok']
+  });
+  alert.present();
+            this.navCtrl.setRoot('SignupFivePage')
+        
       }
+    }
       else if(detailResponse.ack == 0){
+        loading.dismiss();
        alert (detailResponse.message)
          this.navCtrl.push('LoginPage')
       }
-  });
+    
+  })
  
     
   }

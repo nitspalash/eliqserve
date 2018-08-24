@@ -64,11 +64,11 @@ export class OrderListPage {
         console.log("order list")
         
         this.orderArray=details.orderlist
-        this.reviewArray=details.reviewrating
+        
         this.imagelink=details.image_link
         console.log(this.imagelink)
         console.log(this.orderArray)
-        console.log(this.reviewArray)
+    
   }
 })
 
@@ -80,7 +80,9 @@ export class OrderListPage {
     this.product=prod_id
 // this.itemnumber=item;
     item.ChooseButton = true;
-    console.log("listId", item.id);
+    console.log("listId", prod_id);
+  
+    
   }
 
   hide() {
@@ -108,8 +110,23 @@ console.log(this.idSet)
   console.log("review")
   if(details.Ack == 1)
   {
-    // this.itemnumber.ChooseButton = true;
-    // this.disable=true
+    this.authProvider.orderlist(this.userIdSet).subscribe(res => {
+     
+      console.log(res);
+      
+      let details = res
+      
+      if(details.Ack == 1){
+        console.log("order list")
+        
+        this.orderArray=details.orderlist
+        
+        this.imagelink=details.image_link
+        console.log(this.imagelink)
+        console.log(this.orderArray)
+    
+  }
+})
   }
   })     
  

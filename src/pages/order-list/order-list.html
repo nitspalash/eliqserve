@@ -73,20 +73,56 @@
                   <h3>{{product.product.product_name}}</h3>
                   <p>{{item.order_date|date:'MMM dd,yyyy'}}</p>
                   <h4><b>Total: </b> ${{product.product.price}}.00</h4>
-                  <!-- <p>you have rated <span>{{rate}}</span></p> -->
-                  <h5>
+                  <p>{{item.rating}}</p>
+                  <h5 *ngIf="item.rating!=''">
+                    <h5 *ngIf="item.rating==5">
+                      <ion-icon name="star"></ion-icon>
                     <ion-icon name="star"></ion-icon>
                     <ion-icon name="star"></ion-icon>
                     <ion-icon name="star"></ion-icon>
                     <ion-icon name="star"></ion-icon>
-                    <ion-icon name="ios-star-outline"></ion-icon>
+                    </h5>
+
+                    <h5 *ngIf="item.rating==4">
+                        <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                     <ion-icon name="ios-star-outline"></ion-icon></h5>
+                    
+
+                    <h5 *ngIf="item.rating==3">
+                        <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="ios-star-outline"></ion-icon>
+                     <ion-icon name="ios-star-outline"></ion-icon></h5>
+                    
+
+                    <h5 *ngIf="item.rating==2">
+                        <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="ios-star-outline"></ion-icon>
+                      <ion-icon name="ios-star-outline"></ion-icon>
+                     <ion-icon name="ios-star-outline"></ion-icon></h5>
+                    
+
+                    <h5 *ngIf="item.rating==1">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="ios-star-outline"></ion-icon>
+                      <ion-icon name="ios-star-outline"></ion-icon>
+                      <ion-icon name="ios-star-outline"></ion-icon>
+                     <ion-icon name="ios-star-outline"></ion-icon></h5>
+                    
+
                   </h5>
               </ion-col>
               <ion-col col-4>
                   <button item-end ion-button class="detail-btn" (click)="goToOrderDetails(item.id)"> Detail </button>
                   <!-- <button item-end ion-button class="detail-btn" (click)="review(item.id)"> Review </button> -->
-                  <button item-end ion-button class="detail-btn" (click)='show(item.id,item)'[disabled]="item.ChooseButton"> Review </button>
-             
+                  <!-- <button item-end ion-button *ngIf="item.order_status == 'D'" class="detail-btn" (click)='show(item.id,item)'[disabled]="item.ChooseButton"> Review </button> -->
+               <button item-end ion-button *ngIf="item.rating=='' && item.order_status == 'D'" class="detail-btn"  (click)="show(product.product.id,item)"> Review </button>
+               <!-- <button item-end ion-button *ngIf="item.rating!=''" class="detail-btn"> {{item.rating}} </button> -->
               </ion-col>
             </ion-row>
                 

@@ -53,6 +53,12 @@ export class ListProductPage {
 
         console.log(this.alcoholList)
 
+      } 
+      else{
+
+        this.alcoholList='';
+        loading.dismiss();
+
       }
          });
        

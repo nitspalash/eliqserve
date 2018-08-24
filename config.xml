@@ -102,4 +102,8 @@
     <plugin name="phonegap-plugin-push" spec="^1.11.1">
         <variable name="SENDER_ID" value="609215899596" />
     </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="^2.3.11">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCoOVpqRdbIwU4hNYWiDOuzdK6AeMjfuUs" />
+    </plugin>
+    <engine name="android" spec="7.0.0" />
 </widget>
