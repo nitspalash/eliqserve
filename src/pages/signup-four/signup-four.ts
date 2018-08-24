@@ -34,7 +34,9 @@ business_name:any;
 bank_acc_no:any;
 bank_rout_no:any;
 lat:any;
-lng:any
+lng:any;
+itemphone:any;
+phone:any;
 
   passwordmatch =true;
 itemEmail:any;
@@ -90,6 +92,9 @@ this.bank_rout_no=this.item.bank_rout_no;
 this.itemEmail=JSON.parse(localStorage.getItem('email_address'));
 this.email=this.itemEmail.email
 
+this.itemphone=JSON.parse(localStorage.getItem('ph_number'));
+this.phone=this.itemphone.phone
+
 
 console.log(this.email)
 console.log(this.name)
@@ -116,7 +121,7 @@ console.log(this.dateOfBirth)
     data.store_location=this.store_location
     data.business_name=this.business_name
 
-    data.phone=localStorage.getItem('ph_number');
+    data.phone=this.phone;
     data.email=this.email
     data.latitude=this.lat
     data.longitude=this.lng
@@ -144,7 +149,7 @@ if (this.utype==2)
            buttons: ['ok']
   });
   alert.present();
-  this.navCtrl.push('HomePage')
+  this.navCtrl.push('LoginPage')
 }
 
 else if (this.utype==1)

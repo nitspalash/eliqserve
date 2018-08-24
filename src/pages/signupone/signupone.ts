@@ -2,9 +2,9 @@ import { Component,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {FormGroup,FormBuilder,FormControl, AbstractControl,Validators} from '@angular/forms'
 import {Storage} from '@ionic/storage'
-import { Geolocation } from '@ionic-native/geolocation';
-declare var google:any;
-declare var cordova: any;
+// import { Geolocation } from '@ionic-native/geolocation';
+// declare var google:any;
+// declare var cordova: any;
 /**
  * Generated class for the SignuponePage page.
  *
@@ -20,7 +20,7 @@ declare var cordova: any;
 
 export class SignuponePage {
   valueId:any;
-  google:any;
+  // google:any;
   GoogleAutocomplete:any;
   autocompleteItems=[];
   completeAddres:any;
@@ -32,11 +32,11 @@ formGroup:FormGroup;
 merchantForm:FormGroup
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public formBuilder:FormBuilder,
-  private zone: NgZone,
-  private geolocation: Geolocation,
+  // private zone: NgZone,
+  // private geolocation: Geolocation,
   public alertCtrl:AlertController,
 public storage: Storage) {
-  this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+  // this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
 
     this.formGroup=new FormGroup ({
       name: new FormControl ('',Validators.required),
@@ -205,7 +205,7 @@ this.formGroup.value.bank_rout_no='';
     console.log('ionViewDidLoad SignuponePage');
   }
 
-  updateSearchResults() {
+  /*updateSearchResults() {
     
     if (!this.formGroup.value.store_location) {
       this.autocompleteItems = [];
@@ -231,7 +231,7 @@ this.formGroup.value.bank_rout_no='';
     this.formGroup.get('store_location').setValue(this.completeAddres);
     
    
-  }
+  }*/
 
 
 

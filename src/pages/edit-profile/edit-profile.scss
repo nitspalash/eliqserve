@@ -11,5 +11,12 @@ page-edit-profile {
         box-shadow: 0px 0px 5px 0px rgba(227,218,227,1);
         background: #fff;
         text-transform: capitalize;
+        width: 100%;
+        border: none;
+    }
+
+    .btn-submit{
+        margin-bottom: 50px;
+        background-color: #32db64;
     }
 }

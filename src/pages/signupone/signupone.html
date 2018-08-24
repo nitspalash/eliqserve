@@ -86,21 +86,21 @@
 						<ion-input type="text"  formControlName="log"></ion-input>
 						</ion-item> -->
 					
-				<!-- <ion-item *ngIf="radio==true">
+				<ion-item *ngIf="radio==true">
 							<ion-label floating>Store Location</ion-label>
 							<ion-input type="text" formControlName="store_location"></ion-input>
-							</ion-item> -->
+							</ion-item>
 
 			
 
-	<ion-item *ngIf="radio==true">
+	<!-- <ion-item *ngIf="radio==true">
 	<ion-input type="text" placeholder="Enter Store Location" id="pac-input" formControlName="store_location" name="store_location" (keyup)="updateSearchResults()"></ion-input>
   	</ion-item>
 	<ion-list [hidden]="autocompleteItems.length == 0">
 	 <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
 	{{item.description}}
 		  </ion-item>
-	</ion-list>
+	</ion-list> -->
 	 <!-- <ion-item class="error-item" no-lines *ngIf="( parcelForm.get('pickup_location').hasError('required') ) && parcelForm.get('pickup_location').touched">
 	<div class="error" *ngIf="parcelForm.get('pickup_location').hasError('required') && parcelForm.get('pickup_location').touched">
 	 Please Enter Pickup Location.
@@ -118,12 +118,14 @@
 
 				<ion-item *ngIf="radio==true">
 						<ion-label floating>Open At</ion-label>
-						<ion-input type="time" formControlName="open_time"></ion-input>
-						</ion-item>
+						<!-- <ion-input type="time" readonly="readonly" placeholder="Open At" formControlName="open_time"></ion-input> -->
+						<ion-datetime displayFormat="HH:mm" formControlName="open_time"></ion-datetime>
+					</ion-item>
 
 				<ion-item *ngIf="radio==true">
 						<ion-label floating>Close At</ion-label>
-						<ion-input type="time" formControlName="close_time" ></ion-input>
+						<!-- <ion-input type="time" placeholder="Close At" formControlName="close_time" ></ion-input> -->
+						<ion-datetime displayFormat="HH:mm" formControlName="close_time" ></ion-datetime>
 						</ion-item>
 
 				<ion-row *ngIf="radio==true">
