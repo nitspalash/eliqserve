@@ -35,7 +35,11 @@ export class EditProfilePage {
       city: new FormControl ('', Validators.required),
       country: new FormControl ('', Validators.required),
       postcode: new FormControl ('', Validators.required),
-      dob: new FormControl ('', Validators.required)
+      dob: new FormControl ('', Validators.required),
+
+      // merchantId: new FormControl ('', Validators.required),
+      // publicKey: new FormControl ('', Validators.required),
+      // privateKey: new FormControl ('', Validators.required),
       });
 
 

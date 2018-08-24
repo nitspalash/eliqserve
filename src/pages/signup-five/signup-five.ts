@@ -27,10 +27,16 @@ export class SignupFivePage {
   runTimer:boolean;
   data:string;
   otpSet:any;
+  itemphone:any;
+  phone:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController,
     public authProvider:AuthProvider,
   public loadingCtrl:LoadingController) {
+
+    this.itemphone=JSON.parse(localStorage.getItem('ph_number'));
+this.phone=this.itemphone.phone
 
   }
 
@@ -110,7 +116,7 @@ export class SignupFivePage {
 
     console.log (currentDateTime);
     this.otpSet={
-      "phone":localStorage.getItem('ph_number'),
+      "phone":this.phone,
       "otp":this.data,
       "current_datetime":currentDateTime,
       };
@@ -124,6 +130,7 @@ console.log (this.otpSet)
       console.log(res.details);
       console.log('hello');
       let detailsResponse = res.details
+      console.log(detailsResponse);
       
       if(detailsResponse.ack == 1){
         loading.dismiss();

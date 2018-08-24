@@ -58,7 +58,8 @@
 
   <ion-row>
     <ion-col col>
-      <ion-input type="date" placeholder="dob" formControlName="dob"></ion-input>
+        <input type="date" min="1970-12-31" max="2008-12-31" placeholder="dob" formControlName="dob">
+      <!-- <ion-input type="date" placeholder="dob" formControlName="dob"></ion-input> -->
     </ion-col>
   </ion-row>
 
@@ -69,8 +70,34 @@
   </ion-row>
 
   <ion-row>
+      <ion-col col>
+        <ion-input type="text" placeholder="Postcode" formControlName="postcode"></ion-input>
+      </ion-col>
+    </ion-row>
+
+
+ <!-- <ion-row>
+     <ion-col col>
+     <ion-input type="text" placeholder="Merchant Id" formControlName="merchantId"></ion-input>
+     </ion-col>
+    </ion-row>
+
+
+  <ion-row>
+      <ion-col col>
+        <ion-input type="text" placeholder="Public Key" formControlName="publicKey"></ion-input>
+       </ion-col>
+   </ion-row>
+
+   <ion-row>
+      <ion-col col>
+        <ion-input type="text" placeholder="private Key" formControlName="privateKey"></ion-input>
+      </ion-col>
+    </ion-row>    -->
+
+  <ion-row>
     <ion-col col>
-       <button ion-button type="submit" block round >Submit Details</button> 
+       <button ion-button  class="btn-submit"  type="submit" block >Submit Details</button> 
     </ion-col>
   </ion-row>
 
