@@ -19,12 +19,36 @@ export class EditBuyerProfilePage {
   formGroup:FormGroup;
   user_details:any;
   user_id:any;
+  year:any;
+  month:any;
+  day:any;
+  MaximumBirthDate:any;
+  MinmumBirthDate:any;
+  minyear:any;
 
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public formBuilder:FormBuilder, 
   public authProvider:AuthProvider,
   public alertCtrl:AlertController,
 public storage: Storage) {
+
+
+  this.year = new Date().getFullYear()-18;
+  this.month = new Date().getMonth();
+  this.day = new Date().getDay();
+
+  if(this.day<10){
+    this.day='0'+this.day
+} 
+if(this.month<10){
+  this.month='0'+this.month
+} 
+
+this.MaximumBirthDate = this.year+'-'+"12"+'-'+"31";
+console.log(this.MaximumBirthDate)
+
+
 
     this.formGroup = new FormGroup ({
       first_name: new FormControl ('', Validators.required),
@@ -53,7 +77,7 @@ public storage: Storage) {
    this.formGroup.controls['city'].setValue(this.user_details.city);
    this.formGroup.controls['address'].setValue(this.user_details.address);
    this.formGroup.controls['country'].setValue(this.user_details.country);
-   this.formGroup.controls['dob'].setValue(this.user_details.dob);
+   this.formGroup.controls['dob'].setValue(this.user_details.dob.split('T')[0]);
    this.formGroup.controls['postcode'].setValue(this.user_details.postcode);
   }
 else

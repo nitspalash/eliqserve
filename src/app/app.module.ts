@@ -32,6 +32,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import {Braintree} from '@ionic-native/braintree';
 import { Push } from '@ionic-native/push';
 
+
 @NgModule({
   declarations: [
     MyApp,

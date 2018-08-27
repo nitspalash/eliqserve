@@ -70,6 +70,9 @@ export class OrderListPage {
         console.log(this.orderArray)
     
   }
+  else{
+    this.orderArray = '';
+  }
 })
 
 

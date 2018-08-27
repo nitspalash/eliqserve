@@ -56,7 +56,7 @@
 </div>
 
 <ion-content>
-  <ion-list >
+  <ion-list  *ngIf="orderArray!=''">
       
     
     <ion-card  *ngFor="let item of orderArray"  >
@@ -296,5 +296,11 @@
     
   </ion-list >
 
+  <ion-list *ngIf="orderArray==''">
+    <ion-item>
+        <div item-start> No Order is available in your account, Please order now </div>
+        
+    </ion-item>
+ </ion-list>
   
 </ion-content>

@@ -58,7 +58,7 @@
 
   <ion-row>
     <ion-col col>
-      <input type="date" min="1970-12-31" max="2008-12-31" placeholder="dob" formControlName="dob">
+      <input type="date" min="1970-12-31"[max]="MaximumBirthDate" placeholder="dob" formControlName="dob">
     </ion-col>
   </ion-row>
 
