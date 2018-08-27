@@ -58,10 +58,13 @@
 
   <ion-row>
     <ion-col col>
-        <input type="date" min="1970-12-31" max="2008-12-31" placeholder="dob" formControlName="dob">
-      <!-- <ion-input type="date" placeholder="dob" formControlName="dob"></ion-input> -->
+        <input type="date" min="1970-12-31" [max]="MaximumBirthDate" placeholder="dob" formControlName="dob">               
     </ion-col>
   </ion-row>
+
+
+
+
 
  <ion-row>
     <ion-col col>
@@ -69,31 +72,31 @@
     </ion-col>
   </ion-row>
 
-  <ion-row>
+  <!-- <ion-row>
       <ion-col col>
         <ion-input type="text" placeholder="Postcode" formControlName="postcode"></ion-input>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
 
- <!-- <ion-row>
+ <ion-row>
      <ion-col col>
-     <ion-input type="text" placeholder="Merchant Id" formControlName="merchantId"></ion-input>
+     <ion-input type="text" placeholder="Merchant Id" formControlName="merchant_id"></ion-input>
      </ion-col>
     </ion-row>
 
 
   <ion-row>
       <ion-col col>
-        <ion-input type="text" placeholder="Public Key" formControlName="publicKey"></ion-input>
+        <ion-input type="text" placeholder="Public Key" formControlName="public_key"></ion-input>
        </ion-col>
    </ion-row>
 
    <ion-row>
       <ion-col col>
-        <ion-input type="text" placeholder="private Key" formControlName="privateKey"></ion-input>
+        <ion-input type="text" placeholder="private Key" formControlName="private_key"></ion-input>
       </ion-col>
-    </ion-row>    -->
+    </ion-row>   
 
   <ion-row>
     <ion-col col>

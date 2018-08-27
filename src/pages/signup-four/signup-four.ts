@@ -31,8 +31,8 @@ pickup:any;
 paypal_email:any;
 store_location:any;
 business_name:any;
-bank_acc_no:any;
-bank_rout_no:any;
+// bank_acc_no:any;
+// bank_rout_no:any;
 lat:any;
 lng:any;
 itemphone:any;
@@ -77,8 +77,8 @@ this.lng=JSON.parse(localStorage.getItem('lng'))
  this.utype=this.item.utype;
 //  this.log=this.item.log;
 //  this.bank_details=this.item.bank_details;
-this.bank_acc_no=this.item.bank_acc_no;
-this.bank_rout_no=this.item.bank_rout_no;
+// this.bank_acc_no=this.item.bank_acc_no;
+// this.bank_rout_no=this.item.bank_rout_no;
  this.trade_license=this.item.trade_license;;
  this.open_time=this.item.open_time;
  this.close_time=this.item.close_time;
@@ -110,8 +110,8 @@ console.log(this.dateOfBirth)
     // data.log=this.log;
 
     // data.bank_details=this.bank_details
-     data.bank_acc_no=this.bank_acc_no
-      data.bank_rout_no=this.bank_rout_no
+    //  data.bank_acc_no=this.bank_acc_no
+    //   data.bank_rout_no=this.bank_rout_no
     data.trade_license=this.trade_license
     data.open_time=this.open_time
     data.close_time=this.close_time
@@ -165,7 +165,12 @@ else if (this.utype==1)
     }
       else if(detailResponse.ack == 0){
         loading.dismiss();
-       alert (detailResponse.message)
+      
+       let alert = this.alertCtrl.create({
+        title: detailResponse.message,
+               buttons: ['ok']
+      });
+      alert.present();
          this.navCtrl.push('LoginPage')
       }
     

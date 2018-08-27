@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform,AlertController } from 'ionic-angular';
 import {FormBuilder,FormControl,FormGroup,AbstractControl,Validators} from '@angular/forms'
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from '@ionic/storage';
@@ -19,6 +19,7 @@ import { Events } from 'ionic-angular';
 export class LoginPage {
   public formGroup: FormGroup;
   userDetails:any;
+  detailsTReponse:any;
   public footerIsHidden: boolean = true;
   public unregisterBackButtonAction: any;
   loginType:any;
@@ -29,7 +30,8 @@ export class LoginPage {
   private builder: FormBuilder,
   public events: Events,
   public platform: Platform,
-  public storage: Storage) {
+  public storage: Storage,
+public alertCtrl:AlertController,) {
 
   
  
@@ -54,12 +56,12 @@ export class LoginPage {
       // let details = res
       if(res.ack == 1){
         console.log('hello')
-      let detailsTReponse=res.details
-      console.log (detailsTReponse)
+      this.detailsTReponse=res.details
+      console.log (this.detailsTReponse)
 
 
         this.storage.ready().then(() => {
-          this.userDetails=localStorage.setItem('userDetails', JSON.stringify(detailsTReponse));
+          this.userDetails=localStorage.setItem('userDetails', JSON.stringify(this.detailsTReponse));
           console.log(JSON.parse(localStorage.getItem('userDetails')));
 
 
@@ -70,7 +72,7 @@ export class LoginPage {
           } 
           else if (this.loginType.utype==2)
           {
-           
+           console.log('seller')
             this.navCtrl.push('VieworderPage')
           }
       })
@@ -80,7 +82,11 @@ export class LoginPage {
     }
       else{
 
-        alert ('please enter a valid email-id and password')
+        let alert = this.alertCtrl.create({
+          title: res.message,
+                 buttons: ['ok']
+        });
+        alert.present(); 
         this.formGroup.reset();
       }
 

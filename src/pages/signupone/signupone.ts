@@ -54,8 +54,8 @@ pickup:new FormControl (''),
 paypal_email:new FormControl (''),
 store_location:new FormControl (''),
 business_name:new FormControl (''),
-bank_acc_no:new FormControl (''),
-bank_rout_no:new FormControl (''),
+// bank_acc_no:new FormControl (''),
+// bank_rout_no:new FormControl (''),
     })
     this.formGroup.controls['gender'].setValue('male');
     this.formGroup.controls['utype'].setValue(1);
@@ -82,8 +82,8 @@ this.formGroup.value.pickup='';
 this.formGroup.value.delivery='';
 this.formGroup.value.store_location='';
 this.formGroup.value.paypal_email='';
-this.formGroup.value.bank_acc_no='';
-this.formGroup.value.bank_rout_no='';
+// this.formGroup.value.bank_acc_no='';
+// this.formGroup.value.bank_rout_no='';
 
 }
 
@@ -158,24 +158,7 @@ this.formGroup.value.bank_rout_no='';
       alert.present(); 
      }
 
-     else if(!this.formGroup.value.bank_acc_no)
-     {
-      let alert = this.alertCtrl.create({
-        title: 'Please enter bank account number',
-               buttons: ['ok']
-      });
-      alert.present(); 
-     }
-
-
-     else if(!this.formGroup.value.bank_rout_no)
-     {
-      let alert = this.alertCtrl.create({
-        title: 'Please enter bank routing number',
-               buttons: ['ok']
-      });
-      alert.present(); 
-     }
+     
 
      else if(!this.formGroup.value.paypal_email)
      {
