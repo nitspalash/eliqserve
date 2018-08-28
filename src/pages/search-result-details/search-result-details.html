@@ -138,6 +138,19 @@
             </ion-row>
             
           </ion-card>
+
+
+          <ion-card style="background: none; box-shadow: none;">
+            <ion-row class="btn-area-row">
+              <ion-col col-6>
+                <button ion-button block class="add-to-cart" *ngIf="istype==2" type="submit" (click)="sellerCartAlert()" style="background-color:rgb(57, 214, 96)">AddToCart</button>
+              </ion-col>
+              <ion-col col-6>
+                <button ion-button block class="add-to-cart" *ngIf="istype==2" type="submit" (click)="sellerBuyAlert()" color="dark" >Buy Now</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-card>
   
   
         </ion-list>

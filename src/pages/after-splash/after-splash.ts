@@ -25,6 +25,7 @@ export class AfterSplashPage {
   
   public currentaddress:any;
   public address:any;
+  loginuser:any;
   constructor(public navCtrl: NavController,
     // public authProvider:AuthProvider, 
     public navParams: NavParams,
@@ -47,7 +48,32 @@ export class AfterSplashPage {
   }
   loginPage()
   {
+    
+
+    this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
+   
+    if(JSON.parse(localStorage.getItem('userDetails'))){
+          
+    if(this.loginuser.utype==1){
+      console.log('buyer')
     this.navCtrl.setRoot ('HomePage')
+    
+   
+    }
+    else if(this.loginuser.utype==2){
+      
+      console.log('seller')
+    this.navCtrl.setRoot ('VieworderPage')
+    
+    }
+  }
+  else
+  {
+    this.navCtrl.setRoot ('HomePage')
+  }
+  
+
+
   }
 
 
@@ -223,7 +249,30 @@ fetchlocation(){
       {
         this.currentaddress = this.currentaddress + this.address.postalCode;
       }
+      // this.navCtrl.setRoot ('HomePage')
+
+      this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
+   
+      if(JSON.parse(localStorage.getItem('userDetails'))){
+            
+      if(this.loginuser.utype==1){
+        console.log('buyer')
       this.navCtrl.setRoot ('HomePage')
+      
+     
+      }
+      else if(this.loginuser.utype==2){
+        
+        console.log('seller')
+      this.navCtrl.setRoot ('VieworderPage')
+      
+      }
+    }
+    else
+    {
+      this.navCtrl.setRoot ('HomePage')
+    }
+    
         console.log(address);
         
     })

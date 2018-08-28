@@ -2,8 +2,8 @@ import { Component,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {FormGroup,FormBuilder,FormControl, AbstractControl,Validators} from '@angular/forms'
 import {Storage} from '@ionic/storage'
-// import { Geolocation } from '@ionic-native/geolocation';
-// declare var google:any;
+import { Geolocation } from '@ionic-native/geolocation';
+declare var google:any;
 // declare var cordova: any;
 /**
  * Generated class for the SignuponePage page.
@@ -20,23 +20,52 @@ import {Storage} from '@ionic/storage'
 
 export class SignuponePage {
   valueId:any;
-  // google:any;
+  google:any;
+  geo:any;
   GoogleAutocomplete:any;
+  autocomplete:any;
   autocompleteItems=[];
   completeAddres:any;
+  geocoder: any;
   userDataOne:any;
+  latitude:any;
+  longitude:any;
   radio:boolean=false;
   today = new Date().toJSON().split('T')[0];
+  year:any;
+  month:any;
+  day:any;
+  MaximumBirthDate:any;
+
   
 formGroup:FormGroup;
 merchantForm:FormGroup
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public formBuilder:FormBuilder,
-  // private zone: NgZone,
-  // private geolocation: Geolocation,
+  private zone: NgZone,
+  private geolocation: Geolocation,
   public alertCtrl:AlertController,
 public storage: Storage) {
-  // this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+  
+  this.geocoder = new google.maps.Geocoder;
+
+  this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+  this.autocomplete = { input: '' };
+  this.autocompleteItems = [];
+
+  this.year = new Date().getFullYear()-18;
+  this.month = new Date().getMonth();
+  this.day = new Date().getDay();
+
+  if(this.day<10){
+    this.day='0'+this.day
+} 
+if(this.month<10){
+  this.month='0'+this.month
+} 
+
+this.MaximumBirthDate = this.year+'-'+"12"+'-'+"31";
+console.log(this.MaximumBirthDate)
 
     this.formGroup=new FormGroup ({
       name: new FormControl ('',Validators.required),
@@ -59,6 +88,8 @@ business_name:new FormControl (''),
     })
     this.formGroup.controls['gender'].setValue('male');
     this.formGroup.controls['utype'].setValue(1);
+    this.formGroup.controls['delivery'].setValue(true);
+    this.formGroup.controls['pickup'].setValue(true);
   }
   showForm()
 {
@@ -90,6 +121,8 @@ this.formGroup.value.paypal_email='';
 
   signupTwo(data)
   {
+    // data.store_latitude=this.latitude;
+    // data.store_longitude=this.longitude;
 
     console.log(data);
     console.log (this.formGroup.value.gender)
@@ -188,7 +221,7 @@ this.formGroup.value.paypal_email='';
     console.log('ionViewDidLoad SignuponePage');
   }
 
-  /*updateSearchResults() {
+  updateSearchResults() {
     
     if (!this.formGroup.value.store_location) {
       this.autocompleteItems = [];
@@ -199,23 +232,39 @@ this.formGroup.value.paypal_email='';
         this.autocompleteItems = [];
         this.zone.run(() => {
           predictions.forEach((prediction) => {
-            //console.log('sp',prediction)
+            console.log('prediction',prediction)
+            console.log(predictions)
             this.autocompleteItems.push(prediction);
           });
         });
       });
+     
   }
 
   selectSearchResult(item) {
     this.autocompleteItems = [];
-    this.completeAddres = item.description;
-    //console.log('sp',this.completeAddres);
-   // this.form.controls['c_address'].setValue(this.completeAddres);
-    this.formGroup.get('store_location').setValue(this.completeAddres);
     
-   
-  }*/
+    console.log('item',item)
+    this.completeAddres = item.description;
+    console.log('address',this.completeAddres);
+    this.formGroup.get('store_location').setValue(this.completeAddres);
 
+
+    this.geo = item;
+    console.log(this.geo);
+    this.geoCode(this.geo); 
+  }
+
+
+
+  geoCode(address:any) {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': this.completeAddres }, (results, status) => {
+    this.latitude = results[0].geometry.location.lat();
+    this.longitude = results[0].geometry.location.lng();
+    console.log("lat: " + this.latitude + ", long: " + this.longitude);
+   });
+ }
 
 
 }

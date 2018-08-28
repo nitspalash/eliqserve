@@ -100,17 +100,13 @@
 
               
               <button ion-button block text-uppercase style="height: 40px !important; background: #efefef;"  color="light" (click)="presentActionSheet()">Upload Image</button>
-                  <div *ngIf="pathForImage(lastImage)!= ''">
+                  <div *ngIf="pathForImage(lastImage)">
                     <ion-thumbnail>
                     <img src="{{pathForImage(lastImage)}}"/>
                    </ion-thumbnail>
                   </div>
 
-                  <div *ngIf="pathForImage(lastImage)== ''">
-                    <ion-thumbnail>
-                    <img src="assets/imgs/camera.png"/>
-                   </ion-thumbnail>
-                  </div>
+              
                   
               
   

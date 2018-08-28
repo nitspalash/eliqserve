@@ -86,36 +86,23 @@
 						<ion-input type="text"  formControlName="log"></ion-input>
 						</ion-item> -->
 					
-				<ion-item *ngIf="radio==true">
+				<!-- <ion-item *ngIf="radio==true">
 							<ion-label floating>Store Location</ion-label>
 							<ion-input type="text" formControlName="store_location"></ion-input>
-							</ion-item>
+							</ion-item> -->
 
 			
 
-	<!-- <ion-item *ngIf="radio==true">
-	<ion-input type="text" placeholder="Enter Store Location" id="pac-input" formControlName="store_location" name="store_location" (keyup)="updateSearchResults()"></ion-input>
+	<ion-item *ngIf="radio==true">
+	<ion-input class="store" type="text" placeholder="Enter Store Location" id="pac-input" formControlName="store_location" name="store_location" (keyup)="updateSearchResults()"></ion-input>
   	</ion-item>
-	<ion-list [hidden]="autocompleteItems.length == 0">
+	  <ion-list [hidden]="autocompleteItems.length == 0">
 	 <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
 	{{item.description}}
 		  </ion-item>
-	</ion-list> -->
-	 <!-- <ion-item class="error-item" no-lines *ngIf="( parcelForm.get('pickup_location').hasError('required') ) && parcelForm.get('pickup_location').touched">
-	<div class="error" *ngIf="parcelForm.get('pickup_location').hasError('required') && parcelForm.get('pickup_location').touched">
-	 Please Enter Pickup Location.
-	</div>
-	</ion-item> -->
+	</ion-list>
 
-
-
-
-
-
-
-
-
-
+	
 				<ion-item *ngIf="radio==true">
 						<ion-label floating>Open At</ion-label>
 						<!-- <ion-input type="time" readonly="readonly" placeholder="Open At" formControlName="open_time"></ion-input> -->
@@ -131,9 +118,11 @@
 				<ion-row *ngIf="radio==true">
 				<ion-col col-6>
 					<ion-item><ion-label>Delivery</ion-label>
-				<ion-checkbox formControlName="delivery"></ion-checkbox>
+				<ion-checkbox formControlName="delivery" ></ion-checkbox>
+			
 			</ion-item>
 		</ion-col>
+
 
 				<ion-col col-6>
 					<ion-item><ion-label>Pickup</ion-label>
@@ -141,6 +130,13 @@
 			</ion-item>
 		</ion-col>
 				</ion-row>
+
+
+				
+			
+
+
+
 
 
 		<!-- <ion-item *ngIf="radio==true">
@@ -171,7 +167,7 @@
 			<div class="gender-area mt-5">
 				<h5>Date Of Birth</h5>
 				<ion-row  >
-					<input formControlName="dob" type="date" min="1970-12-31" max="2008-12-31" class="date-input">
+					<input formControlName="dob" type="date" min="1970-12-31" [max]="MaximumBirthDate" class="date-input">
 					<!-- <ion-input formControlName="dob" type="date"></ion-input> -->
 				</ion-row>
 			</div>

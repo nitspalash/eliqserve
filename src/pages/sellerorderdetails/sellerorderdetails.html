@@ -77,12 +77,12 @@
           <h2 class="tittle-text">Order Status:</h2>
         </ion-col>
         <ion-col>
-          <p class="text-p" *ngIf="item.order_status == 'P'">Pending</p>
-          <p class="text-p" *ngIf="item.order_status == 'D'">Delivered</p>
-          <p class="text-p" *ngIf="item.order_status == 'S'">Shipped</p>
-          <p class="text-p" *ngIf="item.order_status == 'A'">Accepted</p>
-          <p class="text-p" *ngIf="item.order_status == 'R'">Rejected By marchent</p>
-          <p class="text-p" *ngIf="item.order_status == 'C'">Cancelled By Buyer</p>
+          <p class="text-p" style="color:brown" *ngIf="item.order_status == 'P'">Pending</p>
+          <p class="text-p" style="color:green" *ngIf="item.order_status == 'D'">Delivered</p>
+          <p class="text-p" style="color:green" *ngIf="item.order_status == 'S'">Shipped</p>
+          <p class="text-p" style="color:green" *ngIf="item.order_status == 'A'">Accepted</p>
+          <p class="text-p" style="color:red"  *ngIf="item.order_status == 'R'">Rejected By marchent</p>
+          <p class="text-p" style="color:red" *ngIf="item.order_status == 'C'">Cancelled By Buyer</p>
         </ion-col>
       </ion-row>
 
