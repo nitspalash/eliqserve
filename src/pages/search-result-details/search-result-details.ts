@@ -23,6 +23,7 @@ userId:any;
 loginuser:any;
 sellerArray:any;
 user_exist:any;
+istype:any;
 shippingDetailsArray:any;
 wish: boolean=false;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -76,8 +77,13 @@ let dataSet={
 
     if (localStorage.getItem('userDetails'))
 {
+  this.loginuser = JSON.parse(localStorage.getItem('userDetails'));
 
 this.user_exist=1;
+
+if(this.loginuser.utype==2){
+  this.istype=2;
+}
 console.log('I am here')
 }
 else{
@@ -312,4 +318,24 @@ else{
   }
 
  
+  sellerCartAlert()
+  {
+    const alert=this.alertCtrl.create({
+      title: 'Sorry',
+      subTitle: 'As a seller you cannot buy any product',
+      buttons:['ok']
+     });
+     alert.present();
+  }
+
+
+  sellerBuyAlert()
+  {
+    const alert=this.alertCtrl.create({
+      title: 'Sorry',
+      subTitle: 'As a seller you cannot buy any product',
+      buttons:['ok']
+     });
+     alert.present();
+  }
 }

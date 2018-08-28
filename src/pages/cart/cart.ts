@@ -219,6 +219,8 @@ this.updateIdSet={
               this.totalItem=details.total_item;
               this.quantity=details.quantity;
             
+                }else{
+                  console.log('ack 0')
                 }
             })
   

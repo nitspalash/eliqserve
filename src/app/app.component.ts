@@ -182,9 +182,21 @@ export class MyApp {
           }, {
             text: 'View',
             handler: () => {
+
+              if(this.loginuser.utype==1)
+              {
               console.log(data.message)
+              console.log('buyer')
               //TODO: Your logic here
               this.nav.setRoot('HomePage', { message: data.message });
+              } 
+              else if(this.loginuser.utype==2)
+              {
+              console.log(data.message)
+              console.log('seller')
+              //TODO: Your logic here
+              this.nav.setRoot('VieworderPage', { message: data.message });
+              }
             }
           }]
         });

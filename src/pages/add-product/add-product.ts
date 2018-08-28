@@ -245,11 +245,14 @@ export class AddProductPage {
 
   public pathForImage(img) {
     console.log("IMAGGGEGGEGGEGE",img);
-    if (img === null) {
+    
+    if (img === undefined) {
       return '';
-    } else {
+    } 
+    else {
       return cordova.file.dataDirectory + img;
     }
+    
   }
 
   public uploadImage(id) {
