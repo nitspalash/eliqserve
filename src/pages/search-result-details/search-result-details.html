@@ -70,7 +70,8 @@
               <p>
                 {{item.description}}.
               </p>
-              <p class="price">**Estimated Delivery time {{item.setcharge.shipping_day}} days</p>
+              <p class="price" *ngIf="item.setcharge!=null">**Estimated Delivery time {{item.setcharge.shipping_day}} days</p>
+              <!-- <p class="price" *ngIf="item.setcharge==null">**Estimated Delivery time Not Set</p> -->
             </div>
           </ion-card>
 

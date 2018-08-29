@@ -22,7 +22,10 @@ export class SellerorderdetailsPage {
   orderDetailsArray:any;
   deliver:any;
   shiping:any;
+  shiparray:any;
   orderstatus:any;
+  shipping_charges:any;
+  grandtotal:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider) {
 
@@ -48,6 +51,13 @@ this.authProvider.sellerorderDetails(this.orderSet).subscribe(res => {
   if(details.Ack == 1){
 console.log ('orderDetails')
 this.orderDetailsArray=details.seller_order_details
+this.shiparray=this.orderDetailsArray[0].order_details
+console.log('charge',this.shiparray[0].shipping_charge)
+this.shipping_charges=this.shiparray[0].shipping_charge
+this.grandtotal=this.orderDetailsArray[0].total_price+this.shipping_charges
+console.log('grand',this.grandtotal)
+
+console.log('shiparray',this.shiparray)
 console.log ('47',this.orderDetailsArray)
 this.item = this.orderDetailsArray[0];
 this.deliver = this.item.deliver;

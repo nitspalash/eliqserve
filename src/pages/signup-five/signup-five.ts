@@ -28,7 +28,10 @@ export class SignupFivePage {
   data:string;
   otpSet:any;
   itemphone:any;
+  itemEmail:any;
   phone:any;
+  email:any;
+  paraSet:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController,
@@ -38,8 +41,11 @@ export class SignupFivePage {
     this.itemphone=JSON.parse(localStorage.getItem('ph_number'));
 this.phone=this.itemphone.phone
 
-  }
+this.itemEmail=JSON.parse(localStorage.getItem('email_address'));
+this.email=this.itemEmail.email
 
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupFivePage');
     this.initTimer();
@@ -64,8 +70,53 @@ this.phone=this.itemphone.phone
     }
     else {
       this.hasFinished = true;
-      alert('times out,Please re-enter your email address')
-      this.navCtrl.setRoot('SignupThreePage');
+      // alert('times out,Please re-enter your email address')
+      // this.navCtrl.setRoot('SignupThreePage');
+
+      const alert = this.alertCtrl.create({
+        title: 'times out',
+         buttons: [
+          {
+          text: 'Resend Otp',
+          handler: () => {
+
+            this.paraSet={
+              "phone":this.phone,
+              "email":this.email
+            }
+            let loading = this.loadingCtrl.create({
+              content: 'Please wait...',
+              // duration: 6000
+            });
+          
+            loading.present();
+            this.authProvider.resendOtp(this.paraSet).subscribe(res => {
+     
+              console.log(res);
+              if (res.Ack==1)
+              {
+                loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: res.message,
+                   buttons: ['ok']
+                });
+                alert.present();
+                this.initTimer();
+                this.startTimer();
+              }
+              else{
+                console.log('error')
+                loading.dismiss();
+              }
+            }); 
+          
+          }
+        }
+         ]
+      
+       });
+        alert.present();
+      
     }
   }, 1000); //1000 time_in_ms
 }
@@ -140,7 +191,7 @@ console.log (this.otpSet)
         
          });
           alert.present();
-          this.navCtrl.push('LoginPage')
+          this.navCtrl.setRoot('LoginPage')
             } 
             else if (detailsResponse.ack == 0){
               loading.dismiss();

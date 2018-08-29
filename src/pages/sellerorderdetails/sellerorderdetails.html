@@ -26,7 +26,7 @@
 
 
 
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
         <h2 class="tittle-text">Delivery:</h2>
       </ion-col>
@@ -38,11 +38,11 @@
         <p class="text-p">{{deliver.city}},{{item.deliver.state}},{{item.deliver.country}}</p>
         <p class="text-p">{{deliver.pin}}</p>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
     <ion-row>
         <ion-col>
-          <h2 class="tittle-text">Shipping:</h2>
+          <h2 class="tittle-text">Shipping and Delivery:</h2>
         </ion-col>
         <ion-col *ngIf="shiping">
             <p class="text-p">{{shiping.first_name}} {{shiping.last_name}}</p>
@@ -92,7 +92,7 @@
           <!-- <ion-col col-3 text-center>Product Id</ion-col> -->
           <ion-col col-4 text-center>Product Name</ion-col>
           <ion-col col-4 text-center>Qty</ion-col>
-          <ion-col col-4 text-center>Price</ion-col>
+          <ion-col col-4 text-center>Price($)</ion-col>
       </ion-row>
 
       <ion-row *ngFor="let product of item.order_details">
@@ -115,11 +115,18 @@
         
           <p>${{product.price}}.00</p>
           </ion-col>
+
+           <ion-item>
+        <span class="tittle-text">Shipping Charges</span>
+        <span class="tittle-text">${{product.shipping_charge}}.00</span>
+      </ion-item>
       </ion-row>
   
+     
+
       <ion-item>
         <span class="sub-total">Grand Total</span>
-        <span class="price">${{item.total_price}}.00</span>
+        <span class="price">${{grandtotal}}.00</span>
       </ion-item>
     </div>
     <button *ngIf="item.order_status=='P'" ion-button (click)="order_status(item.id,'A')">Accept</button>

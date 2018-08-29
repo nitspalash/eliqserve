@@ -30,6 +30,8 @@ delivery:any;
 pickup:any;
 paypal_email:any;
 store_location:any;
+store_latitude:any;
+store_longitude:any;
 business_name:any;
 // bank_acc_no:any;
 // bank_rout_no:any;
@@ -86,6 +88,8 @@ this.lng=JSON.parse(localStorage.getItem('lng'))
  this.pickup=this.item.pickup;
  this.paypal_email=this.item.paypal_email;
  this.store_location=this.item.store_location;
+ this.store_latitude=this.item.store_latitude;
+ this.store_longitude=this.item.store_longitude;
  this.business_name=this.item.business_name;
 
 
@@ -119,10 +123,13 @@ console.log(this.dateOfBirth)
     data.pickup=this.pickup
     data.paypal_email=this.paypal_email
     data.store_location=this.store_location
+    data.store_latitude=this.store_latitude
+    data.store_longitude=this.store_longitude
     data.business_name=this.business_name
 
     data.phone=this.phone;
-    data.email=this.email
+    data.email=this.email;
+   
     data.latitude=this.lat
     data.longitude=this.lng
     console.log(data)
@@ -149,7 +156,7 @@ if (this.utype==2)
            buttons: ['ok']
   });
   alert.present();
-  this.navCtrl.push('LoginPage')
+  this.navCtrl.setRoot('LoginPage')
 }
 
 else if (this.utype==1)
@@ -171,7 +178,7 @@ else if (this.utype==1)
                buttons: ['ok']
       });
       alert.present();
-         this.navCtrl.push('LoginPage')
+         this.navCtrl.setRoot('LoginPage')
       }
     
   })

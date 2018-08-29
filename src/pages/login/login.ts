@@ -25,6 +25,9 @@ export class LoginPage {
   loginType:any;
   token_id:any;
   devicetype:any;
+  lat:any;
+lng:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
  public authProvider:AuthProvider,
   private builder: FormBuilder,
@@ -47,8 +50,24 @@ public alertCtrl:AlertController,) {
 
   login (formData)
   {
+
+    if (localStorage.getItem('currentlatlong'))
+    {
+    this.lat=JSON.parse(localStorage.getItem('lat'))
+    this.lng=JSON.parse(localStorage.getItem('lng'))
+    }
+    else
+    {
+      this.lat='';
+      this.lng=''
+
+    }
+
+
     formData.device_type=this.devicetype;
     formData.device_token_id=this.token_id;
+    formData.latitude=this.lat
+    formData.longitude=this.lng
     console.log ('form',formData);
     this.authProvider.login(formData).subscribe(res=>{
       console.log(res);

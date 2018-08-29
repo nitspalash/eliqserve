@@ -121,8 +121,8 @@ this.formGroup.value.paypal_email='';
 
   signupTwo(data)
   {
-    // data.store_latitude=this.latitude;
-    // data.store_longitude=this.longitude;
+    data.store_latitude=this.latitude;
+    data.store_longitude=this.longitude;
 
     console.log(data);
     console.log (this.formGroup.value.gender)

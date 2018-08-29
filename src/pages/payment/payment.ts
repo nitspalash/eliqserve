@@ -28,7 +28,7 @@ export class PaymentPage {
   shippingCharges:any;
   cartArray:any;
   shipdata:any;
-  billdata:any;
+  // billdata:any;
   cartvalue:any;
   years:any;
   month:any;
@@ -134,11 +134,11 @@ this.loginuser = JSON.parse(localStorage.getItem('userDetails'));
         this.email=this.loginuser.email
         this.phone=this.loginuser.phone
 
-console.log(this.shipParam.ship_id)
+// console.log(this.shipParam.ship_id)
 this.shipdata=JSON.parse(this.shipParam);
-this.billdata=JSON.parse(this.billParam);
+// this.billdata=JSON.parse(this.billParam);
 console.log (this.shipdata)
-console.log (this.billdata)
+// console.log (this.billdata)
 
 
 data.ship_id=this.shipdata.ship_id,
@@ -152,7 +152,7 @@ data.ship_id=this.shipdata.ship_id,
   data.ship_state=this.shipdata.ship_state,
   data.ship_country=this.shipdata.ship_country,
 
-  data.billing_id=this.billdata.billing_id,
+  /*data.billing_id=this.billdata.billing_id,
   data.bill_fname=this.billdata.bill_fname,
   data.bill_lname=this.billdata.bill_lname,
   data.bill_mob=this.billdata.bill_mob,
@@ -161,7 +161,7 @@ data.ship_id=this.shipdata.ship_id,
   data.billadd_two=this.billdata.billadd_two,
   data.bill_city=this.billdata.bill_city,
   data.bill_state=this.billdata.bill_state,
-  data.bill_country=this.billdata.bill_country,
+  data.bill_country=this.billdata.bill_country,*/
   data.email=this.email,
   data.phone=this.phone,
   data.user_id=this.userId,
