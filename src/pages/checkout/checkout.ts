@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
 import {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 /**
@@ -17,7 +17,7 @@ import {AuthProvider} from '../../providers/auth-service/authservice'
 export class CheckoutPage {
   showItem: boolean=true;
   showForm:boolean=true;
-  radio:boolean=false;
+  radio:boolean=true;
   deliveryRadio:boolean=false;
 
 shippingForm:FormGroup
@@ -28,12 +28,14 @@ userIdSet:any;
 shippingAddArray:any;
 billingAddArray:any;
 addressArray:any;
-
+user_Exist:any;
+username:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   builder:FormBuilder,
   public alertCtrl:AlertController,
   public authProvider:AuthProvider,
+  public loadingCtrl:LoadingController,
 ) {
 
 this.shippingForm=new FormGroup({
@@ -51,7 +53,7 @@ this.shippingForm=new FormGroup({
 });
 
 
-this.billingForm=new FormGroup({
+/* this.billingForm=new FormGroup({
   billing_id: new FormControl (''),
   bill_fname:new FormControl ('',Validators.required),
   bill_lname:new FormControl ('',Validators.required),
@@ -62,7 +64,7 @@ this.billingForm=new FormGroup({
   bill_city:new FormControl ('',Validators.required),
   bill_state:new FormControl ('',Validators.required),
   bill_country:new FormControl ('',Validators.required),
-});
+});*/
  
 
 
@@ -70,16 +72,42 @@ if(JSON.parse(localStorage.getItem('userDetails')))
     {
       this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
       this.userId=this.loginuser.id
+      this.user_Exist=1
+      
+      // this.username=this.loginuser.first_name
+      console.log(this.loginuser.city)
+      console.log(this.loginuser)
+
+
+      this.shippingForm.controls ['ship_id'].setValue ('');
+      this.shippingForm.controls ['ship_fname'].setValue (this.loginuser.first_name);
+      this.shippingForm.controls ['ship_lname'].setValue('');
+      this.shippingForm.controls['ship_mob'].setValue(this.loginuser.phone);
+      this.shippingForm.controls['shipadd_one'].setValue('');
+      this.shippingForm.controls['shipadd_two'].setValue('');
+      this.shippingForm.controls['ship_city'].setValue(this.loginuser.city);
+      this.shippingForm.controls['ship_pin'].setValue('');
+      this.shippingForm.controls['ship_state'].setValue('');
+      this.shippingForm.controls['ship_country'].setValue(this.loginuser.country);
+    } 
+    else{
+      this.user_Exist=0
     }
     this.userIdSet={
       "user_id":this.userId
     }
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      // duration: 6000
+    });
 
 this.authProvider.addressList(this.userIdSet).subscribe(res=>{
   console.log(res);
  
   let details = res
   if(details.Ack == 1){
+    loading.dismiss();
     
     console.log('addresslist')
     this.shippingAddArray=details.shipping
@@ -88,11 +116,10 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
     console.log('bill', this.billingAddArray)
     // this.shippingForm.controls['existAdd'].setValue(this.addressListArray[0].shiping.id);
     // console.log (this.addressListArray[0].shiping.length);
-  
 
-  
-    
-
+  } else
+  {
+    loading.dismiss();
   }
 });
 
@@ -112,20 +139,21 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
 
   toggleShippingCheckbox() {
   // this.ischecked=true;
+  
   this.radio=true;
     this.showItem = !this.showItem;
 
     
     this.shippingForm.controls ['ship_id'].setValue ('');
-    this.shippingForm.controls ['ship_fname'].setValue ('');
+    this.shippingForm.controls ['ship_fname'].setValue (this.username);
     this.shippingForm.controls ['ship_lname'].setValue('');
-    this.shippingForm.controls['ship_mob'].setValue('');
+    this.shippingForm.controls['ship_mob'].setValue(this.loginuser.phone);
     this.shippingForm.controls['shipadd_one'].setValue('');
     this.shippingForm.controls['shipadd_two'].setValue('');
-    this.shippingForm.controls['ship_city'].setValue('');
+    this.shippingForm.controls['ship_city'].setValue(this.loginuser.city);
     this.shippingForm.controls['ship_pin'].setValue('');
     this.shippingForm.controls['ship_state'].setValue('');
-    this.shippingForm.controls['ship_country'].setValue('');
+    this.shippingForm.controls['ship_country'].setValue(this.loginuser.country);
 
     
   }
@@ -160,7 +188,7 @@ this.shippingForm.controls['ship_country'].setValue(country);
   }
 
 
-  deliveryCheckbox(id,firstname,lastname,mobile,address1,address2,city,pin,state,country)
+  /*deliveryCheckbox(id,firstname,lastname,mobile,address1,address2,city,pin,state,country)
   {
 this.deliveryRadio=false;
 
@@ -215,30 +243,32 @@ this.billingForm.controls['bill_city'].setValue('');
 this.billingForm.controls['bill_pin'].setValue('');
 this.billingForm.controls['bill_state'].setValue('');
 this.billingForm.controls['bill_country'].setValue('');
-  }
+  }*/
 
-  submit(billdata,shipdata)
+  // submit(bilata,shipdata)
+
+  submit(shipdata)
   {
-    console.log(billdata)
+  
     console.log(shipdata)
     
 
 if (!this.shippingForm.value.ship_fname)
 {
   const alert = this.alertCtrl.create({
-    title: 'Please enter your first name',
+    title: 'Please enter your name',
        buttons: ['ok']
   });
   alert.present();
 }
-else if (!this.shippingForm.value.ship_lname)
-{
-  const alert = this.alertCtrl.create({
-    title: 'Please enter your last name',
-       buttons: ['ok']
-  });
-  alert.present();
-}
+// else if (!this.shippingForm.value.ship_lname)
+// {
+//   const alert = this.alertCtrl.create({
+//     title: 'Please enter your last name',
+//        buttons: ['ok']
+//   });
+//   alert.present();
+// }
 else if (!this.shippingForm.value.ship_mob)
 {
   const alert = this.alertCtrl.create({
@@ -255,14 +285,14 @@ else if (!this.shippingForm.value.shipadd_one)
   });
   alert.present();
 }
-else if (!this.shippingForm.value.shipadd_two)
-{
-  const alert = this.alertCtrl.create({
-    title: 'Please enter your detail address',
-       buttons: ['ok']
-  });
-  alert.present();
-}
+// else if (!this.shippingForm.value.shipadd_two)
+// {
+//   const alert = this.alertCtrl.create({
+//     title: 'Please enter your detail address',
+//        buttons: ['ok']
+//   });
+//   alert.present();
+// }
 else if (!this.shippingForm.value.ship_city)
 {
   const alert = this.alertCtrl.create({
@@ -297,7 +327,7 @@ else if (!this.shippingForm.value.ship_country)
 }
 
 
-else if (!this.billingForm.value.bill_fname)
+/*else if (!this.billingForm.value.bill_fname)
 {
   const alert = this.alertCtrl.create({
     title: 'Please enter your first name',
@@ -329,14 +359,14 @@ else if (!this.billingForm.value.billadd_one)
   });
   alert.present();
 }
-else if (!this.billingForm.value.billadd_two)
-{
-  const alert = this.alertCtrl.create({
-    title: 'Please enter your detail address',
-       buttons: ['ok']
-  });
-  alert.present();
-}
+// else if (!this.billingForm.value.billadd_two)
+// {
+//   const alert = this.alertCtrl.create({
+//     title: 'Please enter your detail address',
+//        buttons: ['ok']
+//   });
+//   alert.present();
+// }
 else if (!this.billingForm.value.bill_city)
 {
   const alert = this.alertCtrl.create({
@@ -368,12 +398,12 @@ else if (!this.billingForm.value.bill_country)
        buttons: ['ok']
   });
   alert.present();
-}
+}*/
 
 
 else{
   console.log('next')
-this.navCtrl.push ('FinalCheckoutPage',{param1:JSON.stringify(billdata),param2:JSON.stringify(shipdata)})
+this.navCtrl.push ('FinalCheckoutPage',{param2:JSON.stringify(shipdata)})
 
 }
 

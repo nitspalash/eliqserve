@@ -64,7 +64,7 @@
           <div class="price"> ${{item.price}}.00 </div>
          </div>   
 
-         <span>* Estimated Delivery Time {{item.setcharge.shipping_day}} days</span>
+         <span *ngIf="item.setcharge!=null">* Estimated Delivery Time {{item.setcharge.shipping_day}} days</span>
       </ion-item>
   
       <!-- <ion-item>

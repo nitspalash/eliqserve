@@ -65,6 +65,14 @@ forgotPassword(data:object):Observable<any>{
  }
 
 
+ resendOtp(data:object):Observable<any>{
+  console.log(data);
+   return this.http.post(this.apiUrl +'users/resendotp.json',data).map((res:Response)=>{
+     return res;
+   });
+ }
+
+
 
 
 

@@ -122,12 +122,17 @@
         
           <p>{{product.price}}.00</p>
           </ion-col>
-          <p>**Estimated Delivery time {{product.setcharge.shipping_day}} days</p>
-      </ion-row>
+          <p *ngIf="item.setcharge!=null">**Estimated Delivery time {{product.setcharge.shipping_day}} days</p>
+      
+          <ion-item>
+            <span class="tittle-text">Shipping Charges</span>
+            <span class="tittle-text">${{product.shipping_charge}}.00</span>
+          </ion-item>
+        </ion-row>
   
       <ion-item>
         <span class="sub-total">Grand Total</span>
-        <span class="price">${{item.total_price}}.00</span>
+        <span class="price">${{grandtotal}}.00</span>
       </ion-item>
 
 

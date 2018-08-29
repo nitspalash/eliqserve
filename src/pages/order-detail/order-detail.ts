@@ -25,6 +25,10 @@ export class OrderDetailPage {
   cancelOrderSet:any;
   deliverarray:any;
   shippingarray:any;
+  shiparray:any;
+ 
+  shipping_charges:any;
+  grandtotal:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
   public alertCtrl:AlertController,
@@ -60,6 +64,13 @@ this.deliverarray=this.orderDetailsArray[0].deliver;
 console.log ('deliver',this.deliverarray);
 this.shippingarray=this.orderDetailsArray[0].shiping;
 console.log('shi',this.shippingarray);
+
+this.shiparray=this.orderDetailsArray[0].order_details
+console.log('charge',this.shiparray[0].shipping_charge)
+this.shipping_charges=this.shiparray[0].shipping_charge
+this.grandtotal=this.orderDetailsArray[0].total_price+this.shipping_charges
+console.log(this.orderDetailsArray[0].total_price)
+console.log('grand',this.grandtotal)
 
 
 // if ((this.orderDetailsArray[0].order_status)=="P")

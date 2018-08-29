@@ -21,16 +21,29 @@ export class BuyerProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
+
+
     console.log(JSON.parse(localStorage.getItem('userDetails')));
     let loginUser=JSON.parse(localStorage.getItem('userDetails'));
     this.userName=loginUser.first_name + loginUser.last_name
     this.userEmail=loginUser.email
     this.userPhone=loginUser.phone
+
+    if (loginUser.country!=null && loginUser.city!=null && loginUser.address!=null)
+    {
     this.userAddress=loginUser.country+ ","+loginUser.city+","+loginUser.address
+    }
+    else
+{
+  this.userAddress='';
+}
+
+
     console.log (this.userName)
     console.log (this.userEmail)
     console.log (this.userPhone)
     console.log (this.userAddress)
+
 
   }
 

@@ -56,8 +56,8 @@
         <ion-list>
             
             
-            <h2>Shipping Details</h2> 
-            <form [formGroup]="shippingForm" >
+            <h2>Shipping and Billing Details</h2> 
+            <form [formGroup]="shippingForm" (ngSubmit)="submit(shippingForm.value)" >
             <div radio-group>
                 <ion-item *ngFor="let item of shippingAddArray">
                 
@@ -85,8 +85,8 @@
                 </ion-item>
 
             <ion-item style="margin-bottom: 0;">
-                    <ion-radio (click)="toggleShippingCheckbox()"></ion-radio>
-              <ion-label>I want to use new address</ion-label>
+                    <ion-radio (click)="toggleShippingCheckbox()" checked></ion-radio>
+              <ion-label >I want to use new address</ion-label>
              
               
             </ion-item>
@@ -102,14 +102,14 @@
                 <ion-input formControlName="ship_id"></ion-input>
             </ion-item>
             <ion-item >
-                    <ion-label floating>First Name:</ion-label>
+                    <ion-label floating>Name:</ion-label>
                     <ion-input formControlName="ship_fname"></ion-input>
                 </ion-item>
 
-                <ion-item>
+                <!-- <ion-item>
                         <ion-label floating>Last Name:</ion-label>
                         <ion-input formControlName="ship_lname"></ion-input>
-                    </ion-item>
+                    </ion-item> -->
 
                     <ion-item>
                             <ion-label floating>Mobile Number:</ion-label>
@@ -146,6 +146,9 @@
                         <ion-input formControlName="ship_country"></ion-input>
                         </ion-item>
                     </div>
+                    <ion-item class="list">
+                        <button ion-button block type="submit" text-uppercase style="height: 40px !important; margin-top: 16px;"  color="secondary">Next</button>
+                    </ion-item>
     
 </form>
               
@@ -153,13 +156,13 @@
       
     </ion-card>
     
-    <ion-card class="delivery-details-card">
+    <!-- <ion-card class="delivery-details-card">
         <ion-list>
             <h2>Delivery Details</h2>
             <form [formGroup]="billingForm" (ngSubmit)="submit(billingForm.value,shippingForm.value)">
             <div radio-group>
                 <ion-item *ngFor="let item of billingAddArray">
-                    <!-- <ion-label *ngIf="addressArray"> -->
+                  
                         <ion-radio (click)="deliveryCheckbox(item.deliver.id,
                         item.deliver.first_name,
                         item.deliver.last_name,
@@ -171,7 +174,7 @@
                         item.deliver.state,
                         item.deliver.country)" ></ion-radio>
                        
-                                <!-- <h3>{{item.deliver.id}}</h3> -->
+                                
                                 <ion-label><b>{{item.deliver.first_name}} &nbsp;</b></ion-label>
                                 <ion-label><b>{{item.deliver.last_name}}</b></ion-label>
                                 <ion-label class="d-block"><b>{{item.deliver.mobile}}</b></ion-label>
@@ -183,8 +186,7 @@
                                 <ion-label>{{item.deliver.country}}</ion-label>
                            
             
-                    <!-- </ion-label> -->
-                     <!-- <ion-label *ngIf="!addressArray">No Address Found</ion-label> -->
+                  
                 </ion-item>
                
                   
@@ -245,21 +247,15 @@
             <ion-item>
                 <ion-label floating>Country:</ion-label>
                 <ion-input formControlName="bill_country"></ion-input>
-                <!-- <ion-select [(ngModel)]="gaming">
-                    <ion-option value="nes">India</ion-option>
-                    <ion-option value="n64">USA</ion-option>
-                  </ion-select> -->
-            </ion-item>
+                 </ion-item>
         </div>
               <ion-item class="list">
                   <button ion-button block type="submit" text-uppercase style="height: 40px !important; margin-top: 16px;"  color="secondary">Next</button>
               </ion-item>
               </form>
-              <!-- <ion-item class="list" *ngIf="showItem">
-                  <button ion-button block type="submit" text-uppercase style="height: 40px !important; margin-top: 16px;"  color="secondary">Next</button>
-              </ion-item> -->
+              
           </ion-list>
-    </ion-card>
+    </ion-card> -->
 
 
    
