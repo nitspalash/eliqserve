@@ -80,7 +80,7 @@ open_time:new FormControl (''),
 close_time:new FormControl (''),
 delivery:new FormControl (''),
 pickup:new FormControl (''),
-paypal_email:new FormControl (''),
+//paypal_email:new FormControl (''),
 store_location:new FormControl (''),
 business_name:new FormControl (''),
 // bank_acc_no:new FormControl (''),
@@ -112,7 +112,7 @@ this.formGroup.value.close_time='';
 this.formGroup.value.pickup='';
 this.formGroup.value.delivery='';
 this.formGroup.value.store_location='';
-this.formGroup.value.paypal_email='';
+//this.formGroup.value.paypal_email='';
 // this.formGroup.value.bank_acc_no='';
 // this.formGroup.value.bank_rout_no='';
 
@@ -193,14 +193,14 @@ this.formGroup.value.paypal_email='';
 
      
 
-     else if(!this.formGroup.value.paypal_email)
+    /* else if(!this.formGroup.value.paypal_email)
      {
       let alert = this.alertCtrl.create({
         title: 'Please enter paypal email', 
                buttons: ['ok']
       });
       alert.present(); 
-     }
+     }*/
 
      else
      {

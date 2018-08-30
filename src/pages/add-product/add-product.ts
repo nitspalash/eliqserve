@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ActionSheetController,Platform,ToastController,LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ActionSheetController,Platform,ToastController,LoadingController,AlertController} from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import {AuthProvider} from '../../providers/auth-service/authservice';
 
@@ -33,6 +33,7 @@ export class AddProductPage {
   user_details:any;
   user_id:any
   productId:any;
+  uploadsuccess:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public imagePicker:ImagePicker,
     public authProvider:AuthProvider,
@@ -44,7 +45,8 @@ export class AddProductPage {
      private file: File, 
      public toastCtrl:ToastController,
      public loadingCtrl: LoadingController,
-     public events:Events
+     public events:Events,
+     public alertCtrl: AlertController
      
   ) {
 
@@ -59,9 +61,9 @@ export class AddProductPage {
       product_name: new FormControl ('', Validators.required),
       description: new FormControl ('', Validators.required),
       price: new FormControl ('', Validators.required),
-      discount: new FormControl ('', Validators.required),
+      discount: new FormControl ('', null),
       quantity: new FormControl ('', Validators.required),
-      // available: new FormControl ('', Validators.required),
+      available: new FormControl ('', Validators.required),
 
     });
 
@@ -138,25 +140,54 @@ export class AddProductPage {
 
   addProduct(data)
   {
+    if (!this.formGroup.valid) {
+      const alert = this.alertCtrl.create({
+        title: 'Failed!',
+        subTitle: "Please fill * field.",
+        buttons: ['OK']
+      });
+      alert.present();
+    }else{
+      
+       if(!this.lastImage && this.lastImage== undefined){
+
+        const alert = this.alertCtrl.create({
+          title: 'Failed!',
+          subTitle: "Please upload image..",
+          buttons: ['OK']
+        });
+        alert.present();
+
+       }else{
+        //console.log('spimage',this.lastImage);
+        let loading = this.loadingCtrl.create({
+          content: 'Please Wait...'
+        });
+        loading.present();
     data.seller_id=this.user_id;
-    //data.file=this.images;
-    //console.log (data);
-
-
     this.authProvider.addProduct(data).subscribe(res => {
      
-      console.log(res);
-      console.log('hello');
       let details = res
-      this.uploadImage(details.id);
+      
       if(details.ack == 1){
+        loading.dismiss();
+        this.uploadImage(details.id);
         this.productId=details.id
         console.log(this.productId)
-        this.navCtrl.setRoot('ListProductPage');
+        
+      }else{
+        loading.dismiss();
+        const alert = this.alertCtrl.create({
+          title: 'Error!',
+          subTitle: "Please try again.",
+          buttons: ['OK']
+        });
+        alert.present();
       }
 
     });
-      
+  }
+  }  
   }
 
 
@@ -286,10 +317,19 @@ export class AddProductPage {
    
     // Use the FileTransfer to upload the image
     fileTransfer.upload(targetPath, url, options).then(data => {
-      console.log('UPLOADDDD',data);
-      loading.dismiss();
-      this.presentToast('Image succesful uploaded.');
-      //this.navCtrl.push('HomePage');
+      console.log('UPLOADDDD',JSON.parse(data.response));
+      this.uploadsuccess=JSON.parse(data.response);
+      if(this.uploadsuccess.ack==1){
+        loading.dismiss();
+        this.presentToast('Image succesful uploaded.');
+        this.navCtrl.setRoot('ListProductPage');
+      }else{
+
+        loading.dismiss();
+        this.presentToast('Time out. Try again.');
+
+      }
+
     }, err => {
       console.log("Error",err);
       loading.dismiss();

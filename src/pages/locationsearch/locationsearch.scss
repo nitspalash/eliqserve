@@ -1,0 +1,18 @@
+page-locationsearch {
+    ion-input, ion-textarea{
+        font-size: 14px;
+    }
+    .select {
+        padding: 11px 8px 11px 0px;
+        max-width: 100%;
+        width: 100%;
+        font-size: 14px;
+    }
+    .item{
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+    .button{
+        background: #30be21;
+    }
+}

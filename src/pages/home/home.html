@@ -16,8 +16,9 @@
     
         <ion-title> 
           <h3 *ngIf="country">{{country}}</h3> 
-          <p *ngIf="!currentaddress">Please add or select a delivery address</p>
-          <p *ngIf="currentaddress">{{currentaddress}}</p>
+          <p *ngIf="!currentaddress" (click)="locationsearch()">Please add or select a delivery address</p>
+          <!-- <ion-input type="text" ></ion-input> -->
+          <p *ngIf="currentaddress" (click)="locationsearch()">{{currentaddress}}</p>
         </ion-title>
         
     
