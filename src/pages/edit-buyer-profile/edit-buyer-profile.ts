@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
 import {FormBuilder,FormControl,FormGroup,Validators,AbstractControl} from '@angular/forms'
 import {AuthProvider} from '../../providers/auth-service/authservice';
 import {Storage} from '@ionic/storage'
@@ -31,6 +31,7 @@ export class EditBuyerProfilePage {
     public formBuilder:FormBuilder, 
   public authProvider:AuthProvider,
   public alertCtrl:AlertController,
+  public loadingCtrl:LoadingController,
 public storage: Storage) {
 
 
@@ -94,6 +95,13 @@ else
 
   submitDetails (formdata)
   {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      // duration: 6000
+    });
+  
+    loading.present();
+
     formdata.user_id=this.user_id;
     console.log(formdata);
     this.authProvider.editProfile(formdata).subscribe(res => {
@@ -103,6 +111,7 @@ else
       let details = res
       
       if(details.Ack == 1){
+        loading.dismiss();
 
         this.storage.ready().then(() => {
           localStorage.setItem('userDetails', JSON.stringify(res.userupdatedata));
@@ -113,7 +122,12 @@ else
            buttons: ['OK']
          });
           alert.present();
-          this.navCtrl.push('BuyerProfilePage')
+          this.navCtrl.setRoot('BuyerProfilePage')
+            }
+            else
+            {
+              alert ('something went wrong')
+              loading.dismiss();
             }
           });
 

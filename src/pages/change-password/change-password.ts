@@ -54,11 +54,11 @@ public events:Events,) {
       console.log('hello')
       alert (details.message)
 
-      this.navCtrl.push('LoginPage')
+      this.navCtrl.setRoot('LoginPage')
     }
     else{
 
-      alert ('please enter your current password')
+      alert (details.message)
      
     }
 

@@ -165,13 +165,16 @@ export class AddProductPage {
         });
         loading.present();
     data.seller_id=this.user_id;
+
     this.authProvider.addProduct(data).subscribe(res => {
      
       let details = res
       
       if(details.ack == 1){
         loading.dismiss();
+
         this.uploadImage(details.id);
+
         this.productId=details.id
         console.log(this.productId)
         
@@ -185,6 +188,11 @@ export class AddProductPage {
         alert.present();
       }
 
+ else
+  {
+    console.log('error')
+    loading.dismiss();
+  }
     });
   }
   }  
