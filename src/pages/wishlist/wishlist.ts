@@ -57,6 +57,7 @@ addCartSet:any = [];
           {
             this.wishlist=details.wishlist
             this.image_link = details.image_link;
+            console.log(this.image_link)
           }
           else{
             this.wishlist='';

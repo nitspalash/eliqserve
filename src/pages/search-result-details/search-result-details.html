@@ -44,7 +44,8 @@
                 <a (click)="makeWishlist(item.id,wish)" *ngIf="!wish"><ion-icon class="wish-icon" item-end name="heart-outline"></ion-icon>
                 </a>
               </div>
-                <img  src="{{imageLink+item.productsimages[0].name}}" alt="">
+                <img  *ngIf="item.productsimages!=''" src="{{imageLink+item.productsimages[0].name}}" alt="">
+                <img  *ngIf="item.productsimages==''" src="assets/imgs/noimage.png" alt="">
            
           </ion-card>
         

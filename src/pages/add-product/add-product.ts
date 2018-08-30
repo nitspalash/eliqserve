@@ -61,7 +61,7 @@ export class AddProductPage {
       price: new FormControl ('', Validators.required),
       discount: new FormControl ('', Validators.required),
       quantity: new FormControl ('', Validators.required),
-      available: new FormControl ('', Validators.required),
+      // available: new FormControl ('', Validators.required),
 
     });
 
@@ -152,7 +152,7 @@ export class AddProductPage {
       if(details.ack == 1){
         this.productId=details.id
         console.log(this.productId)
-        this.navCtrl.push('ListProductPage');
+        this.navCtrl.setRoot('ListProductPage');
       }
 
     });

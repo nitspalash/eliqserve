@@ -32,9 +32,13 @@
 <ion-content padding>
   <ion-list  *ngIf="cartArray">
       <ion-item *ngFor="let item of cartArray, let i=index of cartArray">
-        <ion-thumbnail item-start>
+        <ion-thumbnail item-start *ngIf="item.image!=''">
           <img src="{{item.image}}" alt="">
         </ion-thumbnail>
+
+        <ion-thumbnail item-start *ngIf="item.image==''">
+            <img src="assets/imgs/noimage.png" alt="">
+          </ion-thumbnail>
         <h2>{{item.name}}</h2>
         <!-- <p>{{item.product.description}}</p> -->
         <div class="wt-area">

@@ -95,12 +95,14 @@
               <ion-row class="mb-50">
                 <ion-col col-4 *ngFor="let item of productArray" (click)="goToProductDetails(item.id)">
 
-                  <ion-card >
-                    <img  src="{{imageLink+item.productsimages[0].name}}" alt="">
+                  <ion-card >                    
+                    <img  *ngIf="item.productsimages!=''" src="{{imageLink+item.productsimages[0].name}}" alt="">
+                     <img *ngIf="item.productsimages==''" src="assets/imgs/noimage.png" alt="">
                     <div class="card-title">{{item.product_name}}</div>
                     <div class="card-subtitle">{{item.description}}</div>
                   </ion-card>
-                </ion-col>
+
+                                </ion-col>
                
               </ion-row>
         

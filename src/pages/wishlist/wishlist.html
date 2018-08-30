@@ -27,12 +27,13 @@
 <ion-content padding>
 
   <ion-list class="wishlist-area" *ngIf="wishlist">
-    <ion-item *ngFor="let item of wishlist" >
-      <ion-thumbnail item-start (click)="goToProductDetails(item.product.id)">
-        <img src="{{image_link}}{{item.product.productsimages[0].name}}" alt="">
+    <ion-item *ngFor="let item of wishlist" (click)="goToProductDetails(item.product.id)" >
+      <ion-thumbnail item-start >
+        <img *ngIf="item.product.product_image!=undefined" src="{{image_link+item.product.product_image}}" alt="">
+        <img *ngIf="item.product.product_image==undefined" src="assets/imgs/noimage.png" alt="">
       </ion-thumbnail>
-      <h2 (click)="goToProductDetails(item.product.id)">{{item.product.product_name}}</h2>
-      <p (click)="goToProductDetails(item.product.id)">{{item.add_date}}</p>
+      <h2>{{item.product.product_name}}</h2>
+      <p >{{item.add_date|date:'MMM dd,yyyy'}}</p>
       <div item-end>
         <ion-icon class="heart" name="heart" (click)="makeWishlist(item.prod_id,item.id)"></ion-icon>
         <p>$ {{item.product.price}}.00</p>       

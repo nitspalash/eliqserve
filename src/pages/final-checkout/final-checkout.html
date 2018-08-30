@@ -59,12 +59,12 @@
         
           <ion-item >
 
-            <ion-thumbnail item-start *ngIf="item.image!=undefined">
+            <ion-thumbnail item-start *ngIf="item.image!=''">
               <img src="{{item.image}}" alt="">
             </ion-thumbnail>
-            <ion-thumbnail item-start *ngIf="item.image==undefined">
-              <img src="assets/imgs/noimage.png" alt="">
-            </ion-thumbnail>
+            <ion-thumbnail item-start *ngIf="item.image==''">
+                <img src="assets/imgs/noimage.png" alt="">
+              </ion-thumbnail>
             <h2>{{item.name}}</h2>
             <p>Black Label 12 year...</p>
             <div class="wt-area">
