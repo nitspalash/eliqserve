@@ -78,6 +78,8 @@ export class HomePage {
   }
 
   fetchlocation(){
+
+    
     this.geolocation.getCurrentPosition().then((resp) => {
        
   
@@ -147,6 +149,7 @@ export class HomePage {
      }).catch((error) => {
        console.log('Error getting location', error);
      });
+     
   }
 
 productList(id,name)
@@ -206,5 +209,8 @@ this.navCtrl.push('SearchResultDetailsPage',{param:data})
 
 }
 
+locationsearch(){
 
+  this.navCtrl.push('LocationsearchPage');
+}
 }

@@ -1,0 +1,39 @@
+<!--
+  Generated template for the LocationsearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Location Search</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+	
+  <ion-card-content>
+  
+    <form [formGroup]="formGroup" (ngSubmit)="search(formGroup.value)">
+  
+  
+      <ion-item>
+        <ion-input type="text" placeholder="Type location" id="pac-input" formControlName="store_location" name="store_location" (keyup)="updateSearchResults()"></ion-input>
+    </ion-item>
+    <ion-list [hidden]="autocompleteItems.length == 0">
+      <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+     {{item.description}}
+         </ion-item>
+     </ion-list>
+   
+
+  <p class="list"><button ion-button block>SEARCH</button></p>
+    </form> 
+
+    
+  </ion-card-content>
+
+</ion-content>

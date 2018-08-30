@@ -45,38 +45,50 @@
         <ion-list>
             <form [formGroup]="formGroup">
             <ion-item>
-              <ion-label floating >Category</ion-label>
+              <ion-label floating >Category*</ion-label>
               <ion-select formControlName="cat_id">
                   <ion-option *ngFor="let item of categoryArray" value="{{item.id}}">{{item.name}}</ion-option>
             
                 </ion-select>
             </ion-item>
-    
+            <p class="error" *ngIf="formGroup.get('cat_id').hasError('required') && formGroup.get('cat_id').touched"  style="color:red;">
+              Please choose category.
+            </p>
             <ion-item>
-                <ion-label floating>Brand</ion-label>
+                <ion-label floating>Brand*</ion-label>
                 <ion-select formControlName="brand_id">
                     <ion-option  *ngFor="let item of brandArray" value="{{item.id}}">{{item.brand_name}} </ion-option>
                     
                   </ion-select>
               </ion-item>
-    
+              <p class="error" *ngIf="formGroup.get('brand_id').hasError('required') && formGroup.get('brand_id').touched"  style="color:red;">
+                Please choose Brand.
+              </p>
               <ion-item>
-                  <ion-label floating>Name</ion-label>
+                  <ion-label floating>Name*</ion-label>
                   <ion-input formControlName="product_name" ></ion-input>
               </ion-item>
-    
+              <p class="error" *ngIf="formGroup.get('product_name').hasError('required') && formGroup.get('product_name').touched"  style="color:red;">
+                Name is required.
+              </p>
               <ion-row>
                 <ion-col>
                     <ion-item>
-                        <ion-label floating>Price</ion-label>
+                        <ion-label floating>Price*</ion-label>
                         <ion-input formControlName="price"></ion-input>
                     </ion-item>
+                    <p class="error" *ngIf="formGroup.get('price').hasError('required') && formGroup.get('price').touched"  style="color:red;">
+                      Price is required.
+                    </p>
                 </ion-col>
                 <ion-col>
                     <ion-item>
-                        <ion-label floating>QTY</ion-label>
-                        <ion-input formControlName="quantity"></ion-input>
+                        <ion-label floating>QTY*</ion-label>
+                        <ion-input type="number" formControlName="quantity"></ion-input>
                     </ion-item>
+                    <p class="error" *ngIf="formGroup.get('quantity').hasError('required') && formGroup.get('quantity').touched"  style="color:red;">
+                      Quantity is required.
+                    </p>
                 </ion-col>
               </ion-row>
               
@@ -86,17 +98,25 @@
                     <ion-input formControlName="discount"></ion-input>
                 </ion-item>
             
-                <!-- <ion-item>
-                  <ion-label floating>Availability</ion-label>
-                  <ion-input formControlName="available"></ion-input>
-              </ion-item> -->
-
-
+                
               <ion-item>
-                  <ion-label floating>Description</ion-label>
+                <ion-label floating >Availability*</ion-label>
+                <ion-select formControlName="available">
+                    <ion-option value="yes">Yes</ion-option>
+                    <ion-option value="no">No</ion-option>
+              
+                  </ion-select>
+              </ion-item>
+              <p class="error" *ngIf="formGroup.get('available').hasError('required') && formGroup.get('available').touched"  style="color:red;">
+                Please choose availability.
+              </p>
+              <ion-item>
+                  <ion-label floating>Description*</ion-label>
                   <ion-textarea formControlName="description"></ion-textarea>
               </ion-item>
-    
+              <p class="error" *ngIf="formGroup.get('description').hasError('required') && formGroup.get('description').touched"  style="color:red;">
+                Description is required.
+              </p>
 
               
               <button ion-button block text-uppercase style="height: 40px !important; background: #efefef;"  color="light" (click)="presentActionSheet()">Upload Image</button>
