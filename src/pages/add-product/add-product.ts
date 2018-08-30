@@ -142,7 +142,12 @@ export class AddProductPage {
     //data.file=this.images;
     //console.log (data);
 
-
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      // duration: 6000
+    });
+  
+    loading.present();
     this.authProvider.addProduct(data).subscribe(res => {
      
       console.log(res);
@@ -150,11 +155,17 @@ export class AddProductPage {
       let details = res
       this.uploadImage(details.id);
       if(details.ack == 1){
+        loading.dismiss();
         this.productId=details.id
         console.log(this.productId)
         this.navCtrl.setRoot('ListProductPage');
       }
 
+ else
+  {
+    console.log('error')
+    loading.dismiss();
+  }
     });
       
   }

@@ -138,7 +138,7 @@ else
            buttons: ['OK']
          });
           alert.present();
-          this.navCtrl.push('ProfilePage')
+          this.navCtrl.setRoot('ProfilePage')
             }
           });
 

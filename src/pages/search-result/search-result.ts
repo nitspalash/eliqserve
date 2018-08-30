@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angul
 import {AboutPage} from "../../pages/about/about";
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import { debounce } from 'ionic-angular/util/util';
+import { Events } from 'ionic-angular';
 
 /**
  * Generated class for the SearchResultPage page.
@@ -26,6 +27,7 @@ export class SearchResultPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
+  public events:Events,
 public alertCtrl:AlertController) {
     console.log(JSON.parse(localStorage.getItem('filterdata')))
     this.searchParameter=JSON.parse(localStorage.getItem('filterdata'));
@@ -46,6 +48,7 @@ public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
+    this.events.publish('hideFooter',{isHidden:false});
     console.log('ionViewDidLoad SearchResultPage');
 
 

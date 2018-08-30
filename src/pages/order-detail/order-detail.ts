@@ -116,6 +116,14 @@ console.log('grand',this.grandtotal)
 
   cancelOrder()
   {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      // duration: 6000
+    });
+  
+    loading.present();
+
+
     this.disabled=true
 
     
@@ -130,19 +138,21 @@ console.log (this.cancelOrderSet)
 
 this.authProvider.cancelOrder(this.cancelOrderSet).subscribe(res => {
   
-  let loading = this.loadingCtrl.create({
-    content: 'Please wait...',
-    duration: 6000
-  });
+  // let loading = this.loadingCtrl.create({
+  //   content: 'Please wait...',
+  //   duration: 6000
+  // });
 
-  loading.present();
+  // loading.present();
+
+  
   console.log ('cancel order')
   console.log(res);
   
   let details = res
   
   if(details.Ack == 1){
-
+    
    
     console.log('orderset',this.orderSet)
 
@@ -152,7 +162,8 @@ this.authProvider.cancelOrder(this.cancelOrderSet).subscribe(res => {
       
       let details = res
       
-      if(details.Ack == 1){
+      if(details.Ack == 1){ 
+        loading.dismiss();
     console.log ('orderDetails')
     this.orderDetailsArray=details.order_details
     console.log (this.orderDetailsArray)
@@ -162,15 +173,27 @@ this.authProvider.cancelOrder(this.cancelOrderSet).subscribe(res => {
     console.log ('deliver',this.deliverarray);
     this.shippingarray=this.orderDetailsArray[0].shiping;
     console.log('shi',this.shippingarray);
-    
-    }
-    })
-    
+
     const alert = this.alertCtrl.create({
-      title: details.message,
+      title: 'Status Updated',
          buttons: ['ok']
     });
     alert.present();
+    
+    } 
+    else
+    {
+      const alert = this.alertCtrl.create({
+        title:'something went wrong',
+           buttons: ['ok']
+      });
+      alert.present();
+      
+      loading.dismiss();
+    }
+    })
+    
+    
     // this.navCtrl.setRoot('HomePage');
   }
 });
