@@ -27,8 +27,13 @@
 
     <ion-list *ngIf="alcoholList!=''">
         <ion-item *ngFor="let item of alcoholList">
-          <ion-thumbnail item-start>
-            <img src="{{imageurl+item.product_image}}" alt="">
+
+            <ion-thumbnail item-start *ngIf="item.product_image!=undefined">
+                <img src="{{imageurl+item.product_image}}" alt="">
+              </ion-thumbnail>
+
+          <ion-thumbnail item-start *ngIf="item.product_image==undefined">
+            <img src="assets/imgs/noimage.png" alt="">
           </ion-thumbnail>
           <h2>{{item.product_name}}</h2>
           <p>{{item.description}}</p>
