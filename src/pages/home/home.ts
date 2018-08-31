@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MyApp} from '../../app/app.component';
 import {AuthProvider} from '../../providers/auth-service/authservice'
@@ -7,13 +7,16 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 import {Storage} from '@ionic/storage';
 import { Events } from 'ionic-angular';
+import {FormGroup,FormControl} from '@angular/forms'
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+
 /**
  * Generated class for the HomePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var google:any;
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -32,7 +35,22 @@ export class HomePage {
   country:any;
   loginuser:any;
   userId:any;
- 
+ //spandan
+
+ google:any;
+  geo:any;
+  GoogleAutocomplete:any;
+  autocomplete:any;
+  autocompleteItems=[];
+  completeAddres:any;
+  formGroup:FormGroup;
+  latitude:any;
+  longitude:any;
+  message:any;
+  textlocation: boolean=false;
+
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider,
     private geolocation: Geolocation,
@@ -40,31 +58,50 @@ export class HomePage {
     public storage: Storage,
     private locationAccuracy: LocationAccuracy,
     public events: Events,
-    public myApp:MyApp) {
+    public myApp:MyApp,
+    private zone: NgZone,
+    public alertCtrl:AlertController) {
       this.myApp.abc();
       this.fetchlocation();
       this.myApp.abc();
-    this.events.publish('hideFooter',{isHidden:false});
+      this.events.publish('hideFooter',{isHidden:false});
       
-    this.authProvider.categoryListing().subscribe((res:any) => {
+      this.catlist();
      
+      //spandan
 
-          if (res.Ack==1)
-          {
-            console.log('my data: ');
-            this.categoryArray=res.categories;
-            console.log(this.categoryArray[0].name);
-            this.pet=this.categoryArray[0].name
-            this.productArray=res.catproduct
-          console.log(this.productArray)
+      this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+      this.autocomplete = { input: '' };
+      this.autocompleteItems = [];
+      this.formGroup=new FormGroup ({
+        store_location:new FormControl (''),
+      })
 
-          this.imageLink=res.categoryimagepath
-          console.log (this.imageLink) 
-          }
-      });
 
-     
   }
+
+
+catlist(){
+
+  this.authProvider.categoryListing().subscribe((res:any) => {
+     
+
+    if (res.Ack==1)
+    {
+      console.log('my data: ');
+      this.categoryArray=res.categories;
+      console.log(this.categoryArray[0].name);
+      this.pet=this.categoryArray[0].name
+      this.productArray=res.catproduct
+    console.log(this.productArray)
+
+    this.imageLink=res.categoryimagepath
+    console.log (this.imageLink) 
+    }
+});
+}
+
+
 
   ionViewDidLoad() {
     
@@ -75,6 +112,11 @@ export class HomePage {
     if(this.address)
     this.country = this.address.countryName;
     //alert(this.country)
+
+    //this.message="<form [formGroup]='formGroup'><ion-item><ion-input type='text' placeholder='Type location' formControlName='store_location' name='store_location' (keyup)='updateSearchResults()'></ion-input></ion-item><ion-list [hidden]='autocompleteItems.length == 0'><ion-item *ngFor='let item of autocompleteItems' tappable (click)='selectSearchResult(item)'>item.description</ion-item></ion-list></form>";
+
+    
+
   }
 
   fetchlocation(){
@@ -212,5 +254,60 @@ this.navCtrl.push('SearchResultDetailsPage',{param:data})
 locationsearch(){
 
   this.navCtrl.push('LocationsearchPage');
+}
+
+
+updateSearchResults() {
+    
+  if (!this.formGroup.value.store_location) {
+    this.autocompleteItems = [];
+    return;
+  }
+  
+  this.GoogleAutocomplete.getPlacePredictions({ input: this.formGroup.value.store_location},
+    (predictions, status) => {
+      this.autocompleteItems = [];
+      this.zone.run(() => {
+        predictions.forEach((prediction) => {
+          //console.log('prediction',prediction)
+          //console.log(predictions)
+          this.autocompleteItems.push(prediction);
+        });
+      });
+    });
+   
+}
+
+selectSearchResult(item) {
+  this.autocompleteItems = [];
+  
+  console.log('item',item)
+  this.completeAddres = item.description;
+  //console.log('address',this.completeAddres);
+  this.textlocation= false;
+  this.currentaddress=this.completeAddres;
+  this.formGroup.get('store_location').setValue('');
+
+
+  this.geo = item;
+  console.log(this.geo);
+  this.geoCode(this.geo); 
+}
+
+geoCode(address:any) {
+  let geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ 'address': this.completeAddres }, (results, status) => {
+    //console.log('spresutl',JSON.stringify(results[0]));
+  this.latitude = results[0].geometry.location.lat();
+  this.longitude = results[0].geometry.location.lng();
+  localStorage.setItem('lat', this.latitude);
+  localStorage.setItem('lng', this.longitude);
+  //console.log("lat: " + this.latitude + ", long: " + this.longitude);
+ });
+}
+
+showtypelocation(){
+
+  this.textlocation= true
 }
 }
