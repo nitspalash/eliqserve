@@ -16,9 +16,20 @@
     
         <ion-title> 
           <h3 *ngIf="country">{{country}}</h3> 
-          <p *ngIf="!currentaddress" (click)="locationsearch()">Please add or select a delivery address</p>
-          <!-- <ion-input type="text" ></ion-input> -->
-          <p *ngIf="currentaddress" (click)="locationsearch()">{{currentaddress}}</p>
+          <p *ngIf="!currentaddress && textlocation==false" (click)="showtypelocation()">Please add or select a delivery address</p>
+          <p *ngIf="currentaddress && textlocation==false" (click)="showtypelocation()">{{currentaddress}}</p>
+          <div *ngIf="textlocation==true">
+          <form [formGroup]="formGroup">
+            <ion-item>
+              <ion-input type="text" placeholder="Type location" formControlName="store_location" name="store_location" (keyup)="updateSearchResults()"></ion-input>
+          </ion-item>
+          <ion-list [hidden]="autocompleteItems.length == 0">
+            <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+           {{item.description}}
+               </ion-item>
+           </ion-list>
+          </form>
+        </div>
         </ion-title>
         
     
