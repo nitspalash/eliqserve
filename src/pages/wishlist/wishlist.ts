@@ -108,7 +108,7 @@ makeWishlist(id,iswish)
   }
   let loading = this.loadingCtrl.create({
     content: 'Update wishlist...',
-    duration: 3000
+    // duration: 3000
   });
 
   loading.present();
@@ -129,6 +129,7 @@ makeWishlist(id,iswish)
        
         let details = res
         if(details.ack == 1){
+          loading.dismiss();
           
             if(details.wishlist.length > 0)
             {

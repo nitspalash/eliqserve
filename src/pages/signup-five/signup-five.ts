@@ -193,7 +193,7 @@ console.log (this.otpSet)
           alert.present();
           this.navCtrl.setRoot('LoginPage')
             } 
-            else if (detailsResponse.ack == 0){
+            else{
               loading.dismiss();
               alert(detailsResponse.message)
             }

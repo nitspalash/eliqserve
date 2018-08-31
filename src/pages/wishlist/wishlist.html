@@ -29,8 +29,8 @@
   <ion-list class="wishlist-area" *ngIf="wishlist">
     <ion-item *ngFor="let item of wishlist" >
       <ion-thumbnail item-start (click)="goToProductDetails(item.product.id)">
-        <img *ngIf="item.product.product_image!=undefined" src="{{image_link+item.product.product_image}}" alt="">
-        <img *ngIf="item.product.product_image==undefined" src="assets/imgs/noimage.png" alt="">
+        <img *ngIf="item.product.productsimages!=''" src="{{image_link+item.product.productsimages[0].name}}" alt="">
+        <img *ngIf="item.product.productsimages==''" src="assets/imgs/noimage.png" alt="">
       </ion-thumbnail>
       <h2 (click)="goToProductDetails(item.product.id)">{{item.product.product_name}}</h2>
       <p (click)="goToProductDetails(item.product.id)">{{item.add_date|date:'MMM dd,yyyy'}}</p>

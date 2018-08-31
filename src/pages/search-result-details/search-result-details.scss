@@ -99,6 +99,19 @@ page-search-result-details {
     -webkit-box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
     box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
   }
+
+  .rating{
+    background-color: #ffca00 !important;
+    padding: 5px 10px;
+    color: #000 !important;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 7px;
+    font-weight: 700;
+  }
+  .about-info p.rating ion-icon{
+    font-size: 16px !important;
+  }
   .card{margin:0 !important; background:#fff; width: 100% !important; box-shadow: none !important;}
   .fr{position: absolute; width:30px; height:30px; right:20px; top:24px;}
   .fr a{color:#30be21; font-size:24px;}
@@ -111,5 +124,14 @@ page-search-result-details {
         border-radius: 0 !important;
       }
     }
+  }
+  .rate{
+    text-align: right;
+  }
+  .card-md .item-md.item-block.pro-namee  .item-inner{
+    border-bottom: none !important;
+  }
+  .card-md .item-md.item-block.pro-namee  .item-inner h4{
+    font-size: 20px;
   }
   }

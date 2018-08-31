@@ -339,6 +339,8 @@ public goWishlist()
     this.storage.ready().then(() => {
       const data=localStorage.getItem("userDetails");
 localStorage.removeItem('userDetails');
+localStorage.removeItem('buyerimage');
+localStorage.removeItem('sellerimage');
 
 // localStorage.setItem('userDetails', "");
    this.nav.setRoot('HomePage');

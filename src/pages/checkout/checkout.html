@@ -58,8 +58,9 @@
             
             <h2>Shipping and Billing Details</h2> 
             <form [formGroup]="shippingForm" (ngSubmit)="submit(shippingForm.value)" >
-            <div radio-group>
-                <ion-item *ngFor="let item of shippingAddArray">
+            <div radio-group >
+                <div  *ngFor="let item of shippingAddArray, let i=index of shippingAddArray" >
+                <ion-item *ngIf="item.shiping!=null">
                 
                         <ion-radio (click)="shippingCheckbox(item.shiping.id,item.shiping.first_name,
                         item.shiping.last_name,
@@ -69,27 +70,35 @@
                         item.shiping.city,
                         item.shiping.pin,
                         item.shiping.state,
-                        item.shiping.country)"></ion-radio>
+                        item.shiping.country)" [checked]="i==0"></ion-radio>
                       
-                            <ion-label class="nlabel"><b>{{item.shiping.first_name}} &nbsp;</b></ion-label>
-                            <ion-label><b>{{item.shiping.last_name}}</b></ion-label>
-                            <ion-label  class="d-block"><b>{{item.shiping.mobile}}</b></ion-label>
+                        <!-- <ion-label>{{i}}</ion-label> -->
+                            <ion-label  class="nlabel"><b>{{item.shiping.first_name}} &nbsp;</b></ion-label>
+                            <ion-label > <b>{{item.shiping.last_name}}</b></ion-label>
+                            <ion-label class="d-block"><b>{{item.shiping.mobile}}</b></ion-label>
                             <ion-label>{{item.shiping.address1}}</ion-label>
                             <ion-label>{{item.shiping.address2}}</ion-label>
                             <ion-label>{{item.shiping.city}}</ion-label>
-                            <ion-label>{{item.shiping.pin}}</ion-label>
-                            <ion-label>{{item.shiping.state}}</ion-label>
+                            <ion-label >{{item.shiping.pin}}</ion-label>
+                            <ion-label >{{item.shiping.state}}</ion-label>
                             <ion-label>{{item.shiping.country}}</ion-label>
                         
                  
-                </ion-item>
+                </ion-item></div>
 
-            <ion-item style="margin-bottom: 0;">
-                    <ion-radio (click)="toggleShippingCheckbox()" checked></ion-radio>
+            <ion-item style="margin-bottom: 0;" *ngIf="radio==false">
+                    <ion-radio (click)="toggleShippingCheckbox()"></ion-radio>
               <ion-label >I want to use new address</ion-label>
              
               
             </ion-item>
+
+            <ion-item style="margin-bottom: 0;" *ngIf="radio==true">
+                <ion-radio (click)="toggleShippingCheckbox()" checked></ion-radio>
+          <ion-label >I want to use new address</ion-label>
+         
+          
+        </ion-item>
         </div>
 
 

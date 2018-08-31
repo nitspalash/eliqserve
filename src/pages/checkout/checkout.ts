@@ -19,6 +19,7 @@ export class CheckoutPage {
   showForm:boolean=true;
   radio:boolean=true;
   deliveryRadio:boolean=false;
+  shipAddress:boolean=true;
 
 shippingForm:FormGroup
 billingForm:FormGroup;
@@ -37,7 +38,8 @@ username:any;
   public authProvider:AuthProvider,
   public loadingCtrl:LoadingController,
 ) {
-
+  
+  this.radio=true;
 this.shippingForm=new FormGroup({
   ship_id:new FormControl (''),
   ship_fname:new FormControl ('',Validators.required),
@@ -114,6 +116,20 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
     console.log('shi', this.shippingAddArray)
     this.billingAddArray=details.billing
     console.log('bill', this.billingAddArray)
+    console.log(this.shippingAddArray[0].shiping)
+    if (this.shippingAddArray[0].shiping!=null)
+    {
+
+      console.log('ack')
+      this.shipAddress=true;
+      this.radio=false;
+      // this.shippingForm.controls ['ship_id'].setValue(true)
+    }
+    else
+    {
+      this.shipAddress=false;
+      this.radio=true;
+    }
     // this.shippingForm.controls['existAdd'].setValue(this.addressListArray[0].shiping.id);
     // console.log (this.addressListArray[0].shiping.length);
 
@@ -129,6 +145,7 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutPage');
+   
     
   }
 
@@ -139,13 +156,15 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
 
   toggleShippingCheckbox() {
   // this.ischecked=true;
+  console.log('toggle shipping checkbox')
   
+  this.shipAddress=!this.shipAddress
   this.radio=true;
     this.showItem = !this.showItem;
 
     
     this.shippingForm.controls ['ship_id'].setValue ('');
-    this.shippingForm.controls ['ship_fname'].setValue (this.username);
+    this.shippingForm.controls ['ship_fname'].setValue (this.loginuser.first_name);
     this.shippingForm.controls ['ship_lname'].setValue('');
     this.shippingForm.controls['ship_mob'].setValue(this.loginuser.phone);
     this.shippingForm.controls['shipadd_one'].setValue('');
@@ -162,6 +181,8 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
 
   shippingCheckbox(id,firstname,lastname,mobile,address1,address2,city,pin,state,country)
   {
+
+    console.log('shipping checkbox')
     this.radio=false;
 console.log(id);
 console.log(firstname)
