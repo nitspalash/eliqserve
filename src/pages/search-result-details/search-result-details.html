@@ -51,16 +51,25 @@
         
           <ion-card>
             <div padding class="about-info">
-              <ion-item style="margin-bottom:0;" >
-                <h4>{{item.product_name}}</h4>
-                <!-- <h6 text-uppercase>Blended Scotch</h6> -->
-                
-                
-                
-              <!-- <div class="fr">
-                
-              </div> -->
-              </ion-item>
+              <ion-row>
+                <ion-col col-8 style="padding-left:0;">
+                    <ion-item class="pro-namee" style="margin-bottom:0;" >
+                        <h4>{{item.product_name}}</h4>
+                        <!-- <h6 text-uppercase>Blended Scotch</h6> -->
+                        
+                        
+                        
+                      <!-- <div class="fr">
+                        
+                      </div> -->
+                      </ion-item>
+                </ion-col>
+                <ion-col col-4 class="rate">
+                    <p *ngIf="showrating==1" class="rating">{{rating}}<ion-icon name="star"></ion-icon></p>
+                </ion-col>
+              </ion-row>
+              
+              
               <div class="brdr-btm">
                 <h6 class="ml" text-uppercase>{{item.quantity}} ml
                   <span class="price"> ${{item.price}}.00</span>

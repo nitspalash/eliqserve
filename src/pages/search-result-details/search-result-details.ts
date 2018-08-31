@@ -24,6 +24,8 @@ loginuser:any;
 sellerArray:any;
 user_exist:any;
 istype:any;
+rating:any;
+showrating:any;
 shippingDetailsArray:any;
 wish: boolean=false;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -61,6 +63,17 @@ let dataSet={
       console.log(this.detailArray)
       console.log(this.shippingDetailsArray)
       console.log (this.sellerArray);
+      console.log('rating',details.rating)
+      if (details.rating!='')
+      {
+      this.rating=details.rating
+      this.showrating=1;
+            }
+            else
+            {
+              this.showrating=0;
+            }
+
      
       // console.log (this.imageLink);
       
