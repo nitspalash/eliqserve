@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController,LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController,Platform} from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import { Events } from 'ionic-angular';
 import {MyApp} from '../../app/app.component';
@@ -25,8 +25,15 @@ export class ListProductPage {
   public alertCtrl:AlertController,
   public authProvider:AuthProvider,
   public events:Events,
+  public platform:Platform,
   public myApp:MyApp,
   public loadingCtrl: LoadingController) {
+
+    platform.registerBackButtonAction(() => {
+      this.navCtrl.setRoot ('VieworderPage');
+    });
+
+
 
     this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
     this.userId=this.loginuser.id

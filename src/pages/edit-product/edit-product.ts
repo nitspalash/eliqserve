@@ -50,6 +50,10 @@ export class EditProductPage {
       {
 
 
+        platform.registerBackButtonAction(() => {
+          this.navCtrl.setRoot ('ListProductPage');
+        });
+
       this.productId = this.navParams.get('id');
       //alert(this.id);
       this.gaming='NES'

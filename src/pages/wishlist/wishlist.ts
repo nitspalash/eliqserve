@@ -131,7 +131,7 @@ makeWishlist(id,iswish)
         if(details.ack == 1){
           loading.dismiss();
           
-            if(details.wishlist.length > 0)
+            if(details.wishlist.length> 0)
             {
               this.wishlist=details.wishlist
               this.image_link = details.image_link;

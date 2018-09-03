@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 /**
  * Generated class for the SellerorderdetailsPage page.
@@ -27,9 +27,14 @@ export class SellerorderdetailsPage {
   shipping_charges:any;
   grandtotal:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    public platform:Platform,
     public authProvider:AuthProvider) {
 
           
+      platform.registerBackButtonAction(() => {
+        this.navCtrl.setRoot ('VieworderPage');
+      });
+
 this.parameter=this.navParams.get ('param')
 console.log(this.parameter)
 

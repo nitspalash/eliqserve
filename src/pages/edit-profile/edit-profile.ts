@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,Platform } from 'ionic-angular';
 import {FormBuilder,FormControl,FormGroup,Validators,AbstractControl} from '@angular/forms'
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from'@ionic/storage';
@@ -33,10 +33,15 @@ export class EditProfilePage {
     public formBuilder:FormBuilder, 
   public authProvider:AuthProvider,
   public alertCtrl:AlertController,
+  public platform: Platform,
   public storage:Storage,
 
 ) {
 
+
+  platform.registerBackButtonAction(() => {
+    this.navCtrl.setRoot ('VieworderPage');
+  });
   
   this.year = new Date().getFullYear()-18;
   this.month = new Date().getMonth()+1;

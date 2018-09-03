@@ -50,6 +50,10 @@ export class AddProductPage {
      
   ) {
 
+    platform.registerBackButtonAction(() => {
+      this.navCtrl.setRoot ('VieworderPage');
+    });
+
     this.user_details =  JSON.parse(localStorage.getItem('userDetails'));
     console.log(this.user_details)
     this.user_id = this.user_details.id;

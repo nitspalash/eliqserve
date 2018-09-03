@@ -31,6 +31,7 @@ export class ProfilePage {
   loginUser:any;
   userImg:any;
   sellerimage:any;
+  bfrLogin:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public events:Events,
@@ -45,6 +46,11 @@ export class ProfilePage {
     public storage: Storage) {
 
 
+      platform.registerBackButtonAction(() => {
+        this.navCtrl.setRoot ('VieworderPage');
+      });
+    
+
     console.log(JSON.parse(localStorage.getItem('userDetails')));
     this.loginUser=JSON.parse(localStorage.getItem('userDetails'));
     this.userName=this.loginUser.first_name + this.loginUser.last_name
@@ -52,11 +58,32 @@ export class ProfilePage {
     this.userPhone=this.loginUser.phone
 
     this.userId=this.loginUser.id
-    this.userImg=this.loginUser.image_url+this.loginUser.pimg
-    // console.log(this.userImg)
+    this.bfrLogin=this.loginUser.pimg
+    console.log(this.bfrLogin)
+
+     if (localStorage.getItem('sellerimage'))
+    {
     this.userImg=JSON.parse(localStorage.getItem('sellerimage'));
     console.log(this.userImg)
+    }
 
+
+    else if (this.bfrLogin==null)
+    {
+      this.userImg='assets/imgs/noimage.png';
+    
+    console.log('pimg',this.bfrLogin)
+    }
+
+    else if (this.bfrLogin)
+    {
+      this.userImg=this.loginUser.image_url+this.loginUser.pimg
+      console.log(this.userImg)
+      
+    }
+    // console.log(this.userImg)
+   
+    
 
 
     // if (loginUser.country!=null)
