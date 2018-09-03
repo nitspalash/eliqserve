@@ -26,6 +26,15 @@ export class AuthProvider {
        });
      }
 
+     facebooklogin(data:object):Observable<any>{
+      console.log(data);
+       return this.http.post(this.apiUrl +'users/fblogin.json',data).map((res:Response)=>{
+         return res;
+       });
+     }
+
+
+
      signup(data:object):Observable<any>{
       console.log(data);
        return this.http.post(this.apiUrl +'users/register.json',data).map((res:Response)=>{

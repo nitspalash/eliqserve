@@ -31,6 +31,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import {Braintree} from '@ionic-native/braintree';
 import { Push } from '@ionic-native/push';
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { Push } from '@ionic-native/push';
     SplashScreen,
     ImagePicker,
     Braintree,
+    Facebook,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 
     Camera,
