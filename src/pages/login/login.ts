@@ -4,6 +4,8 @@ import {FormBuilder,FormControl,FormGroup,AbstractControl,Validators} from '@ang
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from '@ionic/storage';
 import { Events } from 'ionic-angular';
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 /**
  * Generated class for the LoginPage page.
  *
@@ -26,15 +28,18 @@ export class LoginPage {
   token_id:any;
   devicetype:any;
   lat:any;
-lng:any;
-
+  lng:any;
+  users:any;
+  email:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
  public authProvider:AuthProvider,
   private builder: FormBuilder,
   public events: Events,
   public platform: Platform,
   public storage: Storage,
-public alertCtrl:AlertController,) {
+  public alertCtrl:AlertController,
+  private fb: Facebook,
+  private googlePlus: GooglePlus,) {
 
   
  
@@ -143,12 +148,77 @@ forgotPassword()
    // this.unregisterBackButtonAction && this.unregisterBackButtonAction();
 }
 
-// initializeBackButtonCustomHandler(): void {
-  
 
-//     this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event){
-//         console.log('Prevent Back Button Page Change');
-//         this.navCtrl.setRoot ('HomePage');
-//     }, 100); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
-// }  
+facebookSignIn() {
+  this.fb.login(['public_profile', 'email'])
+    .then(res => {
+      console.log("FBDATA",res);
+      if(res.status === "connected") {
+        //this.isLoggedIn = true;
+        this.getUserDetail(res.authResponse.userID);
+      } else {
+       // this.isLoggedIn = false;
+      }
+    })
+    .catch(e => console.log('Error logging into Facebook', e));
+}
+
+getUserDetail(userid) {
+  this.fb.api("/"+userid+"/?fields=id,email,name,picture,gender",["public_profile"])
+    .then(res => {
+      console.log("FBDATA",res);
+      this.users = res;
+      
+   let param={
+    "facebook_id": this.users.id,
+    "email":this.users.email,
+    //"gender": this.users.gender,
+    "first_name": this.users.name,
+    "device_type": this.devicetype,
+    "device_token_id": this.token_id,
+     
+   };
+   console.log("DATATATTATATAT",param);
+     
+      this.authProvider.facebooklogin(param).subscribe((res) => { //console.log(result);
+       this.detailsTReponse = res;
+       console.log("FBRESULT",res);
+       if(res.ack== 1)
+       {
+     
+        localStorage.setItem('userDetails',JSON.stringify(res.details));
+        this.navCtrl.push('HomePage')
+       
+       }
+       else{
+        
+        let alert = this.alertCtrl.create({
+          title: res.message,
+                 buttons: ['ok']
+        });
+        alert.present(); 
+        this.formGroup.reset();
+         
+       }
+        
+     })
+
+    })
+    
+}
+
+
+googleplus() {
+  //alert();
+  this.googlePlus.login({})
+    .then(res => {
+      console.log("GOOGLEPLUSDATA",res);
+      this.email = res.email;
+    })
+    .catch(err => console.error(err));
+}
+
+
+
+
 }
