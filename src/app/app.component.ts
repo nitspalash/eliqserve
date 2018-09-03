@@ -74,6 +74,7 @@ export class MyApp {
     this.events.subscribe('hideFooter', (data) => {
       this.footerIsHidden = data.isHidden;
     })
+    this.events.publish('hideFooter', {isHidden: true});
   }
 
   abc()

@@ -31,6 +31,8 @@ export class BuyerProfilePage {
   loginUser:any;
   userImg:any;
   buyerimage:any;
+  uploadeduserImg:any;
+  bfrLogin:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private actionSheetCtrl: ActionSheetController,
@@ -51,10 +53,11 @@ export class BuyerProfilePage {
     this.userEmail=this.loginUser.email
     this.userPhone=this.loginUser.phone
     this.userId=this.loginUser.id
-    // this.userImg=this.loginUser.image_url+this.loginUser.pimg
-    this.userImg=JSON.parse(localStorage.getItem('buyerimage'));
-    console.log(this.userImg)
 
+    this.bfrLogin=this.loginUser.pimg
+    console.log(this.bfrLogin)
+
+   
 
 
     if (this.loginUser.country!=null && this.loginUser.city!=null && this.loginUser.address!=null)
@@ -72,6 +75,31 @@ export class BuyerProfilePage {
     console.log (this.userPhone)
     console.log (this.userAddress)
 
+
+
+    if (localStorage.getItem('buyerimage'))
+    {
+      this.userImg=JSON.parse(localStorage.getItem('buyerimage'));
+    
+    console.log('pimg null',this.bfrLogin)
+    }
+
+    else if (this.bfrLogin==null)
+    {
+      this.userImg='assets/imgs/noimage.png';
+    
+    console.log('pimg',this.bfrLogin)
+    }
+
+    // this.userImg=this.loginUser.image_url+this.loginUser.pimg
+    
+    
+  else if (this.bfrLogin)
+      {
+        this.userImg=this.loginUser.image_url+this.loginUser.pimg
+        console.log(this.userImg)
+        
+      }
 
   }
 
@@ -182,9 +210,14 @@ export class BuyerProfilePage {
     console.log("IMAGGGEGGEGGEGE",img);
     
     if (img === undefined) {
+
+     
       return this.userImg;
+     
     } 
     else {
+
+      
       return cordova.file.dataDirectory + img;
     }
     
