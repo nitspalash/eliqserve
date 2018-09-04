@@ -35,6 +35,8 @@ export class HomePage {
   country:any;
   loginuser:any;
   userId:any;
+  lat:any;
+  lng:any;
  //spandan
 
  google:any;
@@ -48,7 +50,7 @@ export class HomePage {
   longitude:any;
   message:any;
   textlocation: boolean=false;
-
+  catid:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -61,12 +63,17 @@ export class HomePage {
     public myApp:MyApp,
     private zone: NgZone,
     public alertCtrl:AlertController) {
+
+
       this.myApp.abc();
       this.fetchlocation();
       this.myApp.abc();
       this.events.publish('hideFooter',{isHidden:false});
       
       this.catlist();
+
+    //   this.lat= JSON.parse(localStorage.getItem('lat'));
+    // this.lng= JSON.parse(localStorage.getItem('lng'));
      
       //spandan
 
@@ -91,9 +98,10 @@ catlist(){
       console.log('my data: ');
       this.categoryArray=res.categories;
       console.log(this.categoryArray[0].name);
+      this.catid=this.categoryArray[0].id
       this.pet=this.categoryArray[0].name
       this.productArray=res.catproduct
-    console.log(this.productArray)
+    console.log('catis',this.catid)
 
     this.imageLink=res.categoryimagepath
     console.log (this.imageLink) 
@@ -148,7 +156,7 @@ catlist(){
           console.log(address)
           
           console.log(this.currentaddress);
-        
+          this.productList(this.catid,this.pet);
         if(this.address.thoroughfare)
         {
           this.currentaddress = this.address.thoroughfare +',';
@@ -201,22 +209,30 @@ productList(id,name)
     this.pet= name
     console.log(id)
 
+    
+
 if (localStorage.getItem('userDetails'))
 {
   this.loginuser = JSON.parse(localStorage.getItem('userDetails')); 
   this.userId=this.loginuser.id
 
+
   this.idSet=
   {
     'cat_id':id,
-    "user_id":this.userId
+    "user_id":this.userId,
+  "latitude":JSON.parse(localStorage.getItem('lat')),
+  "longitude":JSON.parse(localStorage.getItem('lng'))
+   
   }
 } 
 else{
   this.idSet=
   {
     'cat_id':id,
-    "user_id":''
+    "user_id":'',
+    "latitude":JSON.parse(localStorage.getItem('lat')),
+    "longitude":JSON.parse(localStorage.getItem('lng'))
   }
 }
 
@@ -291,7 +307,8 @@ selectSearchResult(item) {
 
   this.geo = item;
   console.log(this.geo);
-  this.geoCode(this.geo); 
+  this.geoCode(this.geo);
+ 
 }
 
 geoCode(address:any) {
@@ -302,7 +319,10 @@ geoCode(address:any) {
   this.longitude = results[0].geometry.location.lng();
   localStorage.setItem('lat', this.latitude);
   localStorage.setItem('lng', this.longitude);
-  //console.log("lat: " + this.latitude + ", long: " + this.longitude);
+  this.catlist();
+  this.productList(this.catid,this.pet); 
+  //debugger;
+  console.log("lat: " + this.latitude + ", long: " + this.longitude);
  });
 }
 

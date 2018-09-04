@@ -60,6 +60,7 @@
       
     
     <ion-card  *ngFor="let item of orderArray"  >
+      
         <ion-item  *ngFor="let product of item.order_details">
             <ion-avatar item-start *ngIf="product.product.product_image!=undefined">
               <img src="{{imagelink+product.product.product_image}}" alt="">
@@ -69,7 +70,7 @@
             </ion-avatar>
             <ion-row>
               <ion-col col-8 >
-                  <h2>#00{{product.product_id}}</h2>
+                  <h2>#00{{product.order_id}}</h2>
                   <h3>{{product.product.product_name}}</h3>
                   <p>{{item.order_date|date:'MMM dd,yyyy'}}</p>
                   <h4><b>Total: </b> ${{product.product.price}}.00</h4>

@@ -184,7 +184,7 @@ else{
       buttons: ['OK']
     });
     alert.present();
-    // this.navCtrl.push('CartPage')
+    this.navCtrl.push('HomePage')
   }
 
   else if (details.Ack==0)
