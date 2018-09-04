@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthProvider} from '../../providers/auth-service/authservice';
 import {Events} from 'ionic-angular';
@@ -25,7 +25,8 @@ export class ChangePasswordPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public builder:FormBuilder,
 public authProvider:AuthProvider,
-public events:Events,) {
+public events:Events,
+public alertCtrl:AlertController ) {
 
     this.user_details =  JSON.parse(localStorage.getItem('userDetails'));
     console.log(this.user_details)
@@ -52,13 +53,22 @@ public events:Events,) {
     let details = res
     if(details.Ack == 1){
       console.log('hello')
-      alert (details.message)
+      
+      const alert = this.alertCtrl.create({
+        title: details.message,
+           buttons: ['ok']
+      });
+      alert.present();
 
-      this.navCtrl.setRoot('LoginPage')
+      this.navCtrl.setRoot('HomePage')
     }
     else{
 
-      alert (details.message)
+      const alert = this.alertCtrl.create({
+        title: details.message,
+           buttons: ['ok']
+      });
+      alert.present();
      
     }
 

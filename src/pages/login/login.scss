@@ -24,7 +24,7 @@ page-login {
     .list .item-input:last-child{ border-bottom: 1px solid #d0d0d0; }
     
     .list h4{ font-weight: 600;}
-    .item-input .label{ color: #636363; text-transform: uppercase;  }
+    .item-input .label{ color: #636363;text-transform: lowercase;  }
     .item-label-floating .text-input{ color: #636363; font-size: 1.3rem; font-weight: 400;  }
     .item-input-has-focus .label[floating], .input-has-focus .label[floating]{ color: #30be21 !important; }
     .item.item-input.item-input-has-focus .item-inner, .item.item-input.input-has-focus .item-inner{ border-bottom-color: #30be21; box-shadow: none; }

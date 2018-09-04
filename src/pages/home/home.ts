@@ -242,6 +242,7 @@ else{
     // }
 console.log(this.idSet)
     this.authProvider.listProduct(this.idSet).subscribe(res=>{
+      console.log('product list')
       console.log(res);
      
       let details = res
@@ -253,7 +254,8 @@ console.log(this.idSet)
       this.imageLink=res.image_link
       console.log (this.imageLink) 
 
-      }
+      } 
+    
   });
 }
 goToProductDetails(data)
