@@ -26,7 +26,7 @@ export class SignupTwoPage {
     {
       this.formGroup=new FormGroup
     ({
-      phone: new FormControl('', Validators.required)
+      phone: new FormControl('', [Validators.required, Validators.minLength(10)])
         
     }); 
   }

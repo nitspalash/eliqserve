@@ -58,6 +58,10 @@ this.email=this.itemEmail.email
    this.timerTick();
  }
 
+ pauseTimer() {
+  this.runTimer = false;
+}
+
 
  timerTick() {
   setTimeout(() => {
@@ -105,8 +109,14 @@ this.email=this.itemEmail.email
                 this.startTimer();
               }
               else{
-                console.log('error')
                 loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: res.message,
+                   buttons: ['ok']
+                });
+                alert.present();
+                console.log('error')
+               
               }
             }); 
           
@@ -123,7 +133,7 @@ this.email=this.itemEmail.email
   initTimer() {
    
     if (!this.timeInSeconds) { 
-      this.timeInSeconds = 1800; 
+      this.timeInSeconds = 60; 
     }
   
     this.time = this.timeInSeconds;
@@ -177,7 +187,8 @@ console.log (this.otpSet)
 
 
  this.authProvider.verifyOtp(this.otpSet).subscribe(res => {
-     
+  //  this.pauseTimer();
+     console.log(res)
       console.log(res.details);
       console.log('hello');
       let detailsResponse = res.details
@@ -186,7 +197,7 @@ console.log (this.otpSet)
       if(detailsResponse.ack == 1){
         loading.dismiss();
         const alert = this.alertCtrl.create({
-          title: 'Your Profile Created Successfully',
+          title: detailsResponse.message,
            buttons: ['OK']
         
          });
@@ -195,7 +206,12 @@ console.log (this.otpSet)
             } 
             else{
               loading.dismiss();
-              alert(detailsResponse.message)
+              const alert = this.alertCtrl.create({
+                title: detailsResponse.message,
+                 buttons: ['OK']
+              
+               });
+                alert.present();
             }
           });
 

@@ -43,6 +43,10 @@
           Phone Number is required
         </p>
 
+        <p class="error" *ngIf="formGroup.get('phone').hasError('minLength') && formGroup.get('phone').touched"  style="color:red;">
+            Enter a valid phone number
+            </p>
+
         <!-- <div class="error" *ngIf="!data" ion-text color="danger" >Please enter your mobile number </div> -->
         <!-- <ion-col col-2 class="pl-0">
           <ion-item>

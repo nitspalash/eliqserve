@@ -75,7 +75,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-label floating>Price*</ion-label>
-                        <ion-input formControlName="price"></ion-input>
+                        <ion-input type="number" formControlName="price"></ion-input>
                     </ion-item>
                     <p class="error" *ngIf="formGroup.get('price').hasError('required') && formGroup.get('price').touched"  style="color:red;">
                       Price is required.
@@ -95,7 +95,7 @@
               
                 <ion-item>
                     <ion-label floating>Sale Price/Discount</ion-label>
-                    <ion-input formControlName="discount"></ion-input>
+                    <ion-input type="number" formControlName="discount"></ion-input>
                 </ion-item>
             
                 
