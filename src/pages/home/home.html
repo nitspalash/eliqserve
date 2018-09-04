@@ -104,7 +104,7 @@
 
           <ion-list class="drink-area pd">
     
-              <ion-row class="mb-50">
+              <ion-row class="mb-50 home-list-row">
                 <ion-col col-4 *ngFor="let item of productArray" (click)="goToProductDetails(item.id)">
 
                   <ion-card >                    
@@ -115,13 +115,22 @@
                     <div class="card-subtitle">{{item.description}}</div>
                   </ion-card>
 
-                                </ion-col>
+                </ion-col>
                
+
+                
+
               </ion-row>
         
             </ion-list>
+            
+            <ion-list>
+                <ion-col col-4 *ngIf="productArray==''" >
 
-
+                   Sorry! No result found.
+    
+                  </ion-col>
+            </ion-list>
         <!-- <ion-list> -->
             <!-- *ngSwitchCase="'vodka'" -->
           <!-- <ion-row class="drink-area" >

@@ -308,9 +308,10 @@ selectSearchResult(item) {
 
 
   this.geo = item;
-  console.log(this.geo);
+  //console.log(this.geo);
   this.geoCode(this.geo);
- 
+  //this.catlist();
+  
 }
 
 geoCode(address:any) {
@@ -321,10 +322,9 @@ geoCode(address:any) {
   this.longitude = results[0].geometry.location.lng();
   localStorage.setItem('lat', this.latitude);
   localStorage.setItem('lng', this.longitude);
-  this.catlist();
   this.productList(this.catid,this.pet); 
   //debugger;
-  console.log("lat: " + this.latitude + ", long: " + this.longitude);
+  //console.log("lat: " + this.latitude + ", long: " + this.longitude);
  });
 }
 
