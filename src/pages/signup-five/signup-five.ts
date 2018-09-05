@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController,LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController,ToastController} from 'ionic-angular';
 import {SignupTwoPage} from '../signup-two/signup-two'
 import moment from 'moment';
 import {AuthProvider} from '../../providers/auth-service/authservice'
@@ -36,6 +36,7 @@ export class SignupFivePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController,
     public authProvider:AuthProvider,
+    public toastCtrl:ToastController,
   public loadingCtrl:LoadingController) {
 
     this.itemphone=JSON.parse(localStorage.getItem('ph_number'));
@@ -118,8 +119,13 @@ this.email=this.itemEmail.email
                 console.log('error')
                
               }
-            }); 
-          
+            },(err) => {
+              console.log("Error",err);
+              loading.dismiss();
+              this.presentToast('Error while validating otp.');
+            });    
+            
+            
           }
         }
          ]
@@ -130,10 +136,20 @@ this.email=this.itemEmail.email
     }
   }, 1000); //1000 time_in_ms
 }
+
+private presentToast(text) {
+  let toast = this.toastCtrl.create({
+    message: text,
+    duration: 3000,
+    position: 'top'
+  });
+  toast.present();
+}
+
   initTimer() {
    
     if (!this.timeInSeconds) { 
-      this.timeInSeconds = 60; 
+      this.timeInSeconds = 1800; 
     }
   
     this.time = this.timeInSeconds;
@@ -195,6 +211,7 @@ console.log (this.otpSet)
       console.log(detailsResponse);
       
       if(detailsResponse.ack == 1){
+        this.pauseTimer();
         loading.dismiss();
         const alert = this.alertCtrl.create({
           title: detailsResponse.message,
@@ -205,6 +222,7 @@ console.log (this.otpSet)
           this.navCtrl.setRoot('LoginPage')
             } 
             else{
+              this.pauseTimer();
               loading.dismiss();
               const alert = this.alertCtrl.create({
                 title: detailsResponse.message,
@@ -213,6 +231,11 @@ console.log (this.otpSet)
                });
                 alert.present();
             }
+          },(err) => {
+            this.pauseTimer();
+            console.log("Error",err);
+            loading.dismiss();
+            this.presentToast('Error while validating otp.');
           });
 
 }
