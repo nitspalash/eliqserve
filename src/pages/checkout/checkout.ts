@@ -123,6 +123,18 @@ this.authProvider.addressList(this.userIdSet).subscribe(res=>{
       console.log('ack')
       this.shipAddress=true;
       this.radio=false;
+/*new add*/
+      this.shippingForm.controls ['ship_id'].setValue (this.shippingAddArray[0].shiping.id);
+this.shippingForm.controls ['ship_fname'].setValue (this.shippingAddArray[0].shiping.first_name);
+this.shippingForm.controls ['ship_lname'].setValue(this.shippingAddArray[0].shiping.last_name);
+this.shippingForm.controls['ship_mob'].setValue(this.shippingAddArray[0].shiping.mobile);
+this.shippingForm.controls['shipadd_one'].setValue(this.shippingAddArray[0].shiping.address1);
+this.shippingForm.controls['shipadd_two'].setValue(this.shippingAddArray[0].shiping.address2);
+this.shippingForm.controls['ship_city'].setValue(this.shippingAddArray[0].shiping.city);
+this.shippingForm.controls['ship_pin'].setValue(this.shippingAddArray[0].shiping.pin);
+this.shippingForm.controls['ship_state'].setValue(this.shippingAddArray[0].shiping.state);
+this.shippingForm.controls['ship_country'].setValue(this.shippingAddArray[0].shiping.country);
+/*new add*/
       // this.shippingForm.controls ['ship_id'].setValue(true)
     }
     else
@@ -206,6 +218,7 @@ this.shippingForm.controls['ship_city'].setValue(city);
 this.shippingForm.controls['ship_pin'].setValue(pin);
 this.shippingForm.controls['ship_state'].setValue(state);
 this.shippingForm.controls['ship_country'].setValue(country);
+
   }
 
 

@@ -66,9 +66,10 @@
           </button>
           
           <div class="price"> ${{item.price}}.00 </div>
-         </div>   
+         </div>  
+         
 
-         <span *ngIf="item.setcharge!=null">* Estimated Delivery Time {{item.setcharge.shipping_day}} days</span>
+         
       </ion-item>
   
       <!-- <ion-item>
@@ -87,10 +88,26 @@
         </div>
       </ion-item>
    -->
-      <ion-item>
+   <span class="wt" *ngIf="setcharge!=''"> Estimated Delivery Time {{deliverytime}} days</span>
+   <ion-item>
+    <div item-start> Shipping Charges </div>
+    <div item-end text-right>
+      <div class="total-price"> ${{shippingCharges}} </div>
+    </div>
+  </ion-item>
+
+
+      <!-- <ion-item>
         <div item-start> Total </div>
         <div item-end text-right>
           <div class="total-price"> ${{totalPrice}}.00 </div>
+        </div>
+      </ion-item> -->
+
+      <ion-item>
+        <div item-start> Payable Amount </div>
+        <div item-end text-right>
+          <div class="total-price"> ${{(totalItem*shippingCharges)+totalPrice}}.00 </div>
         </div>
       </ion-item>
     </ion-list>
