@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Platform,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform,AlertController,ToastController,LoadingController } from 'ionic-angular';
 import {FormBuilder,FormControl,FormGroup,AbstractControl,Validators} from '@angular/forms'
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from '@ionic/storage';
@@ -31,6 +31,11 @@ export class LoginPage {
   lng:any;
   users:any;
   email:any;
+  itemphone:any;
+  phone:any;
+  itemEmail:any;
+  useremail:any;
+  paraSet:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
  public authProvider:AuthProvider,
   private builder: FormBuilder,
@@ -38,6 +43,8 @@ export class LoginPage {
   public platform: Platform,
   public storage: Storage,
   public alertCtrl:AlertController,
+  public toastCtrl:ToastController,
+  public loadingCtrl:LoadingController,
   private fb: Facebook,
   private googlePlus: GooglePlus,) {
 
@@ -55,6 +62,13 @@ export class LoginPage {
 
   login (formData)
   {
+
+    this.itemphone=JSON.parse(localStorage.getItem('ph_number'));
+    this.phone=this.itemphone.phone
+    
+    this.itemEmail=JSON.parse(localStorage.getItem('email_address'));
+    this.useremail=this.itemEmail.useremail
+    console.log('useremail',this.useremail)
 
     if (localStorage.getItem('currentlatlong'))
     {
@@ -108,10 +122,62 @@ export class LoginPage {
 
         let alert = this.alertCtrl.create({
           title: res.message,
-                 buttons: ['ok']
+                 buttons: [
+                   {
+                    text: 'Resend Otp',
+                    
+                    handler: () => {
+                      this.navCtrl.push('SignupFivePage')
+                      this.paraSet={
+                        "phone":this.phone,
+                        "email":formData.email
+                      }
+                      let loading = this.loadingCtrl.create({
+                        content: 'Please wait...',
+                        // duration: 6000
+                      });
+                    
+                      loading.present();
+                      this.authProvider.resendOtp(this.paraSet).subscribe(res => {
+               
+                        console.log(res);
+                        if (res.Ack==1)
+                        {
+                          loading.dismiss();
+                          const alert = this.alertCtrl.create({
+                            title: res.message,
+                             buttons: ['ok']
+                          });
+                          alert.present();
+                          // this.initTimer();
+                          // this.startTimer();
+                        }
+                        else{
+                          loading.dismiss();
+                          const alert = this.alertCtrl.create({
+                            title: res.message,
+                             buttons: ['ok']
+                          });
+                          alert.present();
+                          console.log('error')
+                         
+                        }
+                      },(err) => {
+                        console.log("Error",err);
+                        loading.dismiss();
+                        this.presentToast('Error while validating otp.');
+                      });    
+                      
+                      
+                    }
+                   
+                   }
+                 ]
+                 
         });
         alert.present(); 
-        this.formGroup.reset();
+        
+        // this.formGroup.reset();
       }
 
   });
@@ -127,7 +193,14 @@ forgotPassword()
   }
 
 
-
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
   ionViewDidLoad() {
      this.events.publish('hideFooter', {isHidden: true});
     console.log('ionViewDidLoad LoginPage');

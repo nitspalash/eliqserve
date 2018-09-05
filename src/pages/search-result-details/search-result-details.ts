@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController,Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,Events,ToastController,LoadingController} from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import { SocialSharing } from '@ionic-native/social-sharing';
 /**
@@ -30,6 +30,8 @@ shippingDetailsArray:any;
 wish: boolean=false;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
+  public toastCtrl:ToastController,
+  public loadingCtrl:LoadingController,
   public events:Events,
 public alertCtrl:AlertController,private socialSharing: SocialSharing) {
     this.pamater=navParams.get('param')
@@ -106,6 +108,11 @@ else{
   }
   buynow(prodId)
   {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      
+    });
  console.log (prodId)
     // alert('Your product added successfully');
  if(JSON.parse(localStorage.getItem('userDetails')))
@@ -129,6 +136,7 @@ else{
 
       if (details.Ack==1)
       {
+        loading.dismiss();
     const alert = this.alertCtrl.create({
       title: 'Success',
       subTitle:'Product added to your cart',
@@ -140,7 +148,7 @@ else{
 
   else if (details.Ack==0)
   {
-
+    loading.dismiss();
     const alert = this.alertCtrl.create({
       title: details.message,
       buttons: ['OK'],
@@ -150,6 +158,10 @@ else{
     alert.present();
 
   }
+  },(err) => {
+    console.log("Error",err);
+    loading.dismiss();
+    this.presentToast('Error, please try again later.');
   });
   }
 
@@ -157,6 +169,10 @@ else{
   addcart(data)
   {
 
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      
+    });
     if(JSON.parse(localStorage.getItem('userDetails')))
     {
      
@@ -178,6 +194,7 @@ else{
 
       if (details.Ack==1)
       {
+        loading.dismiss();
     const alert = this.alertCtrl.create({
       title: 'Success',
       subTitle:'Product added to your cart',
@@ -189,7 +206,7 @@ else{
 
   else if (details.Ack==0)
   {
-
+    loading.dismiss();
     const alert = this.alertCtrl.create({
       title: details.message,
       buttons: ['OK'],
@@ -199,10 +216,23 @@ else{
     alert.present();
 
   }
-  });
+  }
+  ,(err) => {
+    console.log("Error",err);
+    loading.dismiss();
+    this.presentToast('Error, please try again later.');
+  }
+);
   }
 
-
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
   
 
   makeWishlist(id,iswish)
