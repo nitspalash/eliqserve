@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController,LoadingController } from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from '@ionic/storage'
 import { trigger } from '@angular/core/src/animation/dsl';
@@ -28,9 +28,14 @@ export class CartPage {
   quantity:any;
   updateIdSet:any;
   sellerArray:any;
+  shippingCharges:any;
+  deliverytime:any;
+  setcharge:any;
     constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider:AuthProvider,
     public alertCtrl:AlertController,
+    public toastCtrl:ToastController,
+    public loadingCtrl:LoadingController,
     public events:Events,
     storage:Storage
   ) {
@@ -63,15 +68,31 @@ export class CartPage {
             {
               this.cartArray=details.cart
               console.log('product')
+              this.shippingCharges=this.cartArray[0].shipping_charge;
+              if (this.cartArray[0].setcharge!=null)
+
+              {
+               this.deliverytime=this.cartArray[0].setcharge.shipping_day
+              }
+              else
+              {
+               this.setcharge='';
+              }
             }
             else{
               this.cartArray='';
               console.log('no product')
+              this.shippingCharges='';
+              
               }
          
           this.totalPrice=details.total_price;
           this.totalItem=details.total_item;
+          
           this.quantity=details.quantity;
+        
+         
+          console.log('delivery',this.deliverytime)
         
 
         
@@ -81,10 +102,27 @@ export class CartPage {
           
           // this.navCtrl.push('LoginPage')
         }
+        else{
+          console.log('error')
+        }
           
-    });
+    },(err) => {
+      console.log("Error",err);
+      this.presentToast('Error,please try again later.');
+    }); 
   
     }
+
+
+    private presentToast(text) {
+      let toast = this.toastCtrl.create({
+        message: text,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    }
+  
   
     ionViewDidLoad() {
       this.events.publish('hideFooter', { isHidden: false});
@@ -94,7 +132,7 @@ export class CartPage {
   
     increment(index)
     {
-      
+   
 this.updateIdSet={
   "id":this.cartArray[index].id,
   "quantity":this.cartArray[index].quantity,
@@ -109,6 +147,7 @@ this.updateIdSet={
    
     let details = res
     if(details.Ack == 1){
+    
       this.cartArray[index].quantity=details.quantity 
       this.cartArray[index].price=details.price 
       //  this.cartArray[index].total_price
@@ -116,7 +155,14 @@ this.updateIdSet={
        console.log (details.totalcartprice)
        console.log(this.cartArray[index].total_price)
     }
-  })
+    else
+    {
+      console.log('error')
+    }
+  },(err) => {
+    console.log("Error",err);
+    this.presentToast('Error,please try again later.');
+  }); 
   
       // console.log (index)
       console.log (this.cartArray[index].id)
@@ -128,6 +174,11 @@ this.updateIdSet={
   
     decrement(index)
     {
+
+   
+    
+      
+
       if(this.cartArray[index].quantity != 1)
       {
       this.updateIdSet={
@@ -142,15 +193,26 @@ this.updateIdSet={
          
           let details = res
           if(details.Ack == 1){
+           
             this.cartArray[index].quantity=details.quantity 
             this.cartArray[index].price=details.price 
             // this.cartArray[index].total_price=details.totalcartprice 
             this.totalPrice=details.totalcartprice 
           }
-        })
+        },(err) => {
+          console.log("Error",err);
+          this.presentToast('Error,please try again later.');
+        }); 
       } else
       {
-        alert("Quantity can't be zero, please click on remove to delete from your order ")
+        
+        const alert = this.alertCtrl.create({
+          message:"Quantity can't be zero, please click on remove to delete from your order",
+           buttons: ['ok']
+           
+        });
+        alert.present();
+        
       }
       
   

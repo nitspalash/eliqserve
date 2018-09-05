@@ -23,29 +23,39 @@
 <ion-content padding>
   <ion-list *ngIf="orderArray!=''">
     <ion-card  (click)="goTosellerOrderDetails(item.order.id)" *ngFor="let item of orderArray">
-      <ion-item>
+      <ion-item >
         <ion-row>
-          <ion-col col-4>
+          <ion-col col-8>
             <h2 class="f-w-5">Order Id:</h2>
           </ion-col>
-          <ion-col col-8>
+          <ion-col col-4>
             <h2>#00{{item.order.id}}</h2>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-4>
+          <ion-col col-8>
             <h2 class="f-w-5">Date:</h2>
           </ion-col>
-          <ion-col col-8>
+          <ion-col col-4>
             <h2>{{item.order.order_date|date:'MMM dd,yyyy'}}</h2>
           </ion-col>
         </ion-row>
+
         <ion-row>
-          <ion-col col-4>
-            <h2 class="f-w-5">Total:</h2>
-          </ion-col>
           <ion-col col-8>
-            <p>${{item.order.total_price}}</p>
+            <h2 class="f-w-5">Shipping Charges:</h2>
+          </ion-col>
+          <ion-col col-4>
+            <p>${{item.shipping_charge}}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-8>
+            <h2 class="f-w-5">Total Price:</h2>
+          </ion-col>
+          <ion-col col-4>
+            <p>${{item.shipping_charge+item.price}}</p>
           </ion-col>
         </ion-row>
         <button item-end ion-button class="detail-btn" > Detail </button>

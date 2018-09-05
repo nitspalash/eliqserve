@@ -48,7 +48,14 @@ export class LoginPage {
   private fb: Facebook,
   private googlePlus: GooglePlus,) {
 
-  
+ if (localStorage.getItem('ph_number'))
+    {
+        this.itemphone=JSON.parse(localStorage.getItem('ph_number'));
+    this.phone=this.itemphone.phone
+    } else
+    {
+      this.phone='';
+    }
  
   platform.registerBackButtonAction(() => {
     this.navCtrl.setRoot ('HomePage');
@@ -63,11 +70,10 @@ export class LoginPage {
   login (formData)
   {
 
-    this.itemphone=JSON.parse(localStorage.getItem('ph_number'));
-    this.phone=this.itemphone.phone
+   
     
-    this.itemEmail=JSON.parse(localStorage.getItem('email_address'));
-    this.useremail=this.itemEmail.useremail
+    // this.itemEmail=JSON.parse(localStorage.getItem('email_address'));
+    // this.useremail=this.itemEmail.useremail
     console.log('useremail',this.useremail)
 
     if (localStorage.getItem('currentlatlong'))
@@ -118,7 +124,9 @@ export class LoginPage {
 
 
     }
-      else{
+
+
+      else if (res.ack == 2){
 
         let alert = this.alertCtrl.create({
           title: res.message,
@@ -177,7 +185,16 @@ export class LoginPage {
         });
         alert.present(); 
         
-        // this.formGroup.reset();
+        
+      }
+      else
+      {
+        let alert = this.alertCtrl.create({
+          title: res.message,
+                 buttons:['ok']
+        });
+        alert.present();
+        this.formGroup.reset();
       }
 
   });

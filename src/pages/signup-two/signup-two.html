@@ -43,9 +43,13 @@
           Phone Number is required
         </p>
 
-        <p class="error" *ngIf="formGroup.get('phone').hasError('minLength') && formGroup.get('phone').touched"  style="color:red;">
+
+ <div no-lines *ngIf="!formGroup.controls.phone.valid && formGroup.controls.phone.dirty" >
+      <p style="color:red;">Please enter a valid phone number</p>
+ </div>
+        <!-- <p class="error" *ngIf="formGroup.get('phone').hasError('minLength') && formGroup.get('phone').touched"  style="color:red;">
             Enter a valid phone number
-            </p>
+            </p> -->
 
 
 

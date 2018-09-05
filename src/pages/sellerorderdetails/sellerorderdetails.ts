@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform,LoadingController,ToastController,AlertController} from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 /**
  * Generated class for the SellerorderdetailsPage page.
@@ -28,6 +28,9 @@ export class SellerorderdetailsPage {
   grandtotal:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public platform:Platform,
+    public loadingCtrl:LoadingController,
+    public alertCtrl:AlertController,
+    public toastCtrl:ToastController,
     public authProvider:AuthProvider) {
 
           
@@ -69,6 +72,10 @@ this.deliver = this.item.deliver;
 this.shiping = this.item.shiping;
 console.log('item',this.deliver);
   }
+
+  else{
+    console.log('error')
+  }
 })
   }
 
@@ -78,6 +85,12 @@ console.log('item',this.deliver);
   
   order_status(id,status)
   {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Updating your order status...',
+      // duration: 6000
+    });
+    loading.present();
     this.orderstatus={
       "order_id":id,
       "order_status":status
@@ -89,15 +102,43 @@ console.log('item',this.deliver);
       let details = res
       
       if(details.Ack == 1){
+        loading.dismiss();
         this.navCtrl.push('VieworderPage',{param:id})
     
       }
-    })
-  }
+      else
+      {
+        loading.dismiss();
 
+        let alert = this.alertCtrl.create({
+          message: res.message,
+                 buttons: ['ok']
+        });
+        alert.present(); 
+      }
+    },(err) => {
+     
+      console.log("Error",err);
+      loading.dismiss();
+      this.presentToast('Error,please try again later.');
+    });
+  }
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
 
   onChange(status,id)
   {
+    let loading = this.loadingCtrl.create({
+      content: 'Updating your order status...',
+      // duration: 6000
+    });
+    loading.present();
     console.log(status,id);
 
     this.orderstatus={
@@ -112,10 +153,20 @@ console.log('item',this.deliver);
       let details = res
       
       if(details.Ack == 1){
+        loading.dismiss();
         this.navCtrl.push('VieworderPage',{param:id})
     
       }
-    })
+      else
+      {
+        loading.dismiss();
+      }
+    },(err) => {
+     
+      console.log("Error",err);
+      loading.dismiss();
+      this.presentToast('Error,please try again later.');
+    });
 
   }
 }

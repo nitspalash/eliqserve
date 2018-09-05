@@ -73,7 +73,10 @@
                   <h2>#00{{product.order_id}}</h2>
                   <h3>{{product.product.product_name}}</h3>
                   <p>{{item.order_date|date:'MMM dd,yyyy'}}</p>
-                  <h4><b>Total: </b> ${{product.product.price}}.00</h4>
+
+                  <h4><b>Shipping Charges: </b> ${{product.shipping_charge}}</h4>
+                  <h4><b>Total: </b> ${{product.shipping_charge+product.product.price}}</h4>
+                  
                   <p>{{item.rating}}</p>
                   <h5 *ngIf="item.rating!=''">
                     <h5 *ngIf="item.rating==5">

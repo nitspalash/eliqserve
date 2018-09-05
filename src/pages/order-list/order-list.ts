@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController,LoadingController} from 'ionic-angular';
 import {AuthProvider} from '../../providers/auth-service/authservice';
 // import { AppRate } from '@ionic-native/app-rate';
 //import { Ionic2RatingModule } from 'ionic2-rating';
@@ -41,6 +41,8 @@ export class OrderListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public authProvider:AuthProvider,
   public alertCtrl: AlertController,
+  public toastCtrl:ToastController,
+  public loadingCtrl:LoadingController,
   public events:Events
 ) {
 
@@ -68,14 +70,27 @@ export class OrderListPage {
         this.imagelink=details.image_link
         console.log(this.imagelink)
         console.log(this.orderArray)
+
     
   }
   else{
     this.orderArray = '';
   }
-})
+},(err) => {
+              console.log("Error",err);
+              this.presentToast('Error,please try again later.');
+            }); 
 
 
+  }
+
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
   show(prod_id,item) {
@@ -94,6 +109,14 @@ export class OrderListPage {
 
   submit()
   {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      // duration: 6000
+    });
+  
+    loading.present();
+
     console.log(this.comment)
     console.log(this.rate)
     this.idSet={
@@ -120,6 +143,7 @@ console.log(this.idSet)
       let details = res
       
       if(details.Ack == 1){
+        loading.dismiss();
         console.log("order list")
         
         this.orderArray=details.orderlist
@@ -129,7 +153,13 @@ console.log(this.idSet)
         console.log(this.orderArray)
     
   }
-})
+  else{
+    loading.dismiss();
+  }
+},(err) => {
+  console.log("Error",err);
+  this.presentToast('Error,please try again later.');
+}); 
   }
   })     
  
