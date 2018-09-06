@@ -195,7 +195,7 @@ private presentToast(text) {
     this.otpSet={
       "phone":this.phone,
       "otp":this.data,
-      "current_datetime":currentDateTime,
+      // "current_datetime":currentDateTime,
       };
   
 console.log (this.otpSet)
