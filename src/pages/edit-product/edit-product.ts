@@ -151,6 +151,8 @@ export class EditProductPage {
     }else{
     data.id=this.productId;
     
+    console.log(data)
+
     this.authProvider.editPrductlisting(data).subscribe(res => {
      
       console.log(res);

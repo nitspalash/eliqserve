@@ -173,14 +173,14 @@ this.formGroup.value.store_location='';
       alert.present(); 
      }
 
-    //  else if(!this.formGroup.value.delivery || this.formGroup.value.pickup)
-    //  {
-    //   let alert = this.alertCtrl.create({
-    //     title: 'Please select delivery and/or pickup',
-    //            buttons: ['ok']
-    //   });
-    //   alert.present(); 
-    //  }
+     else if(!this.formGroup.value.delivery && !this.formGroup.value.pickup)
+     {
+      let alert = this.alertCtrl.create({
+        title: 'Please select delivery and/or pickup',
+               buttons: ['ok']
+      });
+      alert.present(); 
+     }
 
     
 

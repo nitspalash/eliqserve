@@ -1,5 +1,5 @@
 import { Component,NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,ToastController } from 'ionic-angular';
 import {MyApp} from '../../app/app.component';
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import { Geolocation } from '@ionic-native/geolocation';
@@ -59,6 +59,8 @@ export class HomePage {
     private nativeGeocoder: NativeGeocoder,
     public storage: Storage,
     private locationAccuracy: LocationAccuracy,
+    public toastCtrl:ToastController,
+    public loadingCtrl:LoadingController,
     public events: Events,
     public myApp:MyApp,
     private zone: NgZone,
@@ -204,6 +206,14 @@ catlist(){
 
 productList(id,name)
   {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      // duration: 6000
+    });
+  
+    loading.present();
+
     console.log('product')
     //alert(name);
     this.pet= name
@@ -247,6 +257,7 @@ console.log(this.idSet)
      
       let details = res
       if(details.Ack == 1){
+        loading.dismiss();
         console.log('hello')
         
       this.productArray=details.products
@@ -254,10 +265,28 @@ console.log(this.idSet)
       this.imageLink=res.image_link
       console.log (this.imageLink) 
 
-      } 
+      } else{
+        loading.dismiss();
+      }
     
+  },(err) => {
+    
+    console.log("Error",err);
+    loading.dismiss();
+    this.presentToast('Error while validating otp.');
   });
+
 }
+
+private presentToast(text) {
+  let toast = this.toastCtrl.create({
+    message: text,
+    duration: 3000,
+    position: 'top'
+  });
+  toast.present();
+}
+
 goToProductDetails(data)
 {
   console.log("product details")

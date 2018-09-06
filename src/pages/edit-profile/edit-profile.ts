@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController,Platform } from 'ionic-angular';
 import {FormBuilder,FormControl,FormGroup,Validators,AbstractControl} from '@angular/forms'
 import {AuthProvider} from '../../providers/auth-service/authservice'
 import {Storage} from'@ionic/storage';
-
+import { Geolocation } from '@ionic-native/geolocation';
+declare var google:any;
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -28,16 +29,33 @@ export class EditProfilePage {
   MinmumBirthDate:any;
   minyear:any;
 
+  google:any;
+  geo:any;
+  GoogleAutocomplete:any;
+  autocomplete:any;
+  autocompleteItems=[];
+  completeAddres:any;
+  geocoder: any;
+  latitude:any;
+  longitude:any;
+
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public formBuilder:FormBuilder, 
   public authProvider:AuthProvider,
   public alertCtrl:AlertController,
+  private zone: NgZone,
+  private geolocation: Geolocation,
   public platform: Platform,
   public storage:Storage,
 
 ) {
 
+  this.geocoder = new google.maps.Geocoder;
+
+  this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+  this.autocomplete = { input: '' };
+  this.autocompleteItems = [];
 
   platform.registerBackButtonAction(() => {
     this.navCtrl.setRoot ('VieworderPage');
@@ -73,6 +91,7 @@ console.log (new Date().getMonth());
       postcode: new FormControl ('', Validators.required),
       dob: new FormControl ('', Validators.required),
 
+      store_location:new FormControl (''),
       merchant_id: new FormControl ('', Validators.required),
       public_key: new FormControl ('', Validators.required),
       private_key: new FormControl ('', Validators.required),
@@ -97,6 +116,7 @@ console.log (new Date().getMonth());
    this.formGroup.controls['city'].setValue(this.user_details.city);
    this.formGroup.controls['address'].setValue(this.user_details.address);
    this.formGroup.controls['country'].setValue(this.user_details.country);
+   this.formGroup.controls['store_location'].setValue(this.user_details.store_location);
    this.formGroup.controls['dob'].setValue(this.user_details.dob.split('T')[0]);
    this.formGroup.controls['postcode'].setValue(this.user_details.postcode);
    this.formGroup.controls['merchant_id'].setValue(this.user_details.merchant_id);
@@ -124,6 +144,9 @@ else
 
   submitDetails (formdata)
   {
+    formdata.store_latitude=this.latitude;
+    formdata.store_longitude=this.longitude;
+
     formdata.user_id=this.user_id;
     console.log(formdata);
     this.authProvider.editProfile(formdata).subscribe(res => {
@@ -148,4 +171,52 @@ else
           });
 
 }
+
+
+updateSearchResults() {
+    
+  if (!this.formGroup.value.store_location) {
+    this.autocompleteItems = [];
+    return;
+  }
+  this.GoogleAutocomplete.getPlacePredictions({ input: this.formGroup.value.store_location},
+    (predictions, status) => {
+      this.autocompleteItems = [];
+      this.zone.run(() => {
+        predictions.forEach((prediction) => {
+          console.log('prediction',prediction)
+          console.log(predictions)
+          this.autocompleteItems.push(prediction);
+        });
+      });
+    });
+   
+}
+
+selectSearchResult(item) {
+  this.autocompleteItems = [];
+  
+  console.log('item',item)
+  this.completeAddres = item.description;
+  console.log('address',this.completeAddres);
+  this.formGroup.get('store_location').setValue(this.completeAddres);
+
+
+  this.geo = item;
+  console.log(this.geo);
+  this.geoCode(this.geo); 
+}
+
+
+
+geoCode(address:any) {
+  let geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ 'address': this.completeAddres }, (results, status) => {
+  this.latitude = results[0].geometry.location.lat();
+  this.longitude = results[0].geometry.location.lng();
+  console.log("lat: " + this.latitude + ", long: " + this.longitude);
+ });
+}
+
+
 }

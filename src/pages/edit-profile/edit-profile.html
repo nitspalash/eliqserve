@@ -51,6 +51,17 @@
   </ion-row>
 
   <ion-row>
+      <ion-col col>
+    <ion-input type="text" placeholder="Enter Store Location" id="pac-input" formControlName="store_location" name="store_location" (keyup)="updateSearchResults()"></ion-input>
+  </ion-col>
+  </ion-row>
+      <ion-list [hidden]="autocompleteItems.length == 0">
+     <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+    {{item.description}}
+        </ion-item>
+    </ion-list>
+
+  <ion-row>
     <ion-col col>
       <ion-input type="text" placeholder="Country" formControlName="country"></ion-input>
     </ion-col>
