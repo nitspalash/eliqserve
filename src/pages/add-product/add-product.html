@@ -80,15 +80,24 @@
                     <p class="error" *ngIf="formGroup.get('price').hasError('required') && formGroup.get('price').touched"  style="color:red;">
                       Price is required.
                     </p>
+                    <!-- <p class="error" *ngIf="formGroup.get('price').hasError('pattern') && formGroup.get('price').touched"  style="color:red;">
+                      Only number is required.
+                    </p> -->
+
                 </ion-col>
                 <ion-col>
                     <ion-item>
                         <ion-label floating>QTY*</ion-label>
-                        <ion-input type="number" formControlName="quantity"></ion-input>
+                        <ion-input type="number"  formControlName="quantity"></ion-input>
                     </ion-item>
                     <p class="error" *ngIf="formGroup.get('quantity').hasError('required') && formGroup.get('quantity').touched"  style="color:red;">
                       Quantity is required.
                     </p>
+
+
+                    <!-- <p class="error" *ngIf="formGroup.get('quantity').hasError('pattern') && formGroup.get('quantity').touched"  style="color:red;">
+                      Only number is required.
+                    </p> -->
                 </ion-col>
               </ion-row>
               

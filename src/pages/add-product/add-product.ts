@@ -66,7 +66,7 @@ export class AddProductPage {
       description: new FormControl ('', Validators.required),
       price: new FormControl ('', Validators.required),
       discount: new FormControl (''),
-      quantity: new FormControl ('', Validators.required),
+      quantity: new FormControl ('',Validators.required),
       available: new FormControl ('', Validators.required),
 
     });
