@@ -92,11 +92,13 @@ export class HomePage {
 
 catlist(){
 
+
   this.authProvider.categoryListing().subscribe((res:any) => {
      
 
     if (res.Ack==1)
     {
+      
       console.log('my data: ');
       this.categoryArray=res.categories;
       console.log(this.categoryArray[0].name);
@@ -107,6 +109,10 @@ catlist(){
 
     this.imageLink=res.categoryimagepath
     console.log (this.imageLink) 
+    }
+    else
+    {
+      console.log('error')
     }
 });
 }
@@ -131,10 +137,16 @@ catlist(){
 
   fetchlocation(){
 
-    
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      
+    });
+  
+    loading.present();
     this.geolocation.getCurrentPosition().then((resp) => {
        
-  
+     
+
       let options: NativeGeocoderOptions = {
         useLocale: true,
         maxResults: 5
@@ -142,20 +154,24 @@ catlist(){
     
     this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
       .then((result: NativeGeocoderReverseResult[]) => {
+
+    
        // console.log(JSON.stringify(result[0]))
         this.storage.ready().then(() => {
+        
+          
           
           localStorage.setItem('currentlatlong', JSON.stringify(resp.coords));
           localStorage.setItem('lat', JSON.stringify(resp.coords.latitude));
           localStorage.setItem('lng', JSON.stringify(resp.coords.longitude));
           localStorage.setItem('currentaddress', JSON.stringify(result[0]));
-          var address = JSON.stringify(result[0])
+          // var address = JSON.stringify(result[0])
           //this.currentaddress = ;
           this.address = JSON.parse(localStorage.getItem('currentaddress'));
           console.log('lat',JSON.parse(localStorage.getItem('lat')))
           console.log('lng',JSON.parse(localStorage.getItem('lng')))
         
-          console.log(address)
+          // console.log(address)
           
           console.log(this.currentaddress);
           this.productList(this.catid,this.pet);
@@ -185,10 +201,11 @@ catlist(){
         }
         if(this.address.postalCode)
         {
+          loading.dismiss();
           this.currentaddress = this.currentaddress + this.address.postalCode;
         }
           
-          console.log(address);
+          // console.log(address);
   
       })
       })
@@ -199,6 +216,7 @@ catlist(){
       // resp.coords.latitude
       // resp.coords.longitude
      }).catch((error) => {
+      loading.dismiss();
        console.log('Error getting location', error);
      });
      
@@ -209,7 +227,7 @@ productList(id,name)
 
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
-      // duration: 6000
+      
     });
   
     loading.present();
@@ -273,7 +291,7 @@ console.log(this.idSet)
     
     console.log("Error",err);
     loading.dismiss();
-    this.presentToast('Error while validating otp.');
+    this.presentToast('Error while fetching product list,please try again.');
   });
 
 }

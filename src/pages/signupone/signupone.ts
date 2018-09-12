@@ -182,7 +182,6 @@ this.formGroup.value.store_location='';
       alert.present(); 
      }
 
-    
 
      else if(!this.formGroup.value.trade_license)
      {

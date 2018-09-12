@@ -111,24 +111,29 @@ export class AfterSplashPage {
 
 
 
-
+      
       
       this.diagnostic.isLocationEnabled().then(
       (isAvailable) => {
+
+        
         if(!isAvailable)
         {
           this.locationAccuracy.canRequest().then((canRequest: boolean) => {
 
             if(canRequest) {
+            
+
             // the accuracy option will be ignored by iOS
             this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
             () => {
-              let loading = this.loadingCtrl.create({
-                content: 'Getting your location...',
-                duration: 5000
-              });
+              // loading.dismiss();
+              // let loading = this.loadingCtrl.create({
+              //   content: 'Getting your location...',
+              //   duration: 5000
+              // });
             
-              loading.present();
+              // loading.present();
               this.fetchlocation()
               
             },
@@ -141,20 +146,22 @@ export class AfterSplashPage {
             });
         }
         else{
-          let loading = this.loadingCtrl.create({
-            content: 'Getting your location...',
-            duration: 5000
-          });
+          // loading.dismiss();
+          // let loading = this.loadingCtrl.create({
+          //   content: 'Getting your location...',
+          //   duration: 5000
+          // });
         
-          loading.present();
+          // loading.present();
           this.fetchlocation();
-          //alert(ty)
+          
           
         }
       console.log('Is available? ' + isAvailable);
       //alert('Is available? ' + isAvailable);
       }).catch( (e) => {
       console.log(e);
+      
       //alert(JSON.stringify(e));
       });
       
@@ -199,6 +206,13 @@ export class AfterSplashPage {
 
 
 fetchlocation(){
+ 
+  let loading = this.loadingCtrl.create({
+    content: 'Getting your location...',
+ });
+
+  loading.present();
+
   this.geolocation.getCurrentPosition().then((resp) => {
      
 
@@ -214,10 +228,11 @@ fetchlocation(){
         
         localStorage.setItem('currentlatlong', JSON.stringify(resp.coords));
         localStorage.setItem('currentaddress', JSON.stringify(result[0]));
-        var address = JSON.stringify(result[0])
+        // var address = JSON.stringify(result[0])
         //this.currentaddress = ;
         this.address = JSON.parse(localStorage.getItem('currentaddress'));
-        console.log('address',address)
+        
+        console.log('address',this.address)
         
         console.log(this.currentaddress);
       
@@ -247,6 +262,7 @@ fetchlocation(){
       }
       if(this.address.postalCode)
       {
+        loading.dismiss();
         this.currentaddress = this.currentaddress + this.address.postalCode;
       }
       // this.navCtrl.setRoot ('HomePage')
@@ -273,7 +289,7 @@ fetchlocation(){
       this.navCtrl.setRoot ('HomePage')
     }
     
-        console.log(address);
+        // console.log(address);
         
     })
     })
@@ -284,6 +300,7 @@ fetchlocation(){
     // resp.coords.latitude
     // resp.coords.longitude
    }).catch((error) => {
+    loading.dismiss();
      console.log('Error getting location', error);
    });
 }
