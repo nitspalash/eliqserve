@@ -70,7 +70,10 @@ export class LoginPage {
   login (formData)
   {
 
-   
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+         });
+      loading.present();
     
     // this.itemEmail=JSON.parse(localStorage.getItem('email_address'));
     // this.useremail=this.itemEmail.useremail
@@ -99,6 +102,7 @@ export class LoginPage {
      
       // let details = res
       if(res.ack == 1){
+        loading.dismiss();
         console.log('hello')
       this.detailsTReponse=res.details
       console.log (this.detailsTReponse)
@@ -127,6 +131,7 @@ export class LoginPage {
 
 
       else if (res.ack == 2){
+        loading.dismiss();
 
         let alert = this.alertCtrl.create({
           title: res.message,
@@ -189,6 +194,7 @@ export class LoginPage {
       }
       else
       {
+        loading.dismiss();
         let alert = this.alertCtrl.create({
           title: res.message,
                  buttons:['ok']
@@ -197,6 +203,10 @@ export class LoginPage {
         this.formGroup.reset();
       }
 
+  },(err) => {
+    console.log("Error",err);
+    loading.dismiss();
+    this.presentToast('Something wrong, please try again.');
   });
 }
 
