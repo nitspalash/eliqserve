@@ -166,7 +166,7 @@ catlist(){
           localStorage.setItem('lng', JSON.stringify(resp.coords.longitude));
           localStorage.setItem('currentaddress', JSON.stringify(result[0]));
           // var address = JSON.stringify(result[0])
-          //this.currentaddress = ;
+          this.currentaddress = '';
           this.address = JSON.parse(localStorage.getItem('currentaddress'));
           console.log('lat',JSON.parse(localStorage.getItem('lat')))
           console.log('lng',JSON.parse(localStorage.getItem('lng')))
