@@ -229,7 +229,7 @@ fetchlocation(){
         localStorage.setItem('currentlatlong', JSON.stringify(resp.coords));
         localStorage.setItem('currentaddress', JSON.stringify(result[0]));
         // var address = JSON.stringify(result[0])
-        //this.currentaddress = ;
+        this.currentaddress ='' ;
         this.address = JSON.parse(localStorage.getItem('currentaddress'));
         
         console.log('address',this.address)
